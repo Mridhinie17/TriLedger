@@ -5,19 +5,17 @@ FX reference rate validation, RapidFuzz duplicate detection, and IsolationForest
 """
 
 import csv
-import json
-from pathlib import Path
+
 import pytest
 
 from config.settings import settings
-from db.session import get_db_context
 from db.models import Invoice
+from db.session import get_db_context
+from eval.run_matching_eval import run_matching_evaluation
+from fx.loader import FXResolver
 from matching.engine import ReconciliationEngine
 from matching.fx_validator import FXValidator
-from matching.duplicate_detector import DuplicateDetector
 from matching.isolation_forest import InvoiceAnomalyDetector
-from fx.loader import FXResolver
-from eval.run_matching_eval import run_matching_evaluation
 
 
 @pytest.fixture(scope="module")
@@ -37,8 +35,7 @@ def test_clean_invoice_reconciles_successfully(ground_truth_map):
     with get_db_context() as db:
         engine = ReconciliationEngine(db)
         clean_inv_num = next(
-            num for num, data in ground_truth_map.items()
-            if data["defect_type"] == "none"
+            num for num, data in ground_truth_map.items() if data["defect_type"] == "none"
         )
         inv = db.query(Invoice).filter(Invoice.invoice_number == clean_inv_num).first()
         assert inv is not None
@@ -50,23 +47,25 @@ def test_clean_invoice_reconciles_successfully(ground_truth_map):
         assert len(result.discrepancies) == 0
 
 
-@pytest.mark.parametrize("defect_type", [
-    "quantity_mismatch",
-    "price_over_tolerance",
-    "duplicate_invoice",
-    "no_matching_po",
-    "tax_miscalculation",
-    "bank_details_changed",
-    "fx_rate_deviation",
-    "wrong_currency"
-])
+@pytest.mark.parametrize(
+    "defect_type",
+    [
+        "quantity_mismatch",
+        "price_over_tolerance",
+        "duplicate_invoice",
+        "no_matching_po",
+        "tax_miscalculation",
+        "bank_details_changed",
+        "fx_rate_deviation",
+        "wrong_currency",
+    ],
+)
 def test_each_injected_defect_type_is_detected(ground_truth_map, defect_type):
     """Verify that each of the 8 injected defect types is accurately caught by the matching engine."""
     with get_db_context() as db:
         engine = ReconciliationEngine(db)
         target_inv_num = next(
-            num for num, data in ground_truth_map.items()
-            if data["defect_type"] == defect_type
+            num for num, data in ground_truth_map.items() if data["defect_type"] == defect_type
         )
         inv = db.query(Invoice).filter(Invoice.invoice_number == target_inv_num).first()
         assert inv is not None, f"No invoice found for defect {defect_type}"
@@ -90,7 +89,7 @@ def test_fx_validator_tolerances():
             invoice_date=db.query(Invoice).first().invoice_date,
             currency="INR",
             stated_fx_rate=1.0,
-            gross_amount=10000.0
+            gross_amount=10000.0,
         )
         assert res_ok["is_valid"] is True
 
@@ -99,7 +98,7 @@ def test_fx_validator_tolerances():
             invoice_date=db.query(Invoice).first().invoice_date,
             currency="USD",
             stated_fx_rate=95.0,
-            gross_amount=1000.0
+            gross_amount=1000.0,
         )
         assert res_bad["is_valid"] is False
         assert res_bad["deviation_pct"] > 1.5

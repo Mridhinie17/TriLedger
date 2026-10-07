@@ -68,7 +68,7 @@ def test_pydantic_schema_validation():
         unit_price=450.0,
         net_amount=2250.0,
         tax_amount=405.0,
-        total_amount=2655.0
+        total_amount=2655.0,
     )
     assert item.quantity == 5.0
 
@@ -81,7 +81,7 @@ def test_pydantic_schema_validation():
             unit_price=100.0,
             net_amount=-500.0,
             tax_amount=0.0,
-            total_amount=-500.0
+            total_amount=-500.0,
         )
 
 
@@ -94,7 +94,10 @@ def test_confidence_scoring_and_flagging(extractor, tmp_path):
     result = extractor.extract_from_pdf(empty_pdf)
     assert result.flagged_for_review is True
     assert result.overall_confidence < 0.85
-    assert "invoice_number" in result.low_confidence_fields or "vendor_id" in result.low_confidence_fields
+    assert (
+        "invoice_number" in result.low_confidence_fields
+        or "vendor_id" in result.low_confidence_fields
+    )
 
 
 def test_extraction_eval_runner(tmp_path):

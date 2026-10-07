@@ -3,13 +3,14 @@ Unsupervised Anomaly Detection using Isolation Forest.
 Provides a secondary anomaly signal on price and quantity variance features.
 """
 
-from typing import List, Dict, Any, Tuple, Optional
+from typing import List, Optional, Tuple
+
 import numpy as np
 from sklearn.ensemble import IsolationForest
-from sqlalchemy.orm import Session
 from sqlalchemy import select
+from sqlalchemy.orm import Session
 
-from db.models import Invoice, PurchaseOrder, GoodsReceipt, PurchaseOrderItem
+from db.models import GoodsReceipt, Invoice, PurchaseOrder
 
 
 class InvoiceAnomalyDetector:
@@ -17,9 +18,7 @@ class InvoiceAnomalyDetector:
         self.contamination = contamination
         self.random_state = random_state
         self.model = IsolationForest(
-            contamination=self.contamination,
-            random_state=self.random_state,
-            n_estimators=100
+            contamination=self.contamination, random_state=self.random_state, n_estimators=100
         )
         self.is_fitted = False
 
@@ -27,7 +26,7 @@ class InvoiceAnomalyDetector:
         self,
         invoice: Invoice,
         po: Optional[PurchaseOrder] = None,
-        receipts: Optional[List[GoodsReceipt]] = None
+        receipts: Optional[List[GoodsReceipt]] = None,
     ) -> np.ndarray:
         """
         Extracts a 4-dimensional normalized feature vector:
@@ -80,10 +79,16 @@ class InvoiceAnomalyDetector:
         for inv in invoices:
             po = None
             if inv.po_number:
-                po = db.execute(select(PurchaseOrder).where(PurchaseOrder.po_number == inv.po_number)).scalar_one_or_none()
+                po = db.execute(
+                    select(PurchaseOrder).where(PurchaseOrder.po_number == inv.po_number)
+                ).scalar_one_or_none()
             receipts = []
             if inv.po_number:
-                receipts = db.execute(select(GoodsReceipt).where(GoodsReceipt.po_number == inv.po_number)).scalars().all()
+                receipts = (
+                    db.execute(select(GoodsReceipt).where(GoodsReceipt.po_number == inv.po_number))
+                    .scalars()
+                    .all()
+                )
 
             feat = self.extract_features(inv, po, receipts)
             X.append(feat)
@@ -97,7 +102,7 @@ class InvoiceAnomalyDetector:
         self,
         invoice: Invoice,
         po: Optional[PurchaseOrder] = None,
-        receipts: Optional[List[GoodsReceipt]] = None
+        receipts: Optional[List[GoodsReceipt]] = None,
     ) -> Tuple[bool, float]:
         """
         Returns (is_anomaly, anomaly_score).

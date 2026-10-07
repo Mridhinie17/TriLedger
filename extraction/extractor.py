@@ -31,8 +31,7 @@ class InvoiceExtractor:
 
         # Flag fields below confidence threshold
         low_confidence_fields = [
-            f_name for f_name, score in confidences.items()
-            if score < self.confidence_threshold
+            f_name for f_name, score in confidences.items() if score < self.confidence_threshold
         ]
 
         overall_conf = round(sum(confidences.values()) / max(len(confidences), 1), 4)
@@ -55,7 +54,7 @@ class InvoiceExtractor:
             bank_account_number=fields.get("bank_account_number"),
             bank_code=fields.get("bank_code"),
             is_ocr_fallback_used=is_ocr,
-            raw_text=raw_text
+            raw_text=raw_text,
         )
 
         return ExtractionResult(
@@ -63,7 +62,7 @@ class InvoiceExtractor:
             field_confidences=confidences,
             overall_confidence=overall_conf,
             flagged_for_review=flagged,
-            low_confidence_fields=low_confidence_fields
+            low_confidence_fields=low_confidence_fields,
         )
 
     def _get_text_and_tables(self, pdf_path: Path) -> Tuple[str, List[List[List[str]]], bool]:
@@ -99,18 +98,16 @@ class InvoiceExtractor:
         return raw_text, tables, False
 
     def _parse_fields(
-        self,
-        text: str,
-        tables: List[List[List[str]]],
-        is_ocr: bool
+        self, text: str, tables: List[List[List[str]]], is_ocr: bool
     ) -> Tuple[Dict[str, Any], Dict[str, float]]:
         base_conf = 0.95 if is_ocr else 1.0
         fields: Dict[str, Any] = {}
         confidences: Dict[str, float] = {}
 
         # 1. Invoice Number
-        inv_match = re.search(r"TAX INVOICE:\s*([A-Za-z0-9\-]+)", text, re.IGNORECASE) or \
-                    re.search(r"INVOICE\s*(?:NUMBER|NO|#)?:\s*([A-Za-z0-9\-]+)", text, re.IGNORECASE)
+        inv_match = re.search(r"TAX INVOICE:\s*([A-Za-z0-9\-]+)", text, re.IGNORECASE) or re.search(
+            r"INVOICE\s*(?:NUMBER|NO|#)?:\s*([A-Za-z0-9\-]+)", text, re.IGNORECASE
+        )
         if inv_match:
             fields["invoice_number"] = inv_match.group(1).strip()
             confidences["invoice_number"] = base_conf
@@ -128,7 +125,11 @@ class InvoiceExtractor:
             confidences["vendor_id"] = 0.0
 
         # 3. Vendor Name
-        vname_match = re.search(r"Vendor:\s*([^\n\r]+?)(?:\s+Invoice Date:|\s+Tax ID|\s+Vendor ID|\n)", text, re.IGNORECASE)
+        vname_match = re.search(
+            r"Vendor:\s*([^\n\r]+?)(?:\s+Invoice Date:|\s+Tax ID|\s+Vendor ID|\n)",
+            text,
+            re.IGNORECASE,
+        )
         if vname_match:
             fields["vendor_name"] = vname_match.group(1).strip()
             confidences["vendor_name"] = base_conf
@@ -149,7 +150,9 @@ class InvoiceExtractor:
         date_match = re.search(r"Invoice Date:\s*(\d{4}-\d{2}-\d{2})", text, re.IGNORECASE)
         if date_match:
             try:
-                fields["invoice_date"] = datetime.strptime(date_match.group(1).strip(), "%Y-%m-%d").date()
+                fields["invoice_date"] = datetime.strptime(
+                    date_match.group(1).strip(), "%Y-%m-%d"
+                ).date()
                 confidences["invoice_date"] = base_conf
             except ValueError:
                 fields["invoice_date"] = date(2024, 1, 1)
@@ -178,9 +181,15 @@ class InvoiceExtractor:
             confidences["currency"] = 0.30
 
         # 8. Totals (Subtotal, Tax, Gross)
-        net_match = re.search(r"Subtotal:\s*(?:[A-Za-z]{3}\s*)?([0-9,]+\.[0-9]{2})", text, re.IGNORECASE)
-        tax_match = re.search(r"Tax Amount:\s*(?:[A-Za-z]{3}\s*)?([0-9,]+\.[0-9]{2})", text, re.IGNORECASE)
-        gross_match = re.search(r"Total Payable:\s*(?:[A-Za-z]{3}\s*)?([0-9,]+\.[0-9]{2})", text, re.IGNORECASE)
+        net_match = re.search(
+            r"Subtotal:\s*(?:[A-Za-z]{3}\s*)?([0-9,]+\.[0-9]{2})", text, re.IGNORECASE
+        )
+        tax_match = re.search(
+            r"Tax Amount:\s*(?:[A-Za-z]{3}\s*)?([0-9,]+\.[0-9]{2})", text, re.IGNORECASE
+        )
+        gross_match = re.search(
+            r"Total Payable:\s*(?:[A-Za-z]{3}\s*)?([0-9,]+\.[0-9]{2})", text, re.IGNORECASE
+        )
 
         net_val = float(net_match.group(1).replace(",", "")) if net_match else 0.0
         tax_val = float(tax_match.group(1).replace(",", "")) if tax_match else 0.0
@@ -201,7 +210,9 @@ class InvoiceExtractor:
             confidences["math_reconciliation"] = 0.65
 
         # 9. Stated FX Rate
-        fx_match = re.search(r"Stated FX Rate:\s*1\s*[A-Za-z]{3}\s*=\s*([0-9.]+)\s*INR", text, re.IGNORECASE)
+        fx_match = re.search(
+            r"Stated FX Rate:\s*1\s*[A-Za-z]{3}\s*=\s*([0-9.]+)\s*INR", text, re.IGNORECASE
+        )
         if fx_match:
             fields["stated_fx_rate"] = float(fx_match.group(1).strip())
             confidences["stated_fx_rate"] = base_conf
@@ -242,16 +253,18 @@ class InvoiceExtractor:
                             net_amt = float(str(row[5]).replace(",", "").strip())
                             tax_amt = float(str(row[6]).replace(",", "").strip())
                             tot_amt = float(str(row[7]).replace(",", "").strip())
-                            items.append(ExtractedLineItem(
-                                line_number=line_no,
-                                item_description=desc,
-                                quantity=qty,
-                                unit_of_measure=uom,
-                                unit_price=price,
-                                net_amount=net_amt,
-                                tax_amount=tax_amt,
-                                total_amount=tot_amt
-                            ))
+                            items.append(
+                                ExtractedLineItem(
+                                    line_number=line_no,
+                                    item_description=desc,
+                                    quantity=qty,
+                                    unit_of_measure=uom,
+                                    unit_price=price,
+                                    net_amount=net_amt,
+                                    tax_amount=tax_amt,
+                                    total_amount=tot_amt,
+                                )
+                            )
                         except (ValueError, TypeError):
                             continue
 
@@ -259,20 +272,22 @@ class InvoiceExtractor:
         if not items:
             line_pattern = re.compile(
                 r"^\s*(\d{2,3})\s+(.+?)\s+([\d.]+)\s+([A-Za-z]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)",
-                re.MULTILINE
+                re.MULTILINE,
             )
             for m in line_pattern.finditer(text):
                 try:
-                    items.append(ExtractedLineItem(
-                        line_number=int(m.group(1)),
-                        item_description=m.group(2).strip(),
-                        quantity=float(m.group(3)),
-                        unit_of_measure=m.group(4).strip(),
-                        unit_price=float(m.group(5)),
-                        net_amount=float(m.group(6)),
-                        tax_amount=float(m.group(7)),
-                        total_amount=float(m.group(8))
-                    ))
+                    items.append(
+                        ExtractedLineItem(
+                            line_number=int(m.group(1)),
+                            item_description=m.group(2).strip(),
+                            quantity=float(m.group(3)),
+                            unit_of_measure=m.group(4).strip(),
+                            unit_price=float(m.group(5)),
+                            net_amount=float(m.group(6)),
+                            tax_amount=float(m.group(7)),
+                            total_amount=float(m.group(8)),
+                        )
+                    )
                 except (ValueError, TypeError):
                     continue
 

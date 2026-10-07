@@ -43,7 +43,7 @@ def test_schema_all_tables_exist():
             "invoice_items",
             "fx_rates",
             "audit_log",
-            "rejected_rows"
+            "rejected_rows",
         }
         missing = required_tables - table_names
         assert not missing, f"Missing required database tables: {missing}"
@@ -53,7 +53,9 @@ def test_fx_rates_loader_and_triangular_cross_rates():
     """Verify ECB rates download, database load, and triangular cross-rate formula."""
     with get_db_context() as db:
         loader = FXLoader()
-        stats = loader.load_rates_to_db(db, start_year=2024, currencies=["USD", "EUR", "INR", "JPY"])
+        stats = loader.load_rates_to_db(
+            db, start_year=2024, currencies=["USD", "EUR", "INR", "JPY"]
+        )
         assert stats["loaded"] > 0 or stats["skipped"] > 0
 
         resolver = FXResolver(db)
@@ -61,7 +63,9 @@ def test_fx_rates_loader_and_triangular_cross_rates():
         test_date = date(2024, 6, 3)
         rate_usd_inr, eff_date = resolver.resolve_effective_rate(test_date, "USD", "INR")
 
-        assert rate_usd_inr > 70.0 and rate_usd_inr < 95.0, f"Unrealistic USD/INR rate: {rate_usd_inr}"
+        assert rate_usd_inr > 70.0 and rate_usd_inr < 95.0, (
+            f"Unrealistic USD/INR rate: {rate_usd_inr}"
+        )
         assert eff_date == test_date
 
         # EUR to INR direct
@@ -96,7 +100,9 @@ def test_generator_determinism(tmp_path):
     TestSession = sessionmaker(bind=test_engine)
 
     with TestSession() as db:
-        gen1 = DatasetGenerator(seed=42, total_invoices=20, defect_rate=0.20, scanned_rate=0.10, data_dir=tmp_path)
+        gen1 = DatasetGenerator(
+            seed=42, total_invoices=20, defect_rate=0.20, scanned_rate=0.10, data_dir=tmp_path
+        )
         res1 = gen1.generate_all(db, build_pdfs=False)
 
         invs1 = [
@@ -111,7 +117,9 @@ def test_generator_determinism(tmp_path):
     TestSession2 = sessionmaker(bind=test_engine2)
 
     with TestSession2() as db:
-        gen2 = DatasetGenerator(seed=42, total_invoices=20, defect_rate=0.20, scanned_rate=0.10, data_dir=tmp_path)
+        gen2 = DatasetGenerator(
+            seed=42, total_invoices=20, defect_rate=0.20, scanned_rate=0.10, data_dir=tmp_path
+        )
         res2 = gen2.generate_all(db, build_pdfs=False)
 
         invs2 = [
@@ -147,7 +155,7 @@ def test_ground_truth_integrity_and_defect_counts():
         "bank_details_changed",
         "fx_rate_deviation",
         "wrong_currency",
-        "none"
+        "none",
     }
     for r in rows:
         assert r["defect_type"] in valid_defects, f"Unknown defect type: {r['defect_type']}"
@@ -165,7 +173,7 @@ def test_data_quality_rejections_logged_to_dead_letter():
             "total_net_amount": -500.0,  # Negative
             "total_tax_amount": 0.0,
             "total_gross_amount": -500.0,
-            "items": []
+            "items": [],
         }
         is_valid, reasons = validator.validate_invoice_payload(bad_payload)
         assert not is_valid
@@ -179,23 +187,27 @@ def test_data_quality_rejections_logged_to_dead_letter():
             "total_net_amount": 1000.0,
             "total_tax_amount": 180.0,
             "total_gross_amount": 9999.0,  # Deliberate mismatch
-            "items": [{
-                "line_number": 10,
-                "quantity": 1.0,
-                "unit_price": 1000.0,
-                "net_amount": 1000.0,
-                "tax_amount": 180.0,
-                "total_amount": 1180.0
-            }]
+            "items": [
+                {
+                    "line_number": 10,
+                    "quantity": 1.0,
+                    "unit_price": 1000.0,
+                    "net_amount": 1000.0,
+                    "tax_amount": 180.0,
+                    "total_amount": 1180.0,
+                }
+            ],
         }
         is_valid2, reasons2 = validator.validate_invoice_payload(unbalanced_payload)
         assert not is_valid2
         assert any("HEADER_MATH_MISMATCH" in r for r in reasons2)
 
         # Verify entry in rejected_rows table
-        rejected_entry = db.query(RejectedRow).filter(
-            RejectedRow.rejection_reason.like("%HEADER_MATH_MISMATCH%")
-        ).first()
+        rejected_entry = (
+            db.query(RejectedRow)
+            .filter(RejectedRow.rejection_reason.like("%HEADER_MATH_MISMATCH%"))
+            .first()
+        )
         assert rejected_entry is not None
         assert rejected_entry.source_table == "invoices"
 
@@ -213,23 +225,25 @@ def test_pdf_rendering_and_scan_simulation(tmp_path):
         "invoice_date": "2024-05-10",
         "po_number": "PO-2024-00001",
         "currency": "INR",
-        "items": [{
-            "line_number": 10,
-            "item_description": "Industrial Bearing Assembly",
-            "quantity": 5.0,
-            "unit_of_measure": "EA",
-            "unit_price": 1000.0,
-            "tax_rate_pct": 18.0,
-            "net_amount": 5000.0,
-            "tax_amount": 900.0,
-            "total_amount": 5900.0
-        }],
+        "items": [
+            {
+                "line_number": 10,
+                "item_description": "Industrial Bearing Assembly",
+                "quantity": 5.0,
+                "unit_of_measure": "EA",
+                "unit_price": 1000.0,
+                "tax_rate_pct": 18.0,
+                "net_amount": 5000.0,
+                "tax_amount": 900.0,
+                "total_amount": 5900.0,
+            }
+        ],
         "total_net_amount": 5000.0,
         "total_tax_amount": 900.0,
         "total_gross_amount": 5900.0,
         "bank_name": "HDFC Bank",
         "bank_account_number": "1234567890",
-        "bank_code": "HDFC0001234"
+        "bank_code": "HDFC0001234",
     }
 
     # Generate standard clean PDF

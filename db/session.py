@@ -18,16 +18,10 @@ if settings.DATABASE_URL.startswith("sqlite"):
     db_file_path = settings.DATABASE_URL.replace("sqlite:///", "")
     os.makedirs(os.path.dirname(os.path.abspath(db_file_path)), exist_ok=True)
     engine = create_engine(
-        settings.DATABASE_URL,
-        connect_args={"check_same_thread": False},
-        echo=settings.DEBUG
+        settings.DATABASE_URL, connect_args={"check_same_thread": False}, echo=settings.DEBUG
     )
 else:
-    engine = create_engine(
-        settings.DATABASE_URL,
-        pool_pre_ping=True,
-        echo=settings.DEBUG
-    )
+    engine = create_engine(settings.DATABASE_URL, pool_pre_ping=True, echo=settings.DEBUG)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

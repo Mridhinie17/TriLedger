@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
+
 class Settings(BaseSettings):
     PROJECT_NAME: str = "TriLedger"
     VERSION: str = "0.1.0"
@@ -33,16 +34,13 @@ class Settings(BaseSettings):
     # Tolerances file
     TOLERANCES_FILE: Path = PROJECT_ROOT / "config" / "tolerances.yaml"
 
-    model_config = {
-        "env_file": ".env",
-        "env_file_encoding": "utf-8",
-        "extra": "ignore"
-    }
+    model_config = {"env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
     def load_tolerances(self) -> dict[str, Any]:
         if not self.TOLERANCES_FILE.exists():
             return {}
         with open(self.TOLERANCES_FILE, "r", encoding="utf-8") as f:
             return yaml.safe_load(f)
+
 
 settings = Settings()

@@ -27,12 +27,16 @@ class ExtractedInvoice(BaseModel):
     tax_id: Optional[str] = None
     invoice_date: date = Field(..., description="Date stated on invoice")
     po_number: Optional[str] = Field(None, description="Referenced PO number or phantom PO")
-    currency: str = Field(..., min_length=3, max_length=3, description="Currency code (e.g. INR, USD)")
+    currency: str = Field(
+        ..., min_length=3, max_length=3, description="Currency code (e.g. INR, USD)"
+    )
     items: List[ExtractedLineItem] = Field(default_factory=list, description="Extracted line items")
     total_net_amount: float = Field(..., ge=0, description="Invoice subtotal before tax")
     total_tax_amount: float = Field(..., ge=0, description="Invoice tax total")
     total_gross_amount: float = Field(..., ge=0, description="Total payable")
-    stated_fx_rate: Optional[float] = Field(None, gt=0, description="Claimed FX conversion rate to base currency")
+    stated_fx_rate: Optional[float] = Field(
+        None, gt=0, description="Claimed FX conversion rate to base currency"
+    )
     bank_name: Optional[str] = None
     bank_account_number: Optional[str] = None
     bank_code: Optional[str] = None
@@ -47,7 +51,9 @@ class ExtractedInvoice(BaseModel):
 
 class ExtractionResult(BaseModel):
     invoice: ExtractedInvoice
-    field_confidences: Dict[str, float] = Field(..., description="Confidence scores (0.0 to 1.0) per field")
+    field_confidences: Dict[str, float] = Field(
+        ..., description="Confidence scores (0.0 to 1.0) per field"
+    )
     overall_confidence: float = Field(..., ge=0.0, le=1.0)
     flagged_for_review: bool = False
     low_confidence_fields: List[str] = Field(default_factory=list)

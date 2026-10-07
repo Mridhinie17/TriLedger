@@ -6,7 +6,8 @@ and flags deviations exceeding configurable tolerance.
 """
 
 from datetime import date
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
+
 from fx.loader import FXResolver
 
 
@@ -20,7 +21,7 @@ class FXValidator:
         invoice_date: date,
         currency: str,
         stated_fx_rate: Optional[float],
-        gross_amount: float
+        gross_amount: float,
     ) -> Dict[str, Any]:
         """
         Validates invoice exchange rate against official ECB reference rate.
@@ -40,7 +41,7 @@ class FXValidator:
                 "official_amount_base": gross_amount,
                 "variance_base": 0.0,
                 "is_foreign": False,
-                "message": "Base currency INR (no conversion required)"
+                "message": "Base currency INR (no conversion required)",
             }
 
         # Stated rate check for foreign currency
@@ -57,14 +58,12 @@ class FXValidator:
                 "official_amount_base": 0.0,
                 "variance_base": 0.0,
                 "is_foreign": True,
-                "message": f"Foreign currency invoice in {currency} is missing valid stated exchange rate"
+                "message": f"Foreign currency invoice in {currency} is missing valid stated exchange rate",
             }
 
         # Resolve official ECB rate on invoice date (or prior business day)
         official_rate, effective_date = self.fx_resolver.resolve_effective_rate(
-            query_date=invoice_date,
-            base_currency=currency,
-            target_currency="INR"
+            query_date=invoice_date, base_currency=currency, target_currency="INR"
         )
 
         deviation_pct = round(abs(stated_fx_rate - official_rate) / official_rate * 100.0, 4)
@@ -98,5 +97,5 @@ class FXValidator:
             "official_amount_base": official_inr,
             "variance_base": variance_inr,
             "is_foreign": True,
-            "message": msg
+            "message": msg,
         }

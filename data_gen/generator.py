@@ -46,7 +46,7 @@ PRODUCT_CATALOG = [
     ("High-Performance Thermal Paste 500g", "TUB", 950.0),
     ("Optoelectronic Sensor Diffuse 300mm", "EA", 2800.0),
     ("V-Belt Transmission B-Section 68-inch", "EA", 520.0),
-    ("Industrial Air Filter Cartridge", "EA", 1450.0)
+    ("Industrial Air Filter Cartridge", "EA", 1450.0),
 ]
 
 BANK_NAMES = [
@@ -56,7 +56,7 @@ BANK_NAMES = [
     ("Axis Bank", "UTIB0002345"),
     ("Citibank N.A.", "CITI0001122"),
     ("HSBC Bank", "HSBC0003344"),
-    ("Deutsche Bank", "DEUT0005566")
+    ("Deutsche Bank", "DEUT0005566"),
 ]
 
 
@@ -67,7 +67,7 @@ class DatasetGenerator:
         total_invoices: int = 800,
         defect_rate: float = 0.20,
         scanned_rate: float = 0.10,
-        data_dir: Path = settings.DATA_DIR
+        data_dir: Path = settings.DATA_DIR,
     ):
         self.seed = seed
         self.total_invoices = total_invoices
@@ -127,7 +127,7 @@ class DatasetGenerator:
             receipts=receipts,
             vendors=vendors,
             fx_resolver=fx_resolver,
-            build_pdfs=build_pdfs
+            build_pdfs=build_pdfs,
         )
 
         db.bulk_save_objects(invoices)
@@ -138,17 +138,19 @@ class DatasetGenerator:
         self._write_ground_truth(ground_truth_rows)
 
         # 8. Audit Log
-        db.add(AuditLog(
-            entity_type="SYSTEM",
-            entity_id="DATASET_GENERATION",
-            action="SEEDED_DATASET_GENERATED",
-            actor="SYSTEM",
-            details=(
-                f"total_invoices={len(invoices)}, "
-                f"defective={len([r for r in ground_truth_rows if r['is_defective']])}, "
-                f"scanned={len([r for r in ground_truth_rows if r['is_scanned']])}"
+        db.add(
+            AuditLog(
+                entity_type="SYSTEM",
+                entity_id="DATASET_GENERATION",
+                action="SEEDED_DATASET_GENERATED",
+                actor="SYSTEM",
+                details=(
+                    f"total_invoices={len(invoices)}, "
+                    f"defective={len([r for r in ground_truth_rows if r['is_defective']])}, "
+                    f"scanned={len([r for r in ground_truth_rows if r['is_scanned']])}"
+                ),
             )
-        ))
+        )
         db.commit()
 
         defect_counts = {}
@@ -165,7 +167,7 @@ class DatasetGenerator:
             "defective_invoices": len(invoices) - defect_counts.get("none", 0),
             "scanned_invoices": len([r for r in ground_truth_rows if r["is_scanned"]]),
             "defect_breakdown": defect_counts,
-            "ground_truth_file": str(self.ground_truth_path)
+            "ground_truth_file": str(self.ground_truth_path),
         }
 
     def _generate_vendors(self, count: int) -> list[Vendor]:
@@ -176,27 +178,27 @@ class DatasetGenerator:
             name = f"{self.fake.company()} Technologies Pvt Ltd"
             bank_name, bank_code = random.choice(BANK_NAMES)
             account_num = f"{random.randint(10000000000, 99999999999)}"
-            tax_id = f"29{self.fake.bothify(text='?????####?')}1Z{random.randint(1,9)}"
+            tax_id = f"29{self.fake.bothify(text='?????####?')}1Z{random.randint(1, 9)}"
             curr = random.choice(currencies)
 
-            vendors.append(Vendor(
-                vendor_id=vendor_id,
-                name=name,
-                tax_id=tax_id,
-                bank_account_number=account_num,
-                bank_name=bank_name,
-                bank_code=bank_code,
-                default_currency=curr,
-                payment_terms="Net 30",
-                address=f"{self.fake.street_address()}, {self.fake.city()}",
-                created_at=self.fake.date_time_between(start_date="-1y", end_date="-6m")
-            ))
+            vendors.append(
+                Vendor(
+                    vendor_id=vendor_id,
+                    name=name,
+                    tax_id=tax_id,
+                    bank_account_number=account_num,
+                    bank_name=bank_name,
+                    bank_code=bank_code,
+                    default_currency=curr,
+                    payment_terms="Net 30",
+                    address=f"{self.fake.street_address()}, {self.fake.city()}",
+                    created_at=self.fake.date_time_between(start_date="-1y", end_date="-6m"),
+                )
+            )
         return vendors
 
     def _generate_purchase_orders(
-        self,
-        vendors: list[Vendor],
-        count: int
+        self, vendors: list[Vendor], count: int
     ) -> tuple[list[PurchaseOrder], list[PurchaseOrderItem]]:
         pos: list[PurchaseOrder] = []
         po_items: list[PurchaseOrderItem] = []
@@ -216,7 +218,7 @@ class DatasetGenerator:
             elif currency == "EUR":
                 curr_factor = 0.011  # ~ 1 EUR = 90 INR
             elif currency == "JPY":
-                curr_factor = 1.8    # ~ 1 INR = 1.8 JPY
+                curr_factor = 1.8  # ~ 1 INR = 1.8 JPY
 
             num_lines = random.randint(1, 3)
             total_net = 0.0
@@ -235,36 +237,38 @@ class DatasetGenerator:
                 total_net += net
                 total_tax += tax
 
-                po_items.append(PurchaseOrderItem(
-                    po_number=po_number,
-                    line_number=line_no,
-                    item_description=p_name,
-                    quantity=qty,
-                    unit_of_measure=uom,
-                    unit_price=unit_price,
-                    tax_rate_pct=tax_pct,
-                    net_amount=net,
-                    tax_amount=tax,
-                    total_amount=total
-                ))
+                po_items.append(
+                    PurchaseOrderItem(
+                        po_number=po_number,
+                        line_number=line_no,
+                        item_description=p_name,
+                        quantity=qty,
+                        unit_of_measure=uom,
+                        unit_price=unit_price,
+                        tax_rate_pct=tax_pct,
+                        net_amount=net,
+                        tax_amount=tax,
+                        total_amount=total,
+                    )
+                )
 
-            pos.append(PurchaseOrder(
-                po_number=po_number,
-                vendor_id=vendor.vendor_id,
-                order_date=order_date,
-                currency=currency,
-                total_net_amount=round(total_net, 2),
-                total_tax_amount=round(total_tax, 2),
-                total_gross_amount=round(total_net + total_tax, 2),
-                status="OPEN"
-            ))
+            pos.append(
+                PurchaseOrder(
+                    po_number=po_number,
+                    vendor_id=vendor.vendor_id,
+                    order_date=order_date,
+                    currency=currency,
+                    total_net_amount=round(total_net, 2),
+                    total_tax_amount=round(total_tax, 2),
+                    total_gross_amount=round(total_net + total_tax, 2),
+                    status="OPEN",
+                )
+            )
 
         return pos, po_items
 
     def _generate_goods_receipts(
-        self,
-        pos: list[PurchaseOrder],
-        po_items: list[PurchaseOrderItem]
+        self, pos: list[PurchaseOrder], po_items: list[PurchaseOrderItem]
     ) -> list[GoodsReceipt]:
         receipts: list[GoodsReceipt] = []
         po_dict = {po.po_number: po for po in pos}
@@ -274,17 +278,19 @@ class DatasetGenerator:
             receipt_date = po.order_date + timedelta(days=random.randint(2, 7))
             gr_number = f"GR-2024-{item.po_number.split('-')[-1]}"
 
-            receipts.append(GoodsReceipt(
-                gr_number=gr_number,
-                po_number=po.po_number,
-                vendor_id=po.vendor_id,
-                line_number=item.line_number,
-                receipt_date=receipt_date,
-                item_description=item.item_description,
-                quantity_received=item.quantity,  # standard clean receipt
-                unit_of_measure=item.unit_of_measure,
-                received_by=f"Warehouse Specialist {random.randint(1, 5)}"
-            ))
+            receipts.append(
+                GoodsReceipt(
+                    gr_number=gr_number,
+                    po_number=po.po_number,
+                    vendor_id=po.vendor_id,
+                    line_number=item.line_number,
+                    receipt_date=receipt_date,
+                    item_description=item.item_description,
+                    quantity_received=item.quantity,  # standard clean receipt
+                    unit_of_measure=item.unit_of_measure,
+                    received_by=f"Warehouse Specialist {random.randint(1, 5)}",
+                )
+            )
         return receipts
 
     def _generate_invoices(
@@ -294,7 +300,7 @@ class DatasetGenerator:
         receipts: list[GoodsReceipt],
         vendors: list[Vendor],
         fx_resolver: FXResolver,
-        build_pdfs: bool = True
+        build_pdfs: bool = True,
     ) -> tuple[list[Invoice], list[InvoiceItem], list[dict[str, Any]]]:
 
         vendor_dict = {v.vendor_id: v for v in vendors}
@@ -311,7 +317,7 @@ class DatasetGenerator:
             "tax_miscalculation",
             "bank_details_changed",
             "fx_rate_deviation",
-            "wrong_currency"
+            "wrong_currency",
         ]
         target_defects_per_type = 20
         defect_queue = []
@@ -323,7 +329,9 @@ class DatasetGenerator:
         random.shuffle(all_planned_types)
 
         # Plan scanned invoices: exactly 80 scanned (10%)
-        scanned_indices = set(random.sample(range(self.total_invoices), int(self.total_invoices * self.scanned_rate)))
+        scanned_indices = set(
+            random.sample(range(self.total_invoices), int(self.total_invoices * self.scanned_rate))
+        )
 
         invoices: list[Invoice] = []
         invoice_items: list[InvoiceItem] = []
@@ -340,20 +348,23 @@ class DatasetGenerator:
             plan_defect = all_planned_types[inv_idx - 1]
             is_scanned = (inv_idx - 1) in scanned_indices
 
-            # Select base PO
             po = po_pool[po_cycle_idx % len(po_pool)]
+            cycle_num = po_cycle_idx // len(po_pool)
             po_cycle_idx += 1
             vendor = vendor_dict[po.vendor_id]
             items_template = po_items_by_po[po.po_number]
 
-            inv_date = po.order_date + timedelta(days=random.randint(5, 14))
+            # Space recurring billing cycles by ~30 days (milestone/installment billing)
+            inv_date = po.order_date + timedelta(days=5 + cycle_num * 30 + random.randint(0, 5))
             currency = po.currency
 
             # Resolve official reference rate on invoice date
             try:
                 official_rate, _ = fx_resolver.resolve_effective_rate(inv_date, currency, "INR")
             except Exception:
-                official_rate = 83.20 if currency == "USD" else (90.50 if currency == "EUR" else 0.55)
+                official_rate = (
+                    83.20 if currency == "USD" else (90.50 if currency == "EUR" else 0.55)
+                )
 
             stated_fx_rate = official_rate
             bank_account = vendor.bank_account_number
@@ -364,24 +375,28 @@ class DatasetGenerator:
             # Construct line items
             lines: list[dict[str, Any]] = []
             for item in items_template:
-                lines.append({
-                    "line_number": item.line_number,
-                    "item_description": item.item_description,
-                    "quantity": item.quantity,
-                    "unit_of_measure": item.unit_of_measure,
-                    "unit_price": item.unit_price,
-                    "tax_rate_pct": item.tax_rate_pct,
-                    "net_amount": item.net_amount,
-                    "tax_amount": item.tax_amount,
-                    "total_amount": item.total_amount
-                })
+                lines.append(
+                    {
+                        "line_number": item.line_number,
+                        "item_description": item.item_description,
+                        "quantity": item.quantity,
+                        "unit_of_measure": item.unit_of_measure,
+                        "unit_price": item.unit_price,
+                        "tax_rate_pct": item.tax_rate_pct,
+                        "net_amount": item.net_amount,
+                        "tax_amount": item.tax_amount,
+                        "total_amount": item.total_amount,
+                    }
+                )
 
             # Apply defect mutations
             if plan_defect == "quantity_mismatch":
                 # Increase billed quantity by +20% (or +5 units) on first line item
                 lines[0]["quantity"] = lines[0]["quantity"] + 5.0
                 lines[0]["net_amount"] = round(lines[0]["quantity"] * lines[0]["unit_price"], 2)
-                lines[0]["tax_amount"] = round(lines[0]["net_amount"] * (lines[0]["tax_rate_pct"] / 100.0), 2)
+                lines[0]["tax_amount"] = round(
+                    lines[0]["net_amount"] * (lines[0]["tax_rate_pct"] / 100.0), 2
+                )
                 lines[0]["total_amount"] = round(lines[0]["net_amount"] + lines[0]["tax_amount"], 2)
                 defect_details = f"Line {lines[0]['line_number']} quantity billed {lines[0]['quantity']} exceeds GR receipt quantity {items_template[0].quantity}"
 
@@ -390,14 +405,18 @@ class DatasetGenerator:
                 original_price = lines[0]["unit_price"]
                 lines[0]["unit_price"] = round(original_price * 1.08, 2)
                 lines[0]["net_amount"] = round(lines[0]["quantity"] * lines[0]["unit_price"], 2)
-                lines[0]["tax_amount"] = round(lines[0]["net_amount"] * (lines[0]["tax_rate_pct"] / 100.0), 2)
+                lines[0]["tax_amount"] = round(
+                    lines[0]["net_amount"] * (lines[0]["tax_rate_pct"] / 100.0), 2
+                )
                 lines[0]["total_amount"] = round(lines[0]["net_amount"] + lines[0]["tax_amount"], 2)
                 defect_details = f"Line {lines[0]['line_number']} price billed {lines[0]['unit_price']} exceeds PO price {original_price} by +8.0%"
 
             elif plan_defect == "duplicate_invoice":
                 if created_invoices_for_dupes:
                     # Duplicate an existing invoice with same PO, vendor, date, and items
-                    dupe_source_inv, dupe_lines, dupe_vendor = random.choice(created_invoices_for_dupes)
+                    dupe_source_inv, dupe_lines, dupe_vendor = random.choice(
+                        created_invoices_for_dupes
+                    )
                     po_ref = dupe_source_inv.po_number
                     vendor = dupe_vendor
                     bank_account = dupe_vendor.bank_account_number
@@ -438,18 +457,25 @@ class DatasetGenerator:
                     currency = po.currency
                     inv_date = po.order_date + timedelta(days=random.randint(5, 14))
                     items_template = po_items_by_po[po.po_number]
-                    lines = [dict(it.__dict__) for it in items_template if not it.item_description.startswith("_")]
-                    lines = [{
-                        "line_number": it.line_number,
-                        "item_description": it.item_description,
-                        "quantity": it.quantity,
-                        "unit_of_measure": it.unit_of_measure,
-                        "unit_price": it.unit_price,
-                        "tax_rate_pct": it.tax_rate_pct,
-                        "net_amount": it.net_amount,
-                        "tax_amount": it.tax_amount,
-                        "total_amount": it.total_amount
-                    } for it in items_template]
+                    lines = [
+                        dict(it.__dict__)
+                        for it in items_template
+                        if not it.item_description.startswith("_")
+                    ]
+                    lines = [
+                        {
+                            "line_number": it.line_number,
+                            "item_description": it.item_description,
+                            "quantity": it.quantity,
+                            "unit_of_measure": it.unit_of_measure,
+                            "unit_price": it.unit_price,
+                            "tax_rate_pct": it.tax_rate_pct,
+                            "net_amount": it.net_amount,
+                            "tax_amount": it.tax_amount,
+                            "total_amount": it.total_amount,
+                        }
+                        for it in items_template
+                    ]
 
                 official_rate, _ = fx_resolver.resolve_effective_rate(inv_date, currency, "INR")
                 stated_fx_rate = round(official_rate * 1.06, 4)
@@ -466,7 +492,9 @@ class DatasetGenerator:
                     stated_fx_rate = round(official_rate, 4)
                 except Exception:
                     stated_fx_rate = 1.0
-                defect_details = f"Invoice billed in {currency} but PO was contracted in {po.currency}"
+                defect_details = (
+                    f"Invoice billed in {currency} but PO was contracted in {po.currency}"
+                )
 
             # Calculate invoice header totals
             total_net = round(sum(ln["net_amount"] for ln in lines), 2)
@@ -495,38 +523,42 @@ class DatasetGenerator:
                 bank_code=bank_code,
                 pdf_path=rel_pdf_path,
                 is_scanned=is_scanned,
-                match_status="PENDING"
+                match_status="PENDING",
             )
             invoices.append(inv_obj)
 
             # Build line items
             for ln in lines:
-                invoice_items.append(InvoiceItem(
-                    invoice_number=inv_number,
-                    line_number=ln["line_number"],
-                    item_description=ln["item_description"],
-                    quantity=ln["quantity"],
-                    unit_of_measure=ln["unit_of_measure"],
-                    unit_price=ln["unit_price"],
-                    tax_rate_pct=ln["tax_rate_pct"],
-                    net_amount=ln["net_amount"],
-                    tax_amount=ln["tax_amount"],
-                    total_amount=ln["total_amount"]
-                ))
+                invoice_items.append(
+                    InvoiceItem(
+                        invoice_number=inv_number,
+                        line_number=ln["line_number"],
+                        item_description=ln["item_description"],
+                        quantity=ln["quantity"],
+                        unit_of_measure=ln["unit_of_measure"],
+                        unit_price=ln["unit_price"],
+                        tax_rate_pct=ln["tax_rate_pct"],
+                        net_amount=ln["net_amount"],
+                        tax_amount=ln["tax_amount"],
+                        total_amount=ln["total_amount"],
+                    )
+                )
 
             # Record in ground truth
-            is_defective = (plan_defect != "none")
-            ground_truth.append({
-                "invoice_number": inv_number,
-                "vendor_id": vendor.vendor_id,
-                "po_number": po_ref,
-                "defect_type": plan_defect,
-                "is_defective": is_defective,
-                "defect_details": defect_details,
-                "currency": currency,
-                "total_amount": total_gross,
-                "is_scanned": is_scanned
-            })
+            is_defective = plan_defect != "none"
+            ground_truth.append(
+                {
+                    "invoice_number": inv_number,
+                    "vendor_id": vendor.vendor_id,
+                    "po_number": po_ref,
+                    "defect_type": plan_defect,
+                    "is_defective": is_defective,
+                    "defect_details": defect_details,
+                    "currency": currency,
+                    "total_amount": total_gross,
+                    "is_scanned": is_scanned,
+                }
+            )
 
             # Store for duplicate reference if clean
             if not is_defective and len(created_invoices_for_dupes) < 30:
@@ -550,7 +582,7 @@ class DatasetGenerator:
                     "stated_fx_rate": stated_fx_rate,
                     "bank_name": vendor.bank_name,
                     "bank_account_number": bank_account,
-                    "bank_code": bank_code
+                    "bank_code": bank_code,
                 }
                 build_invoice_pdf(invoice_payload, pdf_path, rasterize_as_scanned=is_scanned)
 
@@ -566,7 +598,7 @@ class DatasetGenerator:
             "defect_details",
             "currency",
             "total_amount",
-            "is_scanned"
+            "is_scanned",
         ]
         with open(self.ground_truth_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)

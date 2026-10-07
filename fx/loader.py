@@ -38,8 +38,7 @@ class FXLoader:
             return self.csv_path
 
         req = urllib.request.Request(
-            ECB_HIST_URL,
-            headers={"User-Agent": "TriLedger-Reconciliation/1.0 (Portfolio Project)"}
+            ECB_HIST_URL, headers={"User-Agent": "TriLedger-Reconciliation/1.0 (Portfolio Project)"}
         )
         with urllib.request.urlopen(req, timeout=30) as resp:
             content = resp.read()
@@ -56,10 +55,7 @@ class FXLoader:
         return self.csv_path
 
     def load_rates_to_db(
-        self,
-        db: Session,
-        start_year: int = 2023,
-        currencies: list[str] | None = None
+        self, db: Session, start_year: int = 2023, currencies: list[str] | None = None
     ) -> dict[str, int]:
         """
         Parses the ECB CSV and loads EUR reference rates into fx_rates table.
@@ -75,8 +71,9 @@ class FXLoader:
 
         existing_pairs = set(
             db.execute(
-                select(FXRate.rate_date, FXRate.target_currency)
-                .where(FXRate.base_currency == "EUR")
+                select(FXRate.rate_date, FXRate.target_currency).where(
+                    FXRate.base_currency == "EUR"
+                )
             ).all()
         )
 
@@ -100,11 +97,13 @@ class FXLoader:
                 try:
                     r_date = datetime.strptime(date_str, "%Y-%m-%d").date()
                 except ValueError:
-                    db.add(RejectedRow(
-                        source_table="fx_rates",
-                        raw_payload=",".join(row),
-                        rejection_reason=f"INVALID_DATE_FORMAT_ROW_{row_num}"
-                    ))
+                    db.add(
+                        RejectedRow(
+                            source_table="fx_rates",
+                            raw_payload=",".join(row),
+                            rejection_reason=f"INVALID_DATE_FORMAT_ROW_{row_num}",
+                        )
+                    )
                     rejected_count += 1
                     continue
 
@@ -123,22 +122,26 @@ class FXLoader:
                         if rate_val <= 0:
                             raise ValueError("Rate must be strictly positive")
                     except ValueError as e:
-                        db.add(RejectedRow(
-                            source_table="fx_rates",
-                            raw_payload=f"Date: {date_str}, Curr: {curr}, Val: {val_str}",
-                            rejection_reason=f"INVALID_RATE_VALUE: {e!s}"
-                        ))
+                        db.add(
+                            RejectedRow(
+                                source_table="fx_rates",
+                                raw_payload=f"Date: {date_str}, Curr: {curr}, Val: {val_str}",
+                                rejection_reason=f"INVALID_RATE_VALUE: {e!s}",
+                            )
+                        )
                         rejected_count += 1
                         continue
 
                     if (r_date, curr) not in existing_pairs:
-                        new_rates.append(FXRate(
-                            rate_date=r_date,
-                            base_currency="EUR",
-                            target_currency=curr,
-                            rate=rate_val,
-                            source="ECB_REFERENCE_HISTORICAL"
-                        ))
+                        new_rates.append(
+                            FXRate(
+                                rate_date=r_date,
+                                base_currency="EUR",
+                                target_currency=curr,
+                                rate=rate_val,
+                                source="ECB_REFERENCE_HISTORICAL",
+                            )
+                        )
                         existing_pairs.add((r_date, curr))
                         loaded_count += 1
                     else:
@@ -154,20 +157,18 @@ class FXLoader:
             db.bulk_save_objects(new_rates)
             db.commit()
 
-        db.add(AuditLog(
-            entity_type="FX_LOAD",
-            entity_id="ECB_HISTORICAL",
-            action="LOADED_RATES",
-            actor="SYSTEM",
-            details=f"loaded={loaded_count}, rejected={rejected_count}, skipped={skipped_count}"
-        ))
+        db.add(
+            AuditLog(
+                entity_type="FX_LOAD",
+                entity_id="ECB_HISTORICAL",
+                action="LOADED_RATES",
+                actor="SYSTEM",
+                details=f"loaded={loaded_count}, rejected={rejected_count}, skipped={skipped_count}",
+            )
+        )
         db.commit()
 
-        return {
-            "loaded": loaded_count,
-            "rejected": rejected_count,
-            "skipped": skipped_count
-        }
+        return {"loaded": loaded_count, "rejected": rejected_count, "skipped": skipped_count}
 
 
 class FXResolver:
@@ -190,12 +191,11 @@ class FXResolver:
             return self._cache[key]
 
         rate_obj = self.db.execute(
-            select(FXRate.rate)
-            .where(
+            select(FXRate.rate).where(
                 and_(
                     FXRate.rate_date == target_date,
                     FXRate.base_currency == "EUR",
-                    FXRate.target_currency == currency
+                    FXRate.target_currency == currency,
                 )
             )
         ).scalar_one_or_none()
@@ -211,7 +211,7 @@ class FXResolver:
         query_date: date,
         base_currency: str,
         target_currency: str,
-        max_lookback_days: int = 10
+        max_lookback_days: int = 10,
     ) -> tuple[float, date]:
         """
         Calculates the exchange rate: units of target_currency per 1 unit of base_currency.
@@ -227,8 +227,16 @@ class FXResolver:
 
         while days_checked <= max_lookback_days:
             # Check if rates for both currencies exist on current_date
-            rate_base = 1.0 if base_currency == "EUR" else self.get_rate_on_date(current_date, base_currency)
-            rate_target = 1.0 if target_currency == "EUR" else self.get_rate_on_date(current_date, target_currency)
+            rate_base = (
+                1.0
+                if base_currency == "EUR"
+                else self.get_rate_on_date(current_date, base_currency)
+            )
+            rate_target = (
+                1.0
+                if target_currency == "EUR"
+                else self.get_rate_on_date(current_date, target_currency)
+            )
 
             if rate_base is not None and rate_target is not None:
                 # Triangular cross-rate formula:

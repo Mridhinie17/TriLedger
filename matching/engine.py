@@ -5,23 +5,18 @@ Integrates FX validation, RapidFuzz duplicate detection, and IsolationForest ano
 Tolerances are externalized via config/tolerances.yaml.
 """
 
-from typing import Dict, Any, List, Optional
-from sqlalchemy.orm import Session
+from typing import Any, Dict, List, Optional
+
 from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 from config.settings import settings
-from db.models import (
-    Invoice,
-    PurchaseOrder,
-    PurchaseOrderItem,
-    GoodsReceipt,
-    Vendor
-)
+from db.models import GoodsReceipt, Invoice, PurchaseOrder, Vendor
 from fx.loader import FXResolver
-from matching.schemas import MatchResult, DiscrepancyDetail
-from matching.fx_validator import FXValidator
 from matching.duplicate_detector import DuplicateDetector
+from matching.fx_validator import FXValidator
 from matching.isolation_forest import InvoiceAnomalyDetector
+from matching.schemas import DiscrepancyDetail, MatchResult
 
 
 class ReconciliationEngine:
@@ -41,7 +36,9 @@ class ReconciliationEngine:
         # Specialized validators
         fx_resolver = FXResolver(db)
         self.fx_validator = FXValidator(fx_resolver, tolerance_pct=self.fx_tolerance_pct)
-        self.duplicate_detector = DuplicateDetector(db, similarity_threshold=self.duplicate_threshold)
+        self.duplicate_detector = DuplicateDetector(
+            db, similarity_threshold=self.duplicate_threshold
+        )
 
         # Unsupervised secondary model
         if anomaly_detector and anomaly_detector.is_fitted:
@@ -61,11 +58,13 @@ class ReconciliationEngine:
         po: Optional[PurchaseOrder] = None
         if not invoice.po_number:
             defects.append("no_matching_po")
-            discrepancies.append(DiscrepancyDetail(
-                check_type="PO_MISSING",
-                severity="HIGH",
-                message="Invoice does not reference any Purchase Order"
-            ))
+            discrepancies.append(
+                DiscrepancyDetail(
+                    check_type="PO_MISSING",
+                    severity="HIGH",
+                    message="Invoice does not reference any Purchase Order",
+                )
+            )
         else:
             po = self.db.execute(
                 select(PurchaseOrder).where(PurchaseOrder.po_number == invoice.po_number)
@@ -73,21 +72,25 @@ class ReconciliationEngine:
 
             if not po:
                 defects.append("no_matching_po")
-                discrepancies.append(DiscrepancyDetail(
-                    check_type="PO_NOT_FOUND",
-                    severity="HIGH",
-                    message=f"Referenced PO '{invoice.po_number}' does not exist in purchasing records"
-                ))
+                discrepancies.append(
+                    DiscrepancyDetail(
+                        check_type="PO_NOT_FOUND",
+                        severity="HIGH",
+                        message=f"Referenced PO '{invoice.po_number}' does not exist in purchasing records",
+                    )
+                )
 
         # 2. Currency Consistency Check
         if po and invoice.currency != po.currency:
             defects.append("wrong_currency")
-            discrepancies.append(DiscrepancyDetail(
-                check_type="CURRENCY_MISMATCH",
-                severity="HIGH",
-                message=f"Invoice billed in {invoice.currency} but PO contracted in {po.currency}",
-                variance={"invoice_currency": invoice.currency, "po_currency": po.currency}
-            ))
+            discrepancies.append(
+                DiscrepancyDetail(
+                    check_type="CURRENCY_MISMATCH",
+                    severity="HIGH",
+                    message=f"Invoice billed in {invoice.currency} but PO contracted in {po.currency}",
+                    variance={"invoice_currency": invoice.currency, "po_currency": po.currency},
+                )
+            )
 
         # 3. Bank Remittance Account Check
         vendor = self.db.execute(
@@ -97,71 +100,87 @@ class ReconciliationEngine:
         if vendor and invoice.bank_account_number:
             if invoice.bank_account_number != vendor.bank_account_number:
                 defects.append("bank_details_changed")
-                discrepancies.append(DiscrepancyDetail(
-                    check_type="BANK_DETAILS_MISMATCH",
-                    severity="HIGH",
-                    message=(
-                        f"Invoiced remittance bank account '{invoice.bank_account_number}' "
-                        f"differs from vendor master record '{vendor.bank_account_number}'"
-                    ),
-                    variance={
-                        "invoiced_bank_account": invoice.bank_account_number,
-                        "master_bank_account": vendor.bank_account_number
-                    }
-                ))
+                discrepancies.append(
+                    DiscrepancyDetail(
+                        check_type="BANK_DETAILS_MISMATCH",
+                        severity="HIGH",
+                        message=(
+                            f"Invoiced remittance bank account '{invoice.bank_account_number}' "
+                            f"differs from vendor master record '{vendor.bank_account_number}'"
+                        ),
+                        variance={
+                            "invoiced_bank_account": invoice.bank_account_number,
+                            "master_bank_account": vendor.bank_account_number,
+                        },
+                    )
+                )
 
         # 4. Duplicate Invoice Detection
         dupe_res = self.duplicate_detector.check_duplicate(invoice)
         if dupe_res["is_duplicate"]:
             defects.append("duplicate_invoice")
-            discrepancies.append(DiscrepancyDetail(
-                check_type="DUPLICATE_INVOICE",
-                severity="HIGH",
-                message=f"Suspected duplicate submission matching {dupe_res['duplicate_of']} (similarity score: {dupe_res['similarity_score']}%)",
-                variance=dupe_res
-            ))
+            discrepancies.append(
+                DiscrepancyDetail(
+                    check_type="DUPLICATE_INVOICE",
+                    severity="HIGH",
+                    message=f"Suspected duplicate submission matching {dupe_res['duplicate_of']} (similarity score: {dupe_res['similarity_score']}%)",
+                    variance=dupe_res,
+                )
+            )
 
         # 5. Foreign Exchange (FX) Rate Validation
         fx_res = self.fx_validator.validate_fx_rate(
             invoice_date=invoice.invoice_date,
             currency=invoice.currency,
             stated_fx_rate=invoice.stated_fx_rate,
-            gross_amount=invoice.total_gross_amount
+            gross_amount=invoice.total_gross_amount,
         )
         if not fx_res["is_valid"]:
             defects.append("fx_rate_deviation")
-            discrepancies.append(DiscrepancyDetail(
-                check_type="FX_RATE_DEVIATION",
-                severity="HIGH",
-                message=fx_res["message"],
-                variance=fx_res
-            ))
+            discrepancies.append(
+                DiscrepancyDetail(
+                    check_type="FX_RATE_DEVIATION",
+                    severity="HIGH",
+                    message=fx_res["message"],
+                    variance=fx_res,
+                )
+            )
 
         # 6. Tax Calculation Math Check
         # Standard tax rate is 18%; check if stated tax deviates from expected line math
         if invoice.items:
-            expected_tax = round(sum(it.net_amount * (it.tax_rate_pct / 100.0) for it in invoice.items), 2)
+            expected_tax = round(
+                sum(it.net_amount * (it.tax_rate_pct / 100.0) for it in invoice.items), 2
+            )
             tax_diff = abs(invoice.total_tax_amount - expected_tax)
             # Allow tax tolerance
             max_tax_tol = self.tax_tolerance_base if invoice.currency == "INR" else 0.05
             if tax_diff > max_tax_tol:
                 defects.append("tax_miscalculation")
-                discrepancies.append(DiscrepancyDetail(
-                    check_type="TAX_CALCULATION_ERROR",
-                    severity="MEDIUM",
-                    message=(
-                        f"Tax calculation mismatch: Invoiced tax {invoice.total_tax_amount:.2f} "
-                        f"differs from calculated tax {expected_tax:.2f} (diff: {tax_diff:.2f})"
-                    ),
-                    variance={"invoiced_tax": invoice.total_tax_amount, "expected_tax": expected_tax, "difference": tax_diff}
-                ))
+                discrepancies.append(
+                    DiscrepancyDetail(
+                        check_type="TAX_CALCULATION_ERROR",
+                        severity="MEDIUM",
+                        message=(
+                            f"Tax calculation mismatch: Invoiced tax {invoice.total_tax_amount:.2f} "
+                            f"differs from calculated tax {expected_tax:.2f} (diff: {tax_diff:.2f})"
+                        ),
+                        variance={
+                            "invoiced_tax": invoice.total_tax_amount,
+                            "expected_tax": expected_tax,
+                            "difference": tax_diff,
+                        },
+                    )
+                )
 
         # 7. Line-Item Three-Way Matching (PO vs GR vs Invoice)
         receipts: List[GoodsReceipt] = []
         if po:
-            receipts = self.db.execute(
-                select(GoodsReceipt).where(GoodsReceipt.po_number == po.po_number)
-            ).scalars().all()
+            receipts = (
+                self.db.execute(select(GoodsReceipt).where(GoodsReceipt.po_number == po.po_number))
+                .scalars()
+                .all()
+            )
 
             po_item_map = {item.line_number: item for item in po.items}
             gr_item_map = {gr.line_number: gr for gr in receipts}
@@ -188,36 +207,48 @@ class ReconciliationEngine:
                     line_var["qty_diff"] = qty_diff
                     if qty_diff > 0:  # Invoiced more than received
                         has_qty_mismatch = True
-                        discrepancies.append(DiscrepancyDetail(
-                            check_type="QUANTITY_MISMATCH",
-                            severity="HIGH",
-                            message=(
-                                f"Line {inv_item.line_number} quantity billed ({inv_item.quantity}) "
-                                f"exceeds goods receipt quantity ({gr_item.quantity_received})"
-                            ),
-                            variance={"billed_qty": inv_item.quantity, "received_qty": gr_item.quantity_received, "diff": qty_diff}
-                        ))
+                        discrepancies.append(
+                            DiscrepancyDetail(
+                                check_type="QUANTITY_MISMATCH",
+                                severity="HIGH",
+                                message=(
+                                    f"Line {inv_item.line_number} quantity billed ({inv_item.quantity}) "
+                                    f"exceeds goods receipt quantity ({gr_item.quantity_received})"
+                                ),
+                                variance={
+                                    "billed_qty": inv_item.quantity,
+                                    "received_qty": gr_item.quantity_received,
+                                    "diff": qty_diff,
+                                },
+                            )
+                        )
 
                 # Unit price check: Invoice vs PO
                 if po_item:
                     price_diff = inv_item.unit_price - po_item.unit_price
-                    pct_price_diff = (price_diff / po_item.unit_price) * 100.0 if po_item.unit_price > 0 else 0.0
+                    pct_price_diff = (
+                        (price_diff / po_item.unit_price) * 100.0 if po_item.unit_price > 0 else 0.0
+                    )
                     line_var["price_diff"] = round(price_diff, 2)
                     line_var["price_diff_pct"] = round(pct_price_diff, 2)
 
-                    abs_tol = self.price_tolerance_abs_base if invoice.currency == "INR" else self.price_tolerance_abs_usd
-
-                    if pct_price_diff > self.price_tolerance_pct and price_diff > abs_tol:
+                    if pct_price_diff > self.price_tolerance_pct and price_diff >= 1.0:
                         has_price_mismatch = True
-                        discrepancies.append(DiscrepancyDetail(
-                            check_type="PRICE_OVER_TOLERANCE",
-                            severity="HIGH",
-                            message=(
-                                f"Line {inv_item.line_number} unit price billed ({inv_item.unit_price:.2f}) "
-                                f"exceeds PO unit price ({po_item.unit_price:.2f}) by +{pct_price_diff:.1f}%"
-                            ),
-                            variance={"billed_price": inv_item.unit_price, "po_price": po_item.unit_price, "diff_pct": round(pct_price_diff, 2)}
-                        ))
+                        discrepancies.append(
+                            DiscrepancyDetail(
+                                check_type="PRICE_OVER_TOLERANCE",
+                                severity="HIGH",
+                                message=(
+                                    f"Line {inv_item.line_number} unit price billed ({inv_item.unit_price:.2f}) "
+                                    f"exceeds PO unit price ({po_item.unit_price:.2f}) by +{pct_price_diff:.1f}%"
+                                ),
+                                variance={
+                                    "billed_price": inv_item.unit_price,
+                                    "po_price": po_item.unit_price,
+                                    "diff_pct": round(pct_price_diff, 2),
+                                },
+                            )
+                        )
 
                 line_variances.append(line_var)
 
@@ -227,7 +258,9 @@ class ReconciliationEngine:
                 defects.append("price_over_tolerance")
 
         # 8. Unsupervised Secondary Anomaly Signal
-        is_iforest_anomaly, iforest_score = self.anomaly_detector.predict_anomaly(invoice, po, receipts)
+        is_iforest_anomaly, iforest_score = self.anomaly_detector.predict_anomaly(
+            invoice, po, receipts
+        )
 
         # Remove duplicate defect tags
         unique_defects = sorted(list(set(defects)))
@@ -243,5 +276,5 @@ class ReconciliationEngine:
             duplicate_info=dupe_res,
             isolation_forest_anomaly=is_iforest_anomaly,
             isolation_forest_score=iforest_score,
-            line_item_variances=line_variances
+            line_item_variances=line_variances,
         )

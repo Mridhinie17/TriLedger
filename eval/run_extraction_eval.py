@@ -21,7 +21,9 @@ from db.session import get_db_context
 from extraction.extractor import InvoiceExtractor
 
 
-def run_extraction_evaluation(sample_size: int = 800, output_file: Optional[Path] = None) -> Dict[str, Any]:
+def run_extraction_evaluation(
+    sample_size: int = 800, output_file: Optional[Path] = None
+) -> Dict[str, Any]:
     output_path = output_file or (settings.EVAL_DIR / "results" / "extraction.json")
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -35,7 +37,9 @@ def run_extraction_evaluation(sample_size: int = 800, output_file: Optional[Path
 
     total_count = len(db_invoices)
     if total_count == 0:
-        raise ValueError("No invoices found in database to evaluate! Please run `python run_seed.py` first.")
+        raise ValueError(
+            "No invoices found in database to evaluate! Please run `python run_seed.py` first."
+        )
 
     print("=" * 75)
     print(f"TriLedger: Running Extraction Evaluation on {total_count} Invoices")
@@ -50,7 +54,7 @@ def run_extraction_evaluation(sample_size: int = 800, output_file: Optional[Path
         "total_net_amount",
         "total_tax_amount",
         "total_gross_amount",
-        "bank_account_number"
+        "bank_account_number",
     ]
 
     # Metrics accumulators
@@ -157,27 +161,37 @@ def run_extraction_evaluation(sample_size: int = 800, output_file: Optional[Path
     avg_overall_accuracy = round(
         sum(overall_field_accuracies.values()) / len(overall_field_accuracies), 2
     )
-    ocr_recall = round(
-        (ocr_triggered_on_scanned / max(scanned_count, 1)) * 100, 2
-    )
+    ocr_recall = round((ocr_triggered_on_scanned / max(scanned_count, 1)) * 100, 2)
 
     # Print Table
     print("\n" + "=" * 75)
     print("EXTRACTION ACCURACY REPORT")
     print("=" * 75)
-    print(f"{'Field':<24} | {'Digital Acc (%)':<15} | {'Scanned Acc (%)':<15} | {'Overall Acc (%)':<15}")
+    print(
+        f"{'Field':<24} | {'Digital Acc (%)':<15} | {'Scanned Acc (%)':<15} | {'Overall Acc (%)':<15}"
+    )
     print("-" * 75)
     for k in field_keys:
-        print(f"{k:<24} | {digital_field_accuracies[k]:>14.2f}% | {scanned_field_accuracies[k]:>14.2f}% | {overall_field_accuracies[k]:>14.2f}%")
+        print(
+            f"{k:<24} | {digital_field_accuracies[k]:>14.2f}% | {scanned_field_accuracies[k]:>14.2f}% | {overall_field_accuracies[k]:>14.2f}%"
+        )
     print("-" * 75)
-    print(f"{'MACRO-AVERAGE ACCURACY':<24} | "
-          f"{sum(digital_field_accuracies.values())/len(digital_field_accuracies):>14.2f}% | "
-          f"{sum(scanned_field_accuracies.values())/len(scanned_field_accuracies):>14.2f}% | "
-          f"{avg_overall_accuracy:>14.2f}%")
+    print(
+        f"{'MACRO-AVERAGE ACCURACY':<24} | "
+        f"{sum(digital_field_accuracies.values()) / len(digital_field_accuracies):>14.2f}% | "
+        f"{sum(scanned_field_accuracies.values()) / len(scanned_field_accuracies):>14.2f}% | "
+        f"{avg_overall_accuracy:>14.2f}%"
+    )
     print("=" * 75)
-    print(f"Total Evaluated:         {total_count} (Digital: {digital_count}, Scanned: {scanned_count})")
-    print(f"OCR Fallback Trigger Rate on Scans: {ocr_recall}% ({ocr_triggered_on_scanned}/{scanned_count})")
-    print(f"Flagged for Review:      {flagged_for_review_count} ({flagged_for_review_count/total_count:.1%})")
+    print(
+        f"Total Evaluated:         {total_count} (Digital: {digital_count}, Scanned: {scanned_count})"
+    )
+    print(
+        f"OCR Fallback Trigger Rate on Scans: {ocr_recall}% ({ocr_triggered_on_scanned}/{scanned_count})"
+    )
+    print(
+        f"Flagged for Review:      {flagged_for_review_count} ({flagged_for_review_count / total_count:.1%})"
+    )
     print(f"Average Latency / Doc:   {avg_latency_ms} ms")
     print(f"Total Execution Time:    {total_eval_duration:.2f} s")
     print("=" * 75)
@@ -194,9 +208,11 @@ def run_extraction_evaluation(sample_size: int = 800, output_file: Optional[Path
         "digital_per_field_accuracy": digital_field_accuracies,
         "scanned_per_field_accuracy": scanned_field_accuracies,
         "flagged_for_human_review_count": flagged_for_review_count,
-        "flagged_for_human_review_rate_pct": round((flagged_for_review_count / total_count) * 100, 2),
+        "flagged_for_human_review_rate_pct": round(
+            (flagged_for_review_count / total_count) * 100, 2
+        ),
         "average_latency_ms": avg_latency_ms,
-        "total_duration_seconds": round(total_eval_duration, 2)
+        "total_duration_seconds": round(total_eval_duration, 2),
     }
 
     with open(output_path, "w", encoding="utf-8") as f:

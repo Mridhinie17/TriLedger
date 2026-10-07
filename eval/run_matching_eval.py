@@ -8,12 +8,11 @@ Computes per-defect-type Precision, Recall, and F1-scores and saves to eval/resu
 import argparse
 import csv
 import json
-import os
 import sys
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 # Ensure project root is in Python path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -24,7 +23,9 @@ from db.session import get_db_context
 from matching.engine import ReconciliationEngine
 
 
-def run_matching_evaluation(sample_size: int = 800, output_file: Optional[Path] = None) -> Dict[str, Any]:
+def run_matching_evaluation(
+    sample_size: int = 800, output_file: Optional[Path] = None
+) -> Dict[str, Any]:
     output_path = output_file or (settings.EVAL_DIR / "results" / "matching.json")
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -40,7 +41,7 @@ def run_matching_evaluation(sample_size: int = 800, output_file: Optional[Path] 
             ground_truth[row["invoice_number"]] = {
                 "defect_type": row["defect_type"],
                 "is_defective": row["is_defective"].lower() == "true",
-                "defect_details": row["defect_details"]
+                "defect_details": row["defect_details"],
             }
 
     # 2. Load invoices
@@ -55,7 +56,9 @@ def run_matching_evaluation(sample_size: int = 800, output_file: Optional[Path] 
             raise ValueError("No invoices found in database! Run run_seed.py first.")
 
         print("=" * 80)
-        print(f"TriLedger: Running 3-Way Match & Anomaly Detection Evaluation ({total_evaluated} Invoices)")
+        print(
+            f"TriLedger: Running 3-Way Match & Anomaly Detection Evaluation ({total_evaluated} Invoices)"
+        )
         print("=" * 80)
 
         engine = ReconciliationEngine(db)
@@ -68,14 +71,11 @@ def run_matching_evaluation(sample_size: int = 800, output_file: Optional[Path] 
             "tax_miscalculation",
             "bank_details_changed",
             "fx_rate_deviation",
-            "wrong_currency"
+            "wrong_currency",
         ]
 
         # Accumulators per defect type: TP, FP, FN, TN, support
-        stats = {
-            dt: {"tp": 0, "fp": 0, "fn": 0, "tn": 0, "support": 0}
-            for dt in all_defect_types
-        }
+        stats = {dt: {"tp": 0, "fp": 0, "fn": 0, "tn": 0, "support": 0} for dt in all_defect_types}
 
         # Binary Clean vs Defective
         binary_stats = {"tp": 0, "fp": 0, "fn": 0, "tn": 0}
@@ -88,9 +88,11 @@ def run_matching_evaluation(sample_size: int = 800, output_file: Optional[Path] 
         for idx, inv in enumerate(invoices, start=1):
             t0 = time.time()
             match_res = engine.reconcile_invoice(inv)
-            total_latency_sec += (time.time() - t0)
+            total_latency_sec += time.time() - t0
 
-            gt_info = ground_truth.get(inv.invoice_number, {"defect_type": "none", "is_defective": False})
+            gt_info = ground_truth.get(
+                inv.invoice_number, {"defect_type": "none", "is_defective": False}
+            )
             true_defect = gt_info["defect_type"]
             true_is_defective = gt_info["is_defective"]
 
@@ -114,8 +116,8 @@ def run_matching_evaluation(sample_size: int = 800, output_file: Optional[Path] 
 
             # Per-defect type metrics
             for dt in all_defect_types:
-                is_true_dt = (true_defect == dt)
-                is_pred_dt = (dt in pred_defects)
+                is_true_dt = true_defect == dt
+                is_pred_dt = dt in pred_defects
 
                 if is_true_dt:
                     stats[dt]["support"] += 1
@@ -157,13 +159,13 @@ def run_matching_evaluation(sample_size: int = 800, output_file: Optional[Path] 
             "tp": tp,
             "fp": fp,
             "fn": fn,
-            "support": support
+            "support": support,
         }
 
         if support > 0:
             sum_prec += prec
             sum_rec += rec
-            sum_f1 += (f1 / 100.0)
+            sum_f1 += f1 / 100.0
             valid_count += 1
 
     macro_precision = round(sum_prec / max(valid_count, 1), 2)
@@ -171,29 +173,46 @@ def run_matching_evaluation(sample_size: int = 800, output_file: Optional[Path] 
     macro_f1 = round(sum_f1 / max(valid_count, 1), 4)
 
     # Binary Classification Performance
-    bin_tp, bin_fp, bin_fn, bin_tn = binary_stats["tp"], binary_stats["fp"], binary_stats["fn"], binary_stats["tn"]
+    bin_tp, bin_fp, bin_fn, bin_tn = (
+        binary_stats["tp"],
+        binary_stats["fp"],
+        binary_stats["fn"],
+        binary_stats["tn"],
+    )
     bin_prec = round((bin_tp / (bin_tp + bin_fp)) * 100.0, 2) if (bin_tp + bin_fp) > 0 else 0.0
     bin_rec = round((bin_tp / (bin_tp + bin_fn)) * 100.0, 2) if (bin_tp + bin_fn) > 0 else 0.0
-    bin_f1 = round((2 * bin_prec * bin_rec / (bin_prec + bin_rec)) / 100.0, 4) if (bin_prec + bin_rec) > 0 else 0.0
+    bin_f1 = (
+        round((2 * bin_prec * bin_rec / (bin_prec + bin_rec)) / 100.0, 4)
+        if (bin_prec + bin_rec) > 0
+        else 0.0
+    )
     bin_acc = round(((bin_tp + bin_tn) / total_evaluated) * 100.0, 2)
 
     # Print Table
     print("\n" + "=" * 80)
     print("THREE-WAY MATCH & DEFECT DETECTION BENCHMARK (Against Ground Truth)")
     print("=" * 80)
-    print(f"{'Defect Type':<26} | {'Precision':<10} | {'Recall':<10} | {'F1-Score':<10} | {'Support':<8}")
+    print(
+        f"{'Defect Type':<26} | {'Precision':<10} | {'Recall':<10} | {'F1-Score':<10} | {'Support':<8}"
+    )
     print("-" * 80)
     for dt in all_defect_types:
         m = per_defect_metrics[dt]
-        print(f"{dt:<26} | {m['precision_pct']:>9.2f}% | {m['recall_pct']:>9.2f}% | {m['f1_score']:>10.4f} | {m['support']:>8d}")
+        print(
+            f"{dt:<26} | {m['precision_pct']:>9.2f}% | {m['recall_pct']:>9.2f}% | {m['f1_score']:>10.4f} | {m['support']:>8d}"
+        )
     print("-" * 80)
-    print(f"{'MACRO AVERAGE':<26} | {macro_precision:>9.2f}% | {macro_recall:>9.2f}% | {macro_f1:>10.4f} | {total_defects_in_dataset:>8d}")
+    print(
+        f"{'MACRO AVERAGE':<26} | {macro_precision:>9.2f}% | {macro_recall:>9.2f}% | {macro_f1:>10.4f} | {total_defects_in_dataset:>8d}"
+    )
     print("=" * 80)
     print(f"Overall Discrepancy Detection Accuracy: {bin_acc}%")
     print(f"Discrepancy Precision:                  {bin_prec}%")
     print(f"Discrepancy Recall:                     {bin_rec}%")
     print(f"Discrepancy F1-Score:                   {bin_f1:.4f}")
-    print(f"IsolationForest Defect Capture:         {iforest_overlap_defects}/{total_defects_in_dataset} ({iforest_overlap_defects/max(total_defects_in_dataset,1):.1%})")
+    print(
+        f"IsolationForest Defect Capture:         {iforest_overlap_defects}/{total_defects_in_dataset} ({iforest_overlap_defects / max(total_defects_in_dataset, 1):.1%})"
+    )
     print(f"Average Matching Latency:               {avg_latency_ms} ms / invoice")
     print(f"Total Execution Time:                   {total_duration:.2f} s")
     print("=" * 80)
@@ -208,20 +227,22 @@ def run_matching_evaluation(sample_size: int = 800, output_file: Optional[Path] 
             "precision_pct": bin_prec,
             "recall_pct": bin_rec,
             "f1_score": bin_f1,
-            "confusion_matrix": binary_stats
+            "confusion_matrix": binary_stats,
         },
         "per_defect_metrics": per_defect_metrics,
         "macro_metrics": {
             "macro_precision_pct": macro_precision,
             "macro_recall_pct": macro_recall,
-            "macro_f1_score": macro_f1
+            "macro_f1_score": macro_f1,
         },
         "isolation_forest_secondary_signal": {
             "defects_flagged": iforest_overlap_defects,
-            "defect_capture_rate_pct": round((iforest_overlap_defects / max(total_defects_in_dataset, 1)) * 100.0, 2)
+            "defect_capture_rate_pct": round(
+                (iforest_overlap_defects / max(total_defects_in_dataset, 1)) * 100.0, 2
+            ),
         },
         "average_latency_ms": avg_latency_ms,
-        "total_duration_seconds": round(total_duration, 2)
+        "total_duration_seconds": round(total_duration, 2),
     }
 
     with open(output_path, "w", encoding="utf-8") as f:

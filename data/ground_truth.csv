@@ -20,16 +20,16 @@ INV-2024-00018,VEND-021,PO-2024-00018,none,False,None (clean 3-way match),INR,26
 INV-2024-00019,VEND-040,PO-2024-00019,none,False,None (clean 3-way match),EUR,1557.6,False
 INV-2024-00020,VEND-014,PO-2024-00020,none,False,None (clean 3-way match),USD,1062.0,False
 INV-2024-00021,VEND-024,PO-2024-00021,none,False,None (clean 3-way match),EUR,2336.4,False
-INV-2024-00022,VEND-046,PO-PHANTOM-90721,no_matching_po,True,Cited PO PO-PHANTOM-90721 does not exist in purchasing records,INR,2272680.0,False
+INV-2024-00022,VEND-046,PO-PHANTOM-98336,no_matching_po,True,Cited PO PO-PHANTOM-98336 does not exist in purchasing records,INR,2272680.0,False
 INV-2024-00023,VEND-043,PO-2024-00023,none,False,None (clean 3-way match),INR,5015.0,False
 INV-2024-00024,VEND-007,PO-2024-00024,quantity_mismatch,True,Line 10 quantity billed 105.0 exceeds GR receipt quantity 100.0,INR,493122.0,False
 INV-2024-00025,VEND-014,PO-2024-00025,none,False,None (clean 3-way match),USD,828.36,False
 INV-2024-00026,VEND-006,PO-2024-00026,none,False,None (clean 3-way match),INR,8083.0,False
-INV-2024-00027,VEND-022,PO-2024-00027,bank_details_changed,True,Remittance bank account 99997425329 differs from vendor master account 40664478749,EUR,4802.6,False
+INV-2024-00027,VEND-022,PO-2024-00027,bank_details_changed,True,Remittance bank account 99998914896 differs from vendor master account 40664478749,EUR,4802.6,False
 INV-2024-00028,VEND-011,PO-2024-00028,none,False,None (clean 3-way match),EUR,3245.0,False
 INV-2024-00029,VEND-001,PO-2024-00029,none,False,None (clean 3-way match),INR,17110.0,False
 INV-2024-00030,VEND-035,PO-2024-00030,none,False,None (clean 3-way match),INR,190570.0,False
-INV-2024-00031,VEND-014,PO-2024-00212,fx_rate_deviation,True,Stated FX rate 88.9492 deviates by +6.0% from official ECB reference rate 83.9143,USD,7618.08,True
+INV-2024-00031,VEND-033,PO-2024-00245,fx_rate_deviation,True,Stated FX rate 94.2582 deviates by +6.0% from official ECB reference rate 88.9228,EUR,1453.76,True
 INV-2024-00032,VEND-014,PO-2024-00032,none,False,None (clean 3-way match),USD,1309.8,False
 INV-2024-00033,VEND-023,PO-2024-00033,none,False,None (clean 3-way match),EUR,2494.76,False
 INV-2024-00034,VEND-011,PO-2024-00034,none,False,None (clean 3-way match),EUR,2583.02,False
@@ -39,13 +39,13 @@ INV-2024-00037,VEND-013,PO-2024-00037,none,False,None (clean 3-way match),INR,16
 INV-2024-00038,VEND-002,PO-2024-00038,none,False,None (clean 3-way match),INR,99120.0,False
 INV-2024-00039,VEND-018,PO-2024-00039,none,False,None (clean 3-way match),INR,1752300.0,False
 INV-2024-00040,VEND-044,PO-2024-00040,none,False,None (clean 3-way match),JPY,44604.0,False
-INV-2024-00041,VEND-038,PO-2024-00041,wrong_currency,True,Invoice billed in JPY but PO was contracted in INR,JPY,141600.0,True
+INV-2024-00041,VEND-038,PO-2024-00041,wrong_currency,True,Invoice billed in EUR but PO was contracted in INR,EUR,141600.0,True
 INV-2024-00042,VEND-028,PO-2024-00042,none,False,None (clean 3-way match),INR,1015980.0,False
-INV-2024-00043,VEND-025,PO-PHANTOM-93656,no_matching_po,True,Cited PO PO-PHANTOM-93656 does not exist in purchasing records,JPY,9027.0,False
+INV-2024-00043,VEND-025,PO-PHANTOM-99364,no_matching_po,True,Cited PO PO-PHANTOM-99364 does not exist in purchasing records,JPY,9027.0,False
 INV-2024-00044,VEND-046,PO-2024-00044,none,False,None (clean 3-way match),INR,365800.0,False
 INV-2024-00045,VEND-044,PO-2024-00045,none,False,None (clean 3-way match),JPY,2030544.0,False
-INV-2024-00046,VEND-043,PO-PHANTOM-91129,no_matching_po,True,Cited PO PO-PHANTOM-91129 does not exist in purchasing records,INR,2343480.0,False
-INV-2024-00047,VEND-043,PO-2024-00035,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00035 for PO PO-2024-00035,INR,10030.0,False
+INV-2024-00046,VEND-043,PO-PHANTOM-90862,no_matching_po,True,Cited PO PO-PHANTOM-90862 does not exist in purchasing records,INR,2343480.0,False
+INV-2024-00047,VEND-019,PO-2024-00010,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00010 for PO PO-2024-00010,USD,920.4,False
 INV-2024-00048,VEND-009,PO-2024-00048,none,False,None (clean 3-way match),INR,713900.0,False
 INV-2024-00049,VEND-037,PO-2024-00049,none,False,None (clean 3-way match),INR,30562.0,False
 INV-2024-00050,VEND-019,PO-2024-00050,none,False,None (clean 3-way match),USD,4148.88,False
@@ -59,46 +59,46 @@ INV-2024-00057,VEND-012,PO-2024-00057,none,False,None (clean 3-way match),JPY,37
 INV-2024-00058,VEND-009,PO-2024-00058,quantity_mismatch,True,Line 10 quantity billed 25.0 exceeds GR receipt quantity 20.0,INR,253700.0,False
 INV-2024-00059,VEND-047,PO-2024-00059,none,False,None (clean 3-way match),EUR,739.86,False
 INV-2024-00060,VEND-048,PO-2024-00060,none,False,None (clean 3-way match),INR,76110.0,True
-INV-2024-00061,VEND-050,PO-2024-00061,bank_details_changed,True,Remittance bank account 99998783398 differs from vendor master account 59095990995,USD,13777.68,False
+INV-2024-00061,VEND-050,PO-2024-00061,bank_details_changed,True,Remittance bank account 99995892153 differs from vendor master account 59095990995,USD,13777.68,False
 INV-2024-00062,VEND-046,PO-2024-00062,none,False,None (clean 3-way match),INR,20060.0,True
 INV-2024-00063,VEND-021,PO-2024-00063,none,False,None (clean 3-way match),INR,44840.0,False
-INV-2024-00064,VEND-015,PO-PHANTOM-93201,no_matching_po,True,Cited PO PO-PHANTOM-93201 does not exist in purchasing records,INR,220070.0,False
+INV-2024-00064,VEND-015,PO-PHANTOM-93974,no_matching_po,True,Cited PO PO-PHANTOM-93974 does not exist in purchasing records,INR,220070.0,False
 INV-2024-00065,VEND-022,PO-2024-00065,none,False,None (clean 3-way match),EUR,837.21,False
 INV-2024-00066,VEND-025,PO-2024-00066,none,False,None (clean 3-way match),JPY,546930.0,False
 INV-2024-00067,VEND-001,PO-2024-00067,none,False,None (clean 3-way match),INR,660800.0,False
 INV-2024-00068,VEND-048,PO-2024-00068,none,False,None (clean 3-way match),INR,229510.0,True
-INV-2024-00069,VEND-030,PO-2024-00001,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00001 for PO PO-2024-00001,JPY,196470.0,False
+INV-2024-00069,VEND-035,PO-2024-00030,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00030 for PO PO-2024-00030,INR,190570.0,False
 INV-2024-00070,VEND-043,PO-2024-00070,none,False,None (clean 3-way match),INR,100890.0,False
-INV-2024-00071,VEND-017,PO-2024-00092,fx_rate_deviation,True,Stated FX rate 88.5883 deviates by +6.0% from official ECB reference rate 83.5738,USD,1331.04,False
+INV-2024-00071,VEND-011,PO-2024-00034,fx_rate_deviation,True,Stated FX rate 95.3497 deviates by +6.0% from official ECB reference rate 89.9525,EUR,2583.02,False
 INV-2024-00072,VEND-038,PO-2024-00072,none,False,None (clean 3-way match),INR,1132210.0,False
 INV-2024-00073,VEND-012,PO-2024-00073,none,False,None (clean 3-way match),JPY,683928.0,False
 INV-2024-00074,VEND-021,PO-2024-00074,none,False,None (clean 3-way match),INR,116230.0,False
 INV-2024-00075,VEND-006,PO-2024-00075,none,False,None (clean 3-way match),INR,112100.0,False
 INV-2024-00076,VEND-004,PO-2024-00076,none,False,None (clean 3-way match),JPY,196470.0,False
 INV-2024-00077,VEND-050,PO-2024-00077,none,False,None (clean 3-way match),USD,198.24,False
-INV-2024-00078,VEND-019,PO-2024-00010,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00010 for PO PO-2024-00010,USD,920.4,False
+INV-2024-00078,VEND-045,PO-2024-00036,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00036 for PO PO-2024-00036,INR,35990.0,False
 INV-2024-00079,VEND-016,PO-2024-00079,none,False,None (clean 3-way match),EUR,24168.76,False
 INV-2024-00080,VEND-030,PO-2024-00080,price_over_tolerance,True,Line 10 price billed 5443.2 exceeds PO price 5040.0 by +8.0%,JPY,1253669.76,False
 INV-2024-00081,VEND-039,PO-2024-00081,none,False,None (clean 3-way match),EUR,5425.64,True
-INV-2024-00082,VEND-017,PO-2024-00183,fx_rate_deviation,True,Stated FX rate 87.69 deviates by +6.0% from official ECB reference rate 82.7264,USD,1309.8,False
-INV-2024-00083,VEND-045,PO-2024-00083,bank_details_changed,True,Remittance bank account 99991736524 differs from vendor master account 40317631968,INR,28320.0,False
+INV-2024-00082,VEND-047,PO-2024-00099,fx_rate_deviation,True,Stated FX rate 96.0296 deviates by +6.0% from official ECB reference rate 90.5940,EUR,1680.91,False
+INV-2024-00083,VEND-045,PO-2024-00083,bank_details_changed,True,Remittance bank account 99994442590 differs from vendor master account 40317631968,INR,28320.0,False
 INV-2024-00084,VEND-044,PO-2024-00084,quantity_mismatch,True,Line 10 quantity billed 105.0 exceeds GR receipt quantity 100.0,JPY,624456.0,False
 INV-2024-00085,VEND-003,PO-2024-00085,none,False,None (clean 3-way match),EUR,25739.34,True
 INV-2024-00086,VEND-001,PO-2024-00086,none,False,None (clean 3-way match),INR,276120.0,True
 INV-2024-00087,VEND-046,PO-2024-00087,none,False,None (clean 3-way match),INR,470820.0,False
 INV-2024-00088,VEND-040,PO-2024-00088,none,False,None (clean 3-way match),EUR,3426.72,False
 INV-2024-00089,VEND-021,PO-2024-00089,none,False,None (clean 3-way match),INR,50150.0,True
-INV-2024-00090,VEND-016,PO-2024-00090,bank_details_changed,True,Remittance bank account 99992603516 differs from vendor master account 21373225387,EUR,798.27,False
+INV-2024-00090,VEND-016,PO-2024-00090,bank_details_changed,True,Remittance bank account 99995694689 differs from vendor master account 21373225387,EUR,798.27,False
 INV-2024-00091,VEND-002,PO-2024-00091,none,False,None (clean 3-way match),INR,87320.0,False
 INV-2024-00092,VEND-017,PO-2024-00092,none,False,None (clean 3-way match),USD,1331.04,False
 INV-2024-00093,VEND-001,PO-2024-00093,none,False,None (clean 3-way match),INR,14160.0,False
 INV-2024-00094,VEND-047,PO-2024-00094,none,False,None (clean 3-way match),EUR,2219.58,False
-INV-2024-00095,VEND-042,PO-2024-00095,bank_details_changed,True,Remittance bank account 99992044933 differs from vendor master account 24824020111,INR,27140.0,False
+INV-2024-00095,VEND-042,PO-2024-00095,bank_details_changed,True,Remittance bank account 99997249378 differs from vendor master account 24824020111,INR,27140.0,False
 INV-2024-00096,VEND-019,PO-2024-00096,none,False,None (clean 3-way match),USD,3667.44,False
 INV-2024-00097,VEND-024,PO-2024-00097,quantity_mismatch,True,Line 10 quantity billed 105.0 exceeds GR receipt quantity 100.0,EUR,6769.07,False
-INV-2024-00098,VEND-033,PO-2024-00012,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00012 for PO PO-2024-00012,EUR,584.1,False
+INV-2024-00098,VEND-043,PO-2024-00023,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00023 for PO PO-2024-00023,INR,5015.0,False
 INV-2024-00099,VEND-047,PO-2024-00099,none,False,None (clean 3-way match),EUR,1680.91,False
-INV-2024-00100,VEND-013,PO-PHANTOM-96438,no_matching_po,True,Cited PO PO-PHANTOM-96438 does not exist in purchasing records,INR,424800.0,False
+INV-2024-00100,VEND-013,PO-PHANTOM-92187,no_matching_po,True,Cited PO PO-PHANTOM-92187 does not exist in purchasing records,INR,424800.0,False
 INV-2024-00101,VEND-019,PO-2024-00101,price_over_tolerance,True,Line 10 price billed 11.02 exceeds PO price 10.2 by +8.0%,USD,130.04,False
 INV-2024-00102,VEND-024,PO-2024-00102,none,False,None (clean 3-way match),EUR,707.41,False
 INV-2024-00103,VEND-018,PO-2024-00103,none,False,None (clean 3-way match),INR,73160.0,False
@@ -109,7 +109,7 @@ INV-2024-00107,VEND-026,PO-2024-00107,none,False,None (clean 3-way match),USD,46
 INV-2024-00108,VEND-010,PO-2024-00108,none,False,None (clean 3-way match),USD,3458.58,False
 INV-2024-00109,VEND-039,PO-2024-00109,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 369.6 instead of 18% standard rate,EUR,5518.7,False
 INV-2024-00110,VEND-020,PO-2024-00110,none,False,None (clean 3-way match),INR,104135.0,False
-INV-2024-00111,VEND-024,PO-2024-00021,fx_rate_deviation,True,Stated FX rate 95.4058 deviates by +6.0% from official ECB reference rate 90.0055,EUR,2336.4,False
+INV-2024-00111,VEND-012,PO-2024-00073,fx_rate_deviation,True,Stated FX rate 0.5927 deviates by +6.0% from official ECB reference rate 0.5591,JPY,683928.0,False
 INV-2024-00112,VEND-041,PO-2024-00112,none,False,None (clean 3-way match),USD,2789.52,False
 INV-2024-00113,VEND-012,PO-2024-00113,price_over_tolerance,True,Line 10 price billed 7387.2 exceeds PO price 6840.0 by +8.0%,JPY,43584.48,False
 INV-2024-00114,VEND-027,PO-2024-00114,none,False,None (clean 3-way match),INR,45135.0,False
@@ -132,12 +132,12 @@ INV-2024-00130,VEND-018,PO-2024-00130,none,False,None (clean 3-way match),INR,34
 INV-2024-00131,VEND-029,PO-2024-00131,none,False,None (clean 3-way match),INR,146910.0,False
 INV-2024-00132,VEND-046,PO-2024-00132,none,False,None (clean 3-way match),INR,392350.0,False
 INV-2024-00133,VEND-006,PO-2024-00133,none,False,None (clean 3-way match),INR,10620.0,False
-INV-2024-00134,VEND-039,PO-2024-00015,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00015 for PO PO-2024-00015,EUR,31022.2,False
+INV-2024-00134,VEND-014,PO-2024-00032,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00032 for PO PO-2024-00032,USD,1309.8,False
 INV-2024-00135,VEND-046,PO-2024-00135,none,False,None (clean 3-way match),INR,51920.0,False
 INV-2024-00136,VEND-030,PO-2024-00136,none,False,None (clean 3-way match),JPY,89208.0,False
 INV-2024-00137,VEND-039,PO-2024-00137,none,False,None (clean 3-way match),EUR,3154.14,False
 INV-2024-00138,VEND-033,PO-2024-00138,none,False,None (clean 3-way match),EUR,220.66,False
-INV-2024-00139,VEND-011,PO-2024-00034,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00034 for PO PO-2024-00034,EUR,2583.02,False
+INV-2024-00139,VEND-043,PO-2024-00035,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00035 for PO PO-2024-00035,INR,10030.0,False
 INV-2024-00140,VEND-023,PO-2024-00140,price_over_tolerance,True,Line 10 price billed 33.26 exceeds PO price 30.8 by +8.0%,EUR,3312.26,False
 INV-2024-00141,VEND-045,PO-2024-00141,none,False,None (clean 3-way match),INR,328040.0,True
 INV-2024-00142,VEND-048,PO-2024-00142,none,False,None (clean 3-way match),INR,366390.0,False
@@ -163,7 +163,7 @@ INV-2024-00161,VEND-044,PO-2024-00161,none,False,None (clean 3-way match),JPY,26
 INV-2024-00162,VEND-020,PO-2024-00162,none,False,None (clean 3-way match),INR,15340.0,False
 INV-2024-00163,VEND-047,PO-2024-00163,none,False,None (clean 3-way match),EUR,376.42,False
 INV-2024-00164,VEND-021,PO-2024-00164,none,False,None (clean 3-way match),INR,328040.0,False
-INV-2024-00165,VEND-024,PO-2024-00165,bank_details_changed,True,Remittance bank account 99998439543 differs from vendor master account 41619533975,EUR,1914.55,False
+INV-2024-00165,VEND-024,PO-2024-00165,bank_details_changed,True,Remittance bank account 99995191831 differs from vendor master account 41619533975,EUR,1914.55,False
 INV-2024-00166,VEND-048,PO-2024-00166,none,False,None (clean 3-way match),INR,10620.0,False
 INV-2024-00167,VEND-010,PO-2024-00167,quantity_mismatch,True,Line 10 quantity billed 55.0 exceeds GR receipt quantity 50.0,USD,404.98,False
 INV-2024-00168,VEND-036,PO-2024-00168,wrong_currency,True,Invoice billed in USD but PO was contracted in INR,USD,165200.0,True
@@ -173,26 +173,26 @@ INV-2024-00171,VEND-031,PO-2024-00171,none,False,None (clean 3-way match),JPY,43
 INV-2024-00172,VEND-041,PO-2024-00172,none,False,None (clean 3-way match),USD,2977.14,False
 INV-2024-00173,VEND-003,PO-2024-00173,none,False,None (clean 3-way match),EUR,2037.86,False
 INV-2024-00174,VEND-009,PO-2024-00174,none,False,None (clean 3-way match),INR,1752300.0,False
-INV-2024-00175,VEND-038,PO-2024-00175,bank_details_changed,True,Remittance bank account 99999323619 differs from vendor master account 86281205445,INR,2453220.0,False
+INV-2024-00175,VEND-038,PO-2024-00175,bank_details_changed,True,Remittance bank account 99997245146 differs from vendor master account 86281205445,INR,2453220.0,False
 INV-2024-00176,VEND-027,PO-2024-00176,price_over_tolerance,True,Line 10 price billed 1026.0 exceeds PO price 950.0 by +8.0%,INR,24213.6,False
 INV-2024-00177,VEND-014,PO-2024-00177,none,False,None (clean 3-way match),USD,716.5,False
 INV-2024-00178,VEND-044,PO-2024-00178,quantity_mismatch,True,Line 10 quantity billed 10.0 exceeds GR receipt quantity 5.0,JPY,2233386.0,False
 INV-2024-00179,VEND-013,PO-2024-00179,none,False,None (clean 3-way match),INR,2197160.0,False
 INV-2024-00180,VEND-002,PO-2024-00180,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 67200.0 instead of 18% standard rate,INR,352040.0,True
-INV-2024-00181,VEND-005,PO-2024-00181,bank_details_changed,True,Remittance bank account 99994139874 differs from vendor master account 86026611852,INR,60770.0,False
+INV-2024-00181,VEND-005,PO-2024-00181,bank_details_changed,True,Remittance bank account 99995342289 differs from vendor master account 86026611852,INR,60770.0,False
 INV-2024-00182,VEND-039,PO-2024-00182,none,False,None (clean 3-way match),EUR,4999.9,False
 INV-2024-00183,VEND-017,PO-2024-00183,none,False,None (clean 3-way match),USD,1309.8,False
 INV-2024-00184,VEND-009,PO-2024-00184,none,False,None (clean 3-way match),INR,204140.0,False
 INV-2024-00185,VEND-021,PO-2024-00185,none,False,None (clean 3-way match),INR,5015.0,False
 INV-2024-00186,VEND-009,PO-2024-00186,price_over_tolerance,True,Line 10 price billed 3348.0 exceeds PO price 3100.0 by +8.0%,INR,90553.2,False
-INV-2024-00187,VEND-019,PO-2024-00159,fx_rate_deviation,True,Stated FX rate 88.9851 deviates by +6.0% from official ECB reference rate 83.9482,USD,184.08,False
+INV-2024-00187,VEND-032,PO-2024-00213,fx_rate_deviation,True,Stated FX rate 96.1341 deviates by +6.0% from official ECB reference rate 90.6925,EUR,1291.51,False
 INV-2024-00188,VEND-033,PO-2024-00188,none,False,None (clean 3-way match),EUR,2647.92,False
 INV-2024-00189,VEND-042,PO-2024-00189,none,False,None (clean 3-way match),INR,106200.0,False
 INV-2024-00190,VEND-028,PO-2024-00190,none,False,None (clean 3-way match),INR,106200.0,False
 INV-2024-00191,VEND-005,PO-2024-00191,none,False,None (clean 3-way match),INR,48675.0,False
 INV-2024-00192,VEND-018,PO-2024-00192,none,False,None (clean 3-way match),INR,310340.0,False
 INV-2024-00193,VEND-034,PO-2024-00193,none,False,None (clean 3-way match),EUR,2054.08,False
-INV-2024-00194,VEND-045,PO-PHANTOM-91437,no_matching_po,True,Cited PO PO-PHANTOM-91437 does not exist in purchasing records,INR,566400.0,False
+INV-2024-00194,VEND-045,PO-PHANTOM-99402,no_matching_po,True,Cited PO PO-PHANTOM-99402 does not exist in purchasing records,INR,566400.0,False
 INV-2024-00195,VEND-015,PO-2024-00195,none,False,None (clean 3-way match),INR,136880.0,False
 INV-2024-00196,VEND-047,PO-2024-00196,none,False,None (clean 3-way match),EUR,2544.08,False
 INV-2024-00197,VEND-010,PO-2024-00197,none,False,None (clean 3-way match),USD,187.62,False
@@ -205,18 +205,18 @@ INV-2024-00203,VEND-049,PO-2024-00203,none,False,None (clean 3-way match),INR,11
 INV-2024-00204,VEND-044,PO-2024-00204,none,False,None (clean 3-way match),JPY,418959.0,False
 INV-2024-00205,VEND-018,PO-2024-00205,price_over_tolerance,True,Line 10 price billed 1566.0 exceeds PO price 1450.0 by +8.0%,INR,69997.6,False
 INV-2024-00206,VEND-012,PO-2024-00206,none,False,None (clean 3-way match),JPY,450288.0,False
-INV-2024-00207,VEND-047,PO-2024-00209,fx_rate_deviation,True,Stated FX rate 94.2582 deviates by +6.0% from official ECB reference rate 88.9228,EUR,824.23,False
+INV-2024-00207,VEND-050,PO-2024-00077,fx_rate_deviation,True,Stated FX rate 88.5854 deviates by +6.0% from official ECB reference rate 83.5712,USD,198.24,False
 INV-2024-00208,VEND-030,PO-2024-00208,none,False,None (clean 3-way match),JPY,237888.0,False
-INV-2024-00209,VEND-047,PO-2024-00209,wrong_currency,True,Invoice billed in JPY but PO was contracted in EUR,JPY,824.23,True
+INV-2024-00209,VEND-047,PO-2024-00209,wrong_currency,True,Invoice billed in USD but PO was contracted in EUR,USD,824.23,True
 INV-2024-00210,VEND-004,PO-2024-00210,none,False,None (clean 3-way match),JPY,90270.0,False
-INV-2024-00211,VEND-043,PO-PHANTOM-92946,no_matching_po,True,Cited PO PO-PHANTOM-92946 does not exist in purchasing records,INR,80830.0,False
+INV-2024-00211,VEND-043,PO-PHANTOM-98173,no_matching_po,True,Cited PO PO-PHANTOM-98173 does not exist in purchasing records,INR,80830.0,False
 INV-2024-00212,VEND-014,PO-2024-00212,none,False,None (clean 3-way match),USD,7618.08,False
 INV-2024-00213,VEND-032,PO-2024-00213,none,False,None (clean 3-way match),EUR,1291.51,False
 INV-2024-00214,VEND-001,PO-2024-00214,none,False,None (clean 3-way match),INR,94400.0,False
 INV-2024-00215,VEND-019,PO-2024-00215,none,False,None (clean 3-way match),USD,318.6,False
 INV-2024-00216,VEND-048,PO-2024-00216,none,False,None (clean 3-way match),INR,224200.0,False
 INV-2024-00217,VEND-035,PO-2024-00217,none,False,None (clean 3-way match),INR,365800.0,False
-INV-2024-00218,VEND-032,PO-2024-00213,fx_rate_deviation,True,Stated FX rate 96.3423 deviates by +6.0% from official ECB reference rate 90.8890,EUR,1291.51,False
+INV-2024-00218,VEND-014,PO-2024-00032,fx_rate_deviation,True,Stated FX rate 88.6526 deviates by +6.0% from official ECB reference rate 83.6345,USD,1309.8,False
 INV-2024-00219,VEND-028,PO-2024-00219,none,False,None (clean 3-way match),INR,175820.0,False
 INV-2024-00220,VEND-028,PO-2024-00220,wrong_currency,True,Invoice billed in JPY but PO was contracted in INR,JPY,492650.0,False
 INV-2024-00221,VEND-008,PO-2024-00221,none,False,None (clean 3-way match),USD,792.96,True
@@ -235,7 +235,7 @@ INV-2024-00233,VEND-024,PO-2024-00233,none,False,None (clean 3-way match),EUR,12
 INV-2024-00234,VEND-040,PO-2024-00234,none,False,None (clean 3-way match),EUR,5990.27,False
 INV-2024-00235,VEND-037,PO-2024-00235,none,False,None (clean 3-way match),INR,660800.0,False
 INV-2024-00236,VEND-031,PO-2024-00236,none,False,None (clean 3-way match),JPY,47790.0,False
-INV-2024-00237,VEND-007,PO-2024-00237,wrong_currency,True,Invoice billed in JPY but PO was contracted in INR,JPY,250750.0,False
+INV-2024-00237,VEND-007,PO-2024-00237,wrong_currency,True,Invoice billed in USD but PO was contracted in INR,USD,250750.0,False
 INV-2024-00238,VEND-046,PO-2024-00238,none,False,None (clean 3-way match),INR,382910.0,False
 INV-2024-00239,VEND-024,PO-2024-00239,none,False,None (clean 3-way match),EUR,2972.42,False
 INV-2024-00240,VEND-004,PO-2024-00240,none,False,None (clean 3-way match),JPY,468342.0,False
@@ -249,19 +249,19 @@ INV-2024-00247,VEND-009,PO-2024-00247,none,False,None (clean 3-way match),INR,50
 INV-2024-00248,VEND-033,PO-2024-00248,none,False,None (clean 3-way match),EUR,4304.17,False
 INV-2024-00249,VEND-009,PO-2024-00249,none,False,None (clean 3-way match),INR,215940.0,False
 INV-2024-00250,VEND-011,PO-2024-00250,none,False,None (clean 3-way match),EUR,661.98,False
-INV-2024-00251,VEND-030,PO-PHANTOM-90621,no_matching_po,True,Cited PO PO-PHANTOM-90621 does not exist in purchasing records,JPY,196470.0,True
+INV-2024-00251,VEND-030,PO-PHANTOM-93951,no_matching_po,True,Cited PO PO-PHANTOM-93951 does not exist in purchasing records,JPY,196470.0,True
 INV-2024-00252,VEND-004,PO-2024-00002,none,False,None (clean 3-way match),JPY,203904.0,False
 INV-2024-00253,VEND-035,PO-2024-00003,quantity_mismatch,True,Line 10 quantity billed 15.0 exceeds GR receipt quantity 10.0,INR,74340.0,False
 INV-2024-00254,VEND-018,PO-2024-00004,none,False,None (clean 3-way match),INR,3068.0,False
 INV-2024-00255,VEND-029,PO-2024-00005,none,False,None (clean 3-way match),INR,53100.0,False
-INV-2024-00256,VEND-032,PO-2024-00007,fx_rate_deviation,True,Stated FX rate 95.4774 deviates by +6.0% from official ECB reference rate 90.0730,EUR,337.48,False
+INV-2024-00256,VEND-003,PO-2024-00149,fx_rate_deviation,True,Stated FX rate 94.5393 deviates by +6.0% from official ECB reference rate 89.1880,EUR,220.66,False
 INV-2024-00257,VEND-032,PO-2024-00007,none,False,None (clean 3-way match),EUR,337.48,False
 INV-2024-00258,VEND-004,PO-2024-00008,none,False,None (clean 3-way match),JPY,465156.0,False
-INV-2024-00259,VEND-019,PO-2024-00009,bank_details_changed,True,Remittance bank account 99994380011 differs from vendor master account 17824582571,USD,1508.04,False
+INV-2024-00259,VEND-019,PO-2024-00009,bank_details_changed,True,Remittance bank account 99994968669 differs from vendor master account 17824582571,USD,1508.04,False
 INV-2024-00260,VEND-019,PO-2024-00010,none,False,None (clean 3-way match),USD,920.4,False
 INV-2024-00261,VEND-004,PO-2024-00011,price_over_tolerance,True,Line 10 price billed 874.8 exceeds PO price 810.0 by +8.0%,JPY,257216.4,False
 INV-2024-00262,VEND-033,PO-2024-00012,none,False,None (clean 3-way match),EUR,584.1,False
-INV-2024-00263,VEND-033,PO-2024-00012,fx_rate_deviation,True,Stated FX rate 95.5325 deviates by +6.0% from official ECB reference rate 90.1250,EUR,584.1,False
+INV-2024-00263,VEND-047,PO-2024-00094,fx_rate_deviation,True,Stated FX rate 95.4196 deviates by +6.0% from official ECB reference rate 90.0185,EUR,2219.58,False
 INV-2024-00264,VEND-044,PO-2024-00014,none,False,None (clean 3-way match),JPY,163548.0,False
 INV-2024-00265,VEND-039,PO-2024-00015,none,False,None (clean 3-way match),EUR,31022.2,False
 INV-2024-00266,VEND-021,PO-2024-00016,none,False,None (clean 3-way match),INR,436600.0,True
@@ -269,13 +269,13 @@ INV-2024-00267,VEND-016,PO-2024-00017,none,False,None (clean 3-way match),EUR,12
 INV-2024-00268,VEND-021,PO-2024-00018,none,False,None (clean 3-way match),INR,26550.0,False
 INV-2024-00269,VEND-040,PO-2024-00019,none,False,None (clean 3-way match),EUR,1557.6,True
 INV-2024-00270,VEND-014,PO-2024-00020,none,False,None (clean 3-way match),USD,1062.0,False
-INV-2024-00271,VEND-024,PO-2024-00021,bank_details_changed,True,Remittance bank account 99997636992 differs from vendor master account 41619533975,EUR,2336.4,False
+INV-2024-00271,VEND-024,PO-2024-00021,bank_details_changed,True,Remittance bank account 99994158036 differs from vendor master account 41619533975,EUR,2336.4,False
 INV-2024-00272,VEND-046,PO-2024-00022,none,False,None (clean 3-way match),INR,2272680.0,False
 INV-2024-00273,VEND-043,PO-2024-00023,none,False,None (clean 3-way match),INR,5015.0,False
 INV-2024-00274,VEND-007,PO-2024-00024,none,False,None (clean 3-way match),INR,470702.0,False
-INV-2024-00275,VEND-014,PO-2024-00025,bank_details_changed,True,Remittance bank account 99996412383 differs from vendor master account 61973405392,USD,828.36,False
+INV-2024-00275,VEND-014,PO-2024-00025,bank_details_changed,True,Remittance bank account 99999228157 differs from vendor master account 61973405392,USD,828.36,False
 INV-2024-00276,VEND-006,PO-2024-00026,quantity_mismatch,True,Line 10 quantity billed 10.0 exceeds GR receipt quantity 5.0,INR,11151.0,True
-INV-2024-00277,VEND-035,PO-2024-00030,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00030 for PO PO-2024-00030,INR,190570.0,False
+INV-2024-00277,VEND-004,PO-2024-00002,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00002 for PO PO-2024-00002,JPY,203904.0,False
 INV-2024-00278,VEND-011,PO-2024-00028,none,False,None (clean 3-way match),EUR,3245.0,False
 INV-2024-00279,VEND-001,PO-2024-00029,none,False,None (clean 3-way match),INR,17110.0,False
 INV-2024-00280,VEND-035,PO-2024-00030,none,False,None (clean 3-way match),INR,190570.0,False
@@ -306,7 +306,7 @@ INV-2024-00304,VEND-003,PO-2024-00054,none,False,None (clean 3-way match),EUR,37
 INV-2024-00305,VEND-027,PO-2024-00055,none,False,None (clean 3-way match),INR,228330.0,False
 INV-2024-00306,VEND-016,PO-2024-00056,none,False,None (clean 3-way match),EUR,717.14,False
 INV-2024-00307,VEND-012,PO-2024-00057,none,False,None (clean 3-way match),JPY,372231.0,False
-INV-2024-00308,VEND-009,PO-PHANTOM-93899,no_matching_po,True,Cited PO PO-PHANTOM-93899 does not exist in purchasing records,INR,235410.0,False
+INV-2024-00308,VEND-009,PO-PHANTOM-95514,no_matching_po,True,Cited PO PO-PHANTOM-95514 does not exist in purchasing records,INR,235410.0,False
 INV-2024-00309,VEND-047,PO-2024-00059,none,False,None (clean 3-way match),EUR,739.86,False
 INV-2024-00310,VEND-048,PO-2024-00060,none,False,None (clean 3-way match),INR,76110.0,False
 INV-2024-00311,VEND-050,PO-2024-00061,none,False,None (clean 3-way match),USD,13777.68,False
@@ -316,10 +316,10 @@ INV-2024-00314,VEND-015,PO-2024-00064,none,False,None (clean 3-way match),INR,22
 INV-2024-00315,VEND-022,PO-2024-00065,none,False,None (clean 3-way match),EUR,837.21,False
 INV-2024-00316,VEND-025,PO-2024-00066,none,False,None (clean 3-way match),JPY,546930.0,False
 INV-2024-00317,VEND-001,PO-2024-00067,none,False,None (clean 3-way match),INR,660800.0,True
-INV-2024-00318,VEND-014,PO-2024-00177,fx_rate_deviation,True,Stated FX rate 88.5048 deviates by +6.0% from official ECB reference rate 83.4951,USD,716.5,True
+INV-2024-00318,VEND-044,PO-2024-00045,fx_rate_deviation,True,Stated FX rate 0.5731 deviates by +6.0% from official ECB reference rate 0.5407,JPY,2030544.0,True
 INV-2024-00319,VEND-028,PO-2024-00069,none,False,None (clean 3-way match),INR,99120.0,False
 INV-2024-00320,VEND-043,PO-2024-00070,none,False,None (clean 3-way match),INR,100890.0,False
-INV-2024-00321,VEND-040,PO-PHANTOM-90020,no_matching_po,True,Cited PO PO-PHANTOM-90020 does not exist in purchasing records,EUR,941.05,False
+INV-2024-00321,VEND-040,PO-PHANTOM-93657,no_matching_po,True,Cited PO PO-PHANTOM-93657 does not exist in purchasing records,EUR,941.05,False
 INV-2024-00322,VEND-038,PO-2024-00072,none,False,None (clean 3-way match),INR,1132210.0,False
 INV-2024-00323,VEND-012,PO-2024-00073,none,False,None (clean 3-way match),JPY,683928.0,False
 INV-2024-00324,VEND-021,PO-2024-00074,none,False,None (clean 3-way match),INR,116230.0,False
@@ -339,7 +339,7 @@ INV-2024-00337,VEND-046,PO-2024-00087,none,False,None (clean 3-way match),INR,47
 INV-2024-00338,VEND-040,PO-2024-00088,none,False,None (clean 3-way match),EUR,3426.72,False
 INV-2024-00339,VEND-021,PO-2024-00089,none,False,None (clean 3-way match),INR,50150.0,False
 INV-2024-00340,VEND-016,PO-2024-00090,none,False,None (clean 3-way match),EUR,798.27,False
-INV-2024-00341,VEND-032,PO-2024-00007,fx_rate_deviation,True,Stated FX rate 95.5477 deviates by +6.0% from official ECB reference rate 90.1393,EUR,337.48,False
+INV-2024-00341,VEND-004,PO-2024-00240,fx_rate_deviation,True,Stated FX rate 0.55 deviates by +6.0% from official ECB reference rate 0.5188,JPY,468342.0,False
 INV-2024-00342,VEND-017,PO-2024-00092,none,False,None (clean 3-way match),USD,1331.04,False
 INV-2024-00343,VEND-001,PO-2024-00093,none,False,None (clean 3-way match),INR,14160.0,False
 INV-2024-00344,VEND-047,PO-2024-00094,none,False,None (clean 3-way match),EUR,2219.58,True
@@ -347,7 +347,7 @@ INV-2024-00345,VEND-042,PO-2024-00095,none,False,None (clean 3-way match),INR,27
 INV-2024-00346,VEND-019,PO-2024-00096,none,False,None (clean 3-way match),USD,3667.44,False
 INV-2024-00347,VEND-024,PO-2024-00097,none,False,None (clean 3-way match),EUR,6567.88,False
 INV-2024-00348,VEND-045,PO-2024-00098,none,False,None (clean 3-way match),INR,18585.0,False
-INV-2024-00349,VEND-024,PO-2024-00021,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00021 for PO PO-2024-00021,EUR,2336.4,False
+INV-2024-00349,VEND-035,PO-2024-00003,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00003 for PO PO-2024-00003,INR,49560.0,False
 INV-2024-00350,VEND-013,PO-2024-00100,none,False,None (clean 3-way match),INR,424800.0,False
 INV-2024-00351,VEND-019,PO-2024-00101,none,False,None (clean 3-way match),USD,120.36,False
 INV-2024-00352,VEND-024,PO-2024-00102,none,False,None (clean 3-way match),EUR,707.41,False
@@ -358,7 +358,7 @@ INV-2024-00356,VEND-017,PO-2024-00106,none,False,None (clean 3-way match),USD,36
 INV-2024-00357,VEND-026,PO-2024-00107,none,False,None (clean 3-way match),USD,46.02,False
 INV-2024-00358,VEND-010,PO-2024-00108,none,False,None (clean 3-way match),USD,3458.58,False
 INV-2024-00359,VEND-039,PO-2024-00109,none,False,None (clean 3-way match),EUR,5386.7,False
-INV-2024-00360,VEND-020,PO-2024-00110,bank_details_changed,True,Remittance bank account 99991898516 differs from vendor master account 36054081665,INR,104135.0,False
+INV-2024-00360,VEND-020,PO-2024-00110,bank_details_changed,True,Remittance bank account 99998493206 differs from vendor master account 36054081665,INR,104135.0,False
 INV-2024-00361,VEND-040,PO-2024-00111,none,False,None (clean 3-way match),EUR,363.44,False
 INV-2024-00362,VEND-041,PO-2024-00112,quantity_mismatch,True,Line 10 quantity billed 15.0 exceeds GR receipt quantity 10.0,USD,4099.32,False
 INV-2024-00363,VEND-012,PO-2024-00113,none,False,None (clean 3-way match),JPY,40356.0,False
@@ -369,7 +369,7 @@ INV-2024-00367,VEND-018,PO-2024-00117,none,False,None (clean 3-way match),INR,53
 INV-2024-00368,VEND-020,PO-2024-00118,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 7280.0 instead of 18% standard rate,INR,87265.0,False
 INV-2024-00369,VEND-045,PO-2024-00119,none,False,None (clean 3-way match),INR,728650.0,False
 INV-2024-00370,VEND-006,PO-2024-00120,none,False,None (clean 3-way match),INR,85550.0,False
-INV-2024-00371,VEND-048,PO-2024-00121,bank_details_changed,True,Remittance bank account 99992609202 differs from vendor master account 91099217763,INR,204730.0,False
+INV-2024-00371,VEND-048,PO-2024-00121,bank_details_changed,True,Remittance bank account 99991807780 differs from vendor master account 91099217763,INR,204730.0,False
 INV-2024-00372,VEND-002,PO-2024-00122,none,False,None (clean 3-way match),INR,51448.0,False
 INV-2024-00373,VEND-034,PO-2024-00123,none,False,None (clean 3-way match),EUR,1291.51,False
 INV-2024-00374,VEND-028,PO-2024-00124,none,False,None (clean 3-way match),INR,134520.0,False
@@ -378,7 +378,7 @@ INV-2024-00376,VEND-019,PO-2024-00126,tax_miscalculation,True,Tax calculation mi
 INV-2024-00377,VEND-030,PO-2024-00127,none,False,None (clean 3-way match),JPY,603747.0,False
 INV-2024-00378,VEND-033,PO-2024-00128,none,False,None (clean 3-way match),EUR,772.31,False
 INV-2024-00379,VEND-034,PO-2024-00129,none,False,None (clean 3-way match),EUR,4335.32,False
-INV-2024-00380,VEND-010,PO-2024-00108,fx_rate_deviation,True,Stated FX rate 87.8712 deviates by +6.0% from official ECB reference rate 82.8974,USD,3458.58,False
+INV-2024-00380,VEND-003,PO-2024-00143,fx_rate_deviation,True,Stated FX rate 95.374 deviates by +6.0% from official ECB reference rate 89.9755,EUR,2342.89,False
 INV-2024-00381,VEND-029,PO-2024-00131,none,False,None (clean 3-way match),INR,146910.0,True
 INV-2024-00382,VEND-046,PO-2024-00132,none,False,None (clean 3-way match),INR,392350.0,False
 INV-2024-00383,VEND-006,PO-2024-00133,none,False,None (clean 3-way match),INR,10620.0,False
@@ -386,10 +386,10 @@ INV-2024-00384,VEND-042,PO-2024-00134,none,False,None (clean 3-way match),INR,14
 INV-2024-00385,VEND-046,PO-2024-00135,none,False,None (clean 3-way match),INR,51920.0,False
 INV-2024-00386,VEND-030,PO-2024-00136,none,False,None (clean 3-way match),JPY,89208.0,False
 INV-2024-00387,VEND-039,PO-2024-00137,quantity_mismatch,True,Line 10 quantity billed 25.0 exceeds GR receipt quantity 20.0,EUR,3248.24,False
-INV-2024-00388,VEND-006,PO-2024-00026,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00026 for PO PO-2024-00026,INR,8083.0,False
+INV-2024-00388,VEND-035,PO-2024-00003,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00003 for PO PO-2024-00003,INR,49560.0,False
 INV-2024-00389,VEND-038,PO-2024-00139,none,False,None (clean 3-way match),INR,391760.0,False
 INV-2024-00390,VEND-023,PO-2024-00140,none,False,None (clean 3-way match),EUR,3167.12,False
-INV-2024-00391,VEND-045,PO-2024-00141,wrong_currency,True,Invoice billed in USD but PO was contracted in INR,USD,328040.0,False
+INV-2024-00391,VEND-045,PO-2024-00141,wrong_currency,True,Invoice billed in EUR but PO was contracted in INR,EUR,328040.0,False
 INV-2024-00392,VEND-048,PO-2024-00142,none,False,None (clean 3-way match),INR,366390.0,False
 INV-2024-00393,VEND-003,PO-2024-00143,none,False,None (clean 3-way match),EUR,2342.89,False
 INV-2024-00394,VEND-030,PO-2024-00144,none,False,None (clean 3-way match),JPY,2090016.0,False
@@ -405,15 +405,15 @@ INV-2024-00403,VEND-041,PO-2024-00153,none,False,None (clean 3-way match),USD,13
 INV-2024-00404,VEND-019,PO-2024-00154,none,False,None (clean 3-way match),USD,3285.12,False
 INV-2024-00405,VEND-041,PO-2024-00155,none,False,None (clean 3-way match),USD,2421.36,False
 INV-2024-00406,VEND-007,PO-2024-00156,none,False,None (clean 3-way match),INR,208860.0,False
-INV-2024-00407,VEND-045,PO-2024-00157,wrong_currency,True,Invoice billed in EUR but PO was contracted in INR,EUR,30680.0,False
+INV-2024-00407,VEND-045,PO-2024-00157,wrong_currency,True,Invoice billed in USD but PO was contracted in INR,USD,30680.0,False
 INV-2024-00408,VEND-018,PO-2024-00158,none,False,None (clean 3-way match),INR,2351268.0,True
-INV-2024-00409,VEND-019,PO-PHANTOM-93706,no_matching_po,True,Cited PO PO-PHANTOM-93706 does not exist in purchasing records,USD,184.08,False
+INV-2024-00409,VEND-019,PO-PHANTOM-92703,no_matching_po,True,Cited PO PO-PHANTOM-92703 does not exist in purchasing records,USD,184.08,False
 INV-2024-00410,VEND-015,PO-2024-00160,none,False,None (clean 3-way match),INR,15340.0,False
-INV-2024-00411,VEND-004,PO-2024-00002,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00002 for PO PO-2024-00002,JPY,203904.0,False
+INV-2024-00411,VEND-004,PO-2024-00008,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00008 for PO PO-2024-00008,JPY,465156.0,False
 INV-2024-00412,VEND-020,PO-2024-00162,none,False,None (clean 3-way match),INR,15340.0,True
 INV-2024-00413,VEND-047,PO-2024-00163,none,False,None (clean 3-way match),EUR,376.42,False
-INV-2024-00414,VEND-021,PO-2024-00164,wrong_currency,True,Invoice billed in JPY but PO was contracted in INR,JPY,328040.0,False
-INV-2024-00415,VEND-023,PO-2024-00033,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00033 for PO PO-2024-00033,EUR,2494.76,False
+INV-2024-00414,VEND-021,PO-2024-00164,wrong_currency,True,Invoice billed in USD but PO was contracted in INR,USD,328040.0,False
+INV-2024-00415,VEND-016,PO-2024-00017,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00017 for PO PO-2024-00017,EUR,12992.98,False
 INV-2024-00416,VEND-048,PO-2024-00166,none,False,None (clean 3-way match),INR,10620.0,False
 INV-2024-00417,VEND-010,PO-2024-00167,none,False,None (clean 3-way match),USD,368.16,False
 INV-2024-00418,VEND-036,PO-2024-00168,none,False,None (clean 3-way match),INR,165200.0,False
@@ -435,9 +435,9 @@ INV-2024-00433,VEND-017,PO-2024-00183,none,False,None (clean 3-way match),USD,13
 INV-2024-00434,VEND-009,PO-2024-00184,none,False,None (clean 3-way match),INR,204140.0,True
 INV-2024-00435,VEND-021,PO-2024-00185,none,False,None (clean 3-way match),INR,5015.0,False
 INV-2024-00436,VEND-009,PO-2024-00186,none,False,None (clean 3-way match),INR,89090.0,False
-INV-2024-00437,VEND-029,PO-2024-00187,bank_details_changed,True,Remittance bank account 99993473761 differs from vendor master account 55702582931,INR,56640.0,False
-INV-2024-00438,VEND-033,PO-2024-00248,fx_rate_deviation,True,Stated FX rate 97.1543 deviates by +6.0% from official ECB reference rate 91.6550,EUR,4304.17,False
-INV-2024-00439,VEND-004,PO-2024-00008,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00008 for PO PO-2024-00008,JPY,465156.0,False
+INV-2024-00437,VEND-029,PO-2024-00187,bank_details_changed,True,Remittance bank account 99995941719 differs from vendor master account 55702582931,INR,56640.0,False
+INV-2024-00438,VEND-044,PO-2024-00161,fx_rate_deviation,True,Stated FX rate 0.606 deviates by +6.0% from official ECB reference rate 0.5717,JPY,261464.4,False
+INV-2024-00439,VEND-019,PO-2024-00009,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00009 for PO PO-2024-00009,USD,1508.04,False
 INV-2024-00440,VEND-028,PO-2024-00190,none,False,None (clean 3-way match),INR,106200.0,False
 INV-2024-00441,VEND-005,PO-2024-00191,none,False,None (clean 3-way match),INR,48675.0,False
 INV-2024-00442,VEND-018,PO-2024-00192,none,False,None (clean 3-way match),INR,310340.0,False
@@ -456,9 +456,9 @@ INV-2024-00454,VEND-044,PO-2024-00204,tax_miscalculation,True,Tax calculation mi
 INV-2024-00455,VEND-018,PO-2024-00205,none,False,None (clean 3-way match),INR,67260.0,False
 INV-2024-00456,VEND-012,PO-2024-00206,none,False,None (clean 3-way match),JPY,450288.0,False
 INV-2024-00457,VEND-048,PO-2024-00207,none,False,None (clean 3-way match),INR,247800.0,False
-INV-2024-00458,VEND-010,PO-2024-00228,fx_rate_deviation,True,Stated FX rate 89.1967 deviates by +6.0% from official ECB reference rate 84.1478,USD,7504.8,False
+INV-2024-00458,VEND-019,PO-2024-00050,fx_rate_deviation,True,Stated FX rate 87.8646 deviates by +6.0% from official ECB reference rate 82.8911,USD,4148.88,False
 INV-2024-00459,VEND-047,PO-2024-00209,none,False,None (clean 3-way match),EUR,824.23,False
-INV-2024-00460,VEND-013,PO-2024-00037,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00037 for PO PO-2024-00037,INR,16166.0,False
+INV-2024-00460,VEND-004,PO-2024-00008,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00008 for PO PO-2024-00008,JPY,465156.0,False
 INV-2024-00461,VEND-043,PO-2024-00211,none,False,None (clean 3-way match),INR,80830.0,False
 INV-2024-00462,VEND-014,PO-2024-00212,none,False,None (clean 3-way match),USD,7618.08,False
 INV-2024-00463,VEND-032,PO-2024-00213,none,False,None (clean 3-way match),EUR,1291.51,False
@@ -489,11 +489,11 @@ INV-2024-00487,VEND-007,PO-2024-00237,none,False,None (clean 3-way match),INR,25
 INV-2024-00488,VEND-046,PO-2024-00238,none,False,None (clean 3-way match),INR,382910.0,False
 INV-2024-00489,VEND-024,PO-2024-00239,none,False,None (clean 3-way match),EUR,2972.42,False
 INV-2024-00490,VEND-004,PO-2024-00240,none,False,None (clean 3-way match),JPY,468342.0,False
-INV-2024-00491,VEND-019,PO-2024-00159,fx_rate_deviation,True,Stated FX rate 88.9851 deviates by +6.0% from official ECB reference rate 83.9482,USD,184.08,False
-INV-2024-00492,VEND-019,PO-2024-00009,fx_rate_deviation,True,Stated FX rate 88.5048 deviates by +6.0% from official ECB reference rate 83.4951,USD,1508.04,False
+INV-2024-00491,VEND-022,PO-2024-00125,fx_rate_deviation,True,Stated FX rate 94.2287 deviates by +6.0% from official ECB reference rate 88.8950,EUR,3115.2,False
+INV-2024-00492,VEND-024,PO-2024-00102,fx_rate_deviation,True,Stated FX rate 95.3497 deviates by +6.0% from official ECB reference rate 89.9525,EUR,707.41,False
 INV-2024-00493,VEND-020,PO-2024-00243,wrong_currency,True,Invoice billed in JPY but PO was contracted in INR,JPY,2297460.0,False
 INV-2024-00494,VEND-036,PO-2024-00244,none,False,None (clean 3-way match),INR,587640.0,False
-INV-2024-00495,VEND-033,PO-PHANTOM-97785,no_matching_po,True,Cited PO PO-PHANTOM-97785 does not exist in purchasing records,EUR,1453.76,False
+INV-2024-00495,VEND-033,PO-PHANTOM-92415,no_matching_po,True,Cited PO PO-PHANTOM-92415 does not exist in purchasing records,EUR,1453.76,False
 INV-2024-00496,VEND-012,PO-2024-00246,none,False,None (clean 3-way match),JPY,97704.0,False
 INV-2024-00497,VEND-009,PO-2024-00247,none,False,None (clean 3-way match),INR,5015.0,False
 INV-2024-00498,VEND-033,PO-2024-00248,none,False,None (clean 3-way match),EUR,4304.17,False
@@ -507,14 +507,14 @@ INV-2024-00505,VEND-029,PO-2024-00005,none,False,None (clean 3-way match),INR,53
 INV-2024-00506,VEND-001,PO-2024-00006,none,False,None (clean 3-way match),INR,224200.0,False
 INV-2024-00507,VEND-032,PO-2024-00007,none,False,None (clean 3-way match),EUR,337.48,False
 INV-2024-00508,VEND-004,PO-2024-00008,none,False,None (clean 3-way match),JPY,465156.0,False
-INV-2024-00509,VEND-019,PO-2024-00009,bank_details_changed,True,Remittance bank account 99995520117 differs from vendor master account 17824582571,USD,1508.04,True
+INV-2024-00509,VEND-019,PO-2024-00009,bank_details_changed,True,Remittance bank account 99993480985 differs from vendor master account 17824582571,USD,1508.04,True
 INV-2024-00510,VEND-019,PO-2024-00010,none,False,None (clean 3-way match),USD,920.4,False
 INV-2024-00511,VEND-004,PO-2024-00011,none,False,None (clean 3-way match),JPY,249570.0,False
 INV-2024-00512,VEND-033,PO-2024-00012,none,False,None (clean 3-way match),EUR,584.1,False
 INV-2024-00513,VEND-006,PO-2024-00013,price_over_tolerance,True,Line 10 price billed 702.0 exceeds PO price 650.0 by +8.0%,INR,4141.8,False
 INV-2024-00514,VEND-044,PO-2024-00014,none,False,None (clean 3-way match),JPY,163548.0,True
 INV-2024-00515,VEND-039,PO-2024-00015,none,False,None (clean 3-way match),EUR,31022.2,False
-INV-2024-00516,VEND-021,PO-2024-00016,bank_details_changed,True,Remittance bank account 99999127895 differs from vendor master account 63683789489,INR,436600.0,False
+INV-2024-00516,VEND-021,PO-2024-00016,bank_details_changed,True,Remittance bank account 99997666510 differs from vendor master account 63683789489,INR,436600.0,False
 INV-2024-00517,VEND-016,PO-2024-00017,none,False,None (clean 3-way match),EUR,12992.98,False
 INV-2024-00518,VEND-021,PO-2024-00018,none,False,None (clean 3-way match),INR,26550.0,False
 INV-2024-00519,VEND-040,PO-2024-00019,none,False,None (clean 3-way match),EUR,1557.6,True
@@ -531,7 +531,7 @@ INV-2024-00529,VEND-001,PO-2024-00029,none,False,None (clean 3-way match),INR,17
 INV-2024-00530,VEND-035,PO-2024-00030,none,False,None (clean 3-way match),INR,190570.0,True
 INV-2024-00531,VEND-009,PO-2024-00031,none,False,None (clean 3-way match),INR,99120.0,False
 INV-2024-00532,VEND-014,PO-2024-00032,none,False,None (clean 3-way match),USD,1309.8,False
-INV-2024-00533,VEND-025,PO-2024-00066,fx_rate_deviation,True,Stated FX rate 0.596 deviates by +6.0% from official ECB reference rate 0.5622,JPY,546930.0,False
+INV-2024-00533,VEND-024,PO-2024-00150,fx_rate_deviation,True,Stated FX rate 95.4196 deviates by +6.0% from official ECB reference rate 90.0185,EUR,3115.2,False
 INV-2024-00534,VEND-011,PO-2024-00034,none,False,None (clean 3-way match),EUR,2583.02,False
 INV-2024-00535,VEND-043,PO-2024-00035,none,False,None (clean 3-way match),INR,10030.0,False
 INV-2024-00536,VEND-045,PO-2024-00036,none,False,None (clean 3-way match),INR,35990.0,True
@@ -541,7 +541,7 @@ INV-2024-00539,VEND-018,PO-2024-00039,none,False,None (clean 3-way match),INR,17
 INV-2024-00540,VEND-044,PO-2024-00040,none,False,None (clean 3-way match),JPY,44604.0,False
 INV-2024-00541,VEND-038,PO-2024-00041,none,False,None (clean 3-way match),INR,141600.0,False
 INV-2024-00542,VEND-028,PO-2024-00042,none,False,None (clean 3-way match),INR,1015980.0,False
-INV-2024-00543,VEND-003,PO-2024-00173,fx_rate_deviation,True,Stated FX rate 95.748 deviates by +6.0% from official ECB reference rate 90.3283,EUR,2037.86,False
+INV-2024-00543,VEND-030,PO-2024-00127,fx_rate_deviation,True,Stated FX rate 0.5857 deviates by +6.0% from official ECB reference rate 0.5525,JPY,603747.0,False
 INV-2024-00544,VEND-046,PO-2024-00044,none,False,None (clean 3-way match),INR,365800.0,False
 INV-2024-00545,VEND-044,PO-2024-00045,none,False,None (clean 3-way match),JPY,2030544.0,False
 INV-2024-00546,VEND-043,PO-2024-00046,none,False,None (clean 3-way match),INR,2343480.0,False
@@ -556,13 +556,13 @@ INV-2024-00554,VEND-003,PO-2024-00054,none,False,None (clean 3-way match),EUR,37
 INV-2024-00555,VEND-027,PO-2024-00055,none,False,None (clean 3-way match),INR,228330.0,False
 INV-2024-00556,VEND-016,PO-2024-00056,none,False,None (clean 3-way match),EUR,717.14,False
 INV-2024-00557,VEND-012,PO-2024-00057,none,False,None (clean 3-way match),JPY,372231.0,False
-INV-2024-00558,VEND-009,PO-PHANTOM-90449,no_matching_po,True,Cited PO PO-PHANTOM-90449 does not exist in purchasing records,INR,235410.0,False
+INV-2024-00558,VEND-009,PO-PHANTOM-93892,no_matching_po,True,Cited PO PO-PHANTOM-93892 does not exist in purchasing records,INR,235410.0,False
 INV-2024-00559,VEND-047,PO-2024-00059,none,False,None (clean 3-way match),EUR,739.86,False
 INV-2024-00560,VEND-048,PO-2024-00060,none,False,None (clean 3-way match),INR,76110.0,False
 INV-2024-00561,VEND-050,PO-2024-00061,none,False,None (clean 3-way match),USD,13777.68,False
 INV-2024-00562,VEND-046,PO-2024-00062,none,False,None (clean 3-way match),INR,20060.0,False
 INV-2024-00563,VEND-021,PO-2024-00063,none,False,None (clean 3-way match),INR,44840.0,False
-INV-2024-00564,VEND-015,PO-2024-00064,wrong_currency,True,Invoice billed in JPY but PO was contracted in INR,JPY,220070.0,False
+INV-2024-00564,VEND-015,PO-2024-00064,wrong_currency,True,Invoice billed in EUR but PO was contracted in INR,EUR,220070.0,False
 INV-2024-00565,VEND-022,PO-2024-00065,none,False,None (clean 3-way match),EUR,837.21,False
 INV-2024-00566,VEND-025,PO-2024-00066,none,False,None (clean 3-way match),JPY,546930.0,False
 INV-2024-00567,VEND-001,PO-2024-00067,none,False,None (clean 3-way match),INR,660800.0,False
@@ -580,7 +580,7 @@ INV-2024-00578,VEND-016,PO-2024-00078,none,False,None (clean 3-way match),EUR,84
 INV-2024-00579,VEND-016,PO-2024-00079,none,False,None (clean 3-way match),EUR,24168.76,False
 INV-2024-00580,VEND-030,PO-2024-00080,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 14112.0 instead of 18% standard rate,JPY,1253952.0,False
 INV-2024-00581,VEND-039,PO-2024-00081,price_over_tolerance,True,Line 10 price billed 14.26 exceeds PO price 13.2 by +8.0%,EUR,5450.66,False
-INV-2024-00582,VEND-002,PO-2024-00082,bank_details_changed,True,Remittance bank account 99997316209 differs from vendor master account 20932266036,INR,304440.0,False
+INV-2024-00582,VEND-002,PO-2024-00082,bank_details_changed,True,Remittance bank account 99992497984 differs from vendor master account 20932266036,INR,304440.0,False
 INV-2024-00583,VEND-045,PO-2024-00083,none,False,None (clean 3-way match),INR,28320.0,False
 INV-2024-00584,VEND-044,PO-2024-00084,none,False,None (clean 3-way match),JPY,594720.0,False
 INV-2024-00585,VEND-003,PO-2024-00085,none,False,None (clean 3-way match),EUR,25739.34,False
@@ -589,8 +589,8 @@ INV-2024-00587,VEND-046,PO-2024-00087,none,False,None (clean 3-way match),INR,47
 INV-2024-00588,VEND-040,PO-2024-00088,none,False,None (clean 3-way match),EUR,3426.72,False
 INV-2024-00589,VEND-021,PO-2024-00089,none,False,None (clean 3-way match),INR,50150.0,False
 INV-2024-00590,VEND-016,PO-2024-00090,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 100.1 instead of 18% standard rate,EUR,834.02,False
-INV-2024-00591,VEND-024,PO-2024-00150,fx_rate_deviation,True,Stated FX rate 95.4196 deviates by +6.0% from official ECB reference rate 90.0185,EUR,3115.2,False
-INV-2024-00592,VEND-017,PO-2024-00092,bank_details_changed,True,Remittance bank account 99999581776 differs from vendor master account 32526291403,USD,1331.04,False
+INV-2024-00591,VEND-030,PO-2024-00136,fx_rate_deviation,True,Stated FX rate 0.5643 deviates by +6.0% from official ECB reference rate 0.5323,JPY,89208.0,False
+INV-2024-00592,VEND-017,PO-2024-00092,bank_details_changed,True,Remittance bank account 99996219779 differs from vendor master account 32526291403,USD,1331.04,False
 INV-2024-00593,VEND-001,PO-2024-00093,none,False,None (clean 3-way match),INR,14160.0,False
 INV-2024-00594,VEND-047,PO-2024-00094,none,False,None (clean 3-way match),EUR,2219.58,False
 INV-2024-00595,VEND-042,PO-2024-00095,none,False,None (clean 3-way match),INR,27140.0,False
@@ -606,7 +606,7 @@ INV-2024-00604,VEND-045,PO-2024-00104,none,False,None (clean 3-way match),INR,23
 INV-2024-00605,VEND-019,PO-2024-00105,wrong_currency,True,Invoice billed in JPY but PO was contracted in USD,JPY,651.36,False
 INV-2024-00606,VEND-017,PO-2024-00106,none,False,None (clean 3-way match),USD,36.82,False
 INV-2024-00607,VEND-026,PO-2024-00107,none,False,None (clean 3-way match),USD,46.02,False
-INV-2024-00608,VEND-010,PO-PHANTOM-98475,no_matching_po,True,Cited PO PO-PHANTOM-98475 does not exist in purchasing records,USD,3458.58,False
+INV-2024-00608,VEND-010,PO-PHANTOM-93262,no_matching_po,True,Cited PO PO-PHANTOM-93262 does not exist in purchasing records,USD,3458.58,False
 INV-2024-00609,VEND-039,PO-2024-00109,none,False,None (clean 3-way match),EUR,5386.7,False
 INV-2024-00610,VEND-020,PO-2024-00110,none,False,None (clean 3-way match),INR,104135.0,False
 INV-2024-00611,VEND-040,PO-2024-00111,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 86.24 instead of 18% standard rate,EUR,394.24,False
@@ -627,11 +627,11 @@ INV-2024-00625,VEND-022,PO-2024-00125,none,False,None (clean 3-way match),EUR,31
 INV-2024-00626,VEND-019,PO-2024-00126,none,False,None (clean 3-way match),USD,934.56,False
 INV-2024-00627,VEND-030,PO-2024-00127,none,False,None (clean 3-way match),JPY,603747.0,True
 INV-2024-00628,VEND-033,PO-2024-00128,none,False,None (clean 3-way match),EUR,772.31,False
-INV-2024-00629,VEND-034,PO-PHANTOM-95873,no_matching_po,True,Cited PO PO-PHANTOM-95873 does not exist in purchasing records,EUR,4335.32,False
+INV-2024-00629,VEND-034,PO-PHANTOM-94237,no_matching_po,True,Cited PO PO-PHANTOM-94237 does not exist in purchasing records,EUR,4335.32,False
 INV-2024-00630,VEND-018,PO-2024-00130,none,False,None (clean 3-way match),INR,34220.0,False
 INV-2024-00631,VEND-029,PO-2024-00131,none,False,None (clean 3-way match),INR,146910.0,True
-INV-2024-00632,VEND-046,PO-2024-00132,bank_details_changed,True,Remittance bank account 99994038955 differs from vendor master account 20009114172,INR,392350.0,False
-INV-2024-00633,VEND-018,PO-2024-00004,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00004 for PO PO-2024-00004,INR,3068.0,False
+INV-2024-00632,VEND-046,PO-2024-00132,bank_details_changed,True,Remittance bank account 99995782670 differs from vendor master account 20009114172,INR,392350.0,False
+INV-2024-00633,VEND-021,PO-2024-00016,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00016 for PO PO-2024-00016,INR,436600.0,False
 INV-2024-00634,VEND-042,PO-2024-00134,none,False,None (clean 3-way match),INR,146320.0,False
 INV-2024-00635,VEND-046,PO-2024-00135,none,False,None (clean 3-way match),INR,51920.0,False
 INV-2024-00636,VEND-030,PO-2024-00136,none,False,None (clean 3-way match),JPY,89208.0,False
@@ -645,9 +645,9 @@ INV-2024-00643,VEND-003,PO-2024-00143,none,False,None (clean 3-way match),EUR,23
 INV-2024-00644,VEND-030,PO-2024-00144,none,False,None (clean 3-way match),JPY,2090016.0,True
 INV-2024-00645,VEND-017,PO-2024-00145,none,False,None (clean 3-way match),USD,27452.7,False
 INV-2024-00646,VEND-025,PO-2024-00146,none,False,None (clean 3-way match),JPY,613836.0,False
-INV-2024-00647,VEND-005,PO-PHANTOM-94269,no_matching_po,True,Cited PO PO-PHANTOM-94269 does not exist in purchasing records,INR,173460.0,False
+INV-2024-00647,VEND-005,PO-PHANTOM-90145,no_matching_po,True,Cited PO PO-PHANTOM-90145 does not exist in purchasing records,INR,173460.0,False
 INV-2024-00648,VEND-049,PO-2024-00148,none,False,None (clean 3-way match),INR,45076.0,False
-INV-2024-00649,VEND-003,PO-2024-00149,wrong_currency,True,Invoice billed in JPY but PO was contracted in EUR,JPY,220.66,False
+INV-2024-00649,VEND-003,PO-2024-00149,wrong_currency,True,Invoice billed in USD but PO was contracted in EUR,USD,220.66,False
 INV-2024-00650,VEND-024,PO-2024-00150,none,False,None (clean 3-way match),EUR,3115.2,True
 INV-2024-00651,VEND-027,PO-2024-00151,none,False,None (clean 3-way match),INR,116820.0,False
 INV-2024-00652,VEND-025,PO-2024-00152,none,False,None (clean 3-way match),JPY,158238.0,False
@@ -658,13 +658,13 @@ INV-2024-00656,VEND-007,PO-2024-00156,none,False,None (clean 3-way match),INR,20
 INV-2024-00657,VEND-045,PO-2024-00157,none,False,None (clean 3-way match),INR,30680.0,False
 INV-2024-00658,VEND-018,PO-2024-00158,none,False,None (clean 3-way match),INR,2351268.0,False
 INV-2024-00659,VEND-019,PO-2024-00159,none,False,None (clean 3-way match),USD,184.08,True
-INV-2024-00660,VEND-043,PO-2024-00035,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00035 for PO PO-2024-00035,INR,10030.0,False
+INV-2024-00660,VEND-045,PO-2024-00036,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00036 for PO PO-2024-00036,INR,35990.0,False
 INV-2024-00661,VEND-044,PO-2024-00161,none,False,None (clean 3-way match),JPY,261464.4,False
 INV-2024-00662,VEND-020,PO-2024-00162,none,False,None (clean 3-way match),INR,15340.0,False
 INV-2024-00663,VEND-047,PO-2024-00163,none,False,None (clean 3-way match),EUR,376.42,False
 INV-2024-00664,VEND-021,PO-2024-00164,none,False,None (clean 3-way match),INR,328040.0,False
 INV-2024-00665,VEND-024,PO-2024-00165,none,False,None (clean 3-way match),EUR,1914.55,False
-INV-2024-00666,VEND-032,PO-2024-00007,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00007 for PO PO-2024-00007,EUR,337.48,True
+INV-2024-00666,VEND-033,PO-2024-00012,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00012 for PO PO-2024-00012,EUR,584.1,True
 INV-2024-00667,VEND-010,PO-2024-00167,none,False,None (clean 3-way match),USD,368.16,False
 INV-2024-00668,VEND-036,PO-2024-00168,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 39200.0 instead of 18% standard rate,INR,179200.0,False
 INV-2024-00669,VEND-001,PO-2024-00169,none,False,None (clean 3-way match),INR,571120.0,False
@@ -676,7 +676,7 @@ INV-2024-00674,VEND-009,PO-2024-00174,tax_miscalculation,True,Tax calculation mi
 INV-2024-00675,VEND-038,PO-2024-00175,none,False,None (clean 3-way match),INR,2453220.0,False
 INV-2024-00676,VEND-027,PO-2024-00176,none,False,None (clean 3-way match),INR,22420.0,False
 INV-2024-00677,VEND-014,PO-2024-00177,none,False,None (clean 3-way match),USD,716.5,False
-INV-2024-00678,VEND-006,PO-2024-00013,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00013 for PO PO-2024-00013,INR,3835.0,False
+INV-2024-00678,VEND-014,PO-2024-00025,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00025 for PO PO-2024-00025,USD,828.36,False
 INV-2024-00679,VEND-013,PO-2024-00179,none,False,None (clean 3-way match),INR,2197160.0,False
 INV-2024-00680,VEND-002,PO-2024-00180,none,False,None (clean 3-way match),INR,328040.0,False
 INV-2024-00681,VEND-005,PO-2024-00181,none,False,None (clean 3-way match),INR,60770.0,False
@@ -706,7 +706,7 @@ INV-2024-00704,VEND-044,PO-2024-00204,none,False,None (clean 3-way match),JPY,41
 INV-2024-00705,VEND-018,PO-2024-00205,wrong_currency,True,Invoice billed in USD but PO was contracted in INR,USD,67260.0,False
 INV-2024-00706,VEND-012,PO-2024-00206,none,False,None (clean 3-way match),JPY,450288.0,False
 INV-2024-00707,VEND-048,PO-2024-00207,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 58800.0 instead of 18% standard rate,INR,268800.0,False
-INV-2024-00708,VEND-030,PO-2024-00208,bank_details_changed,True,Remittance bank account 99996777230 differs from vendor master account 70808824522,JPY,237888.0,False
+INV-2024-00708,VEND-030,PO-2024-00208,bank_details_changed,True,Remittance bank account 99999344531 differs from vendor master account 70808824522,JPY,237888.0,False
 INV-2024-00709,VEND-047,PO-2024-00209,none,False,None (clean 3-way match),EUR,824.23,False
 INV-2024-00710,VEND-004,PO-2024-00210,none,False,None (clean 3-way match),JPY,90270.0,False
 INV-2024-00711,VEND-043,PO-2024-00211,none,False,None (clean 3-way match),INR,80830.0,False
@@ -730,26 +730,26 @@ INV-2024-00728,VEND-010,PO-2024-00228,none,False,None (clean 3-way match),USD,75
 INV-2024-00729,VEND-049,PO-2024-00229,none,False,None (clean 3-way match),INR,2198340.0,False
 INV-2024-00730,VEND-041,PO-2024-00230,none,False,None (clean 3-way match),USD,127.44,True
 INV-2024-00731,VEND-031,PO-2024-00231,none,False,None (clean 3-way match),JPY,271872.0,False
-INV-2024-00732,VEND-033,PO-PHANTOM-96609,no_matching_po,True,Cited PO PO-PHANTOM-96609 does not exist in purchasing records,EUR,210.92,False
+INV-2024-00732,VEND-033,PO-PHANTOM-99146,no_matching_po,True,Cited PO PO-PHANTOM-99146 does not exist in purchasing records,EUR,210.92,False
 INV-2024-00733,VEND-024,PO-2024-00233,none,False,None (clean 3-way match),EUR,1200.65,False
 INV-2024-00734,VEND-040,PO-2024-00234,none,False,None (clean 3-way match),EUR,5990.27,False
 INV-2024-00735,VEND-037,PO-2024-00235,none,False,None (clean 3-way match),INR,660800.0,False
 INV-2024-00736,VEND-031,PO-2024-00236,none,False,None (clean 3-way match),JPY,47790.0,False
 INV-2024-00737,VEND-007,PO-2024-00237,quantity_mismatch,True,Line 10 quantity billed 15.0 exceeds GR receipt quantity 10.0,INR,257830.0,False
-INV-2024-00738,VEND-046,PO-2024-00238,wrong_currency,True,Invoice billed in JPY but PO was contracted in INR,JPY,382910.0,False
+INV-2024-00738,VEND-046,PO-2024-00238,wrong_currency,True,Invoice billed in EUR but PO was contracted in INR,EUR,382910.0,False
 INV-2024-00739,VEND-024,PO-2024-00239,none,False,None (clean 3-way match),EUR,2972.42,True
-INV-2024-00740,VEND-004,PO-PHANTOM-92017,no_matching_po,True,Cited PO PO-PHANTOM-92017 does not exist in purchasing records,JPY,468342.0,False
+INV-2024-00740,VEND-004,PO-PHANTOM-92999,no_matching_po,True,Cited PO PO-PHANTOM-92999 does not exist in purchasing records,JPY,468342.0,False
 INV-2024-00741,VEND-019,PO-2024-00241,none,False,None (clean 3-way match),USD,5358.85,False
 INV-2024-00742,VEND-038,PO-2024-00242,none,False,None (clean 3-way match),INR,34220.0,False
-INV-2024-00743,VEND-020,PO-2024-00243,wrong_currency,True,Invoice billed in JPY but PO was contracted in INR,JPY,2297460.0,False
+INV-2024-00743,VEND-020,PO-2024-00243,wrong_currency,True,Invoice billed in USD but PO was contracted in INR,USD,2297460.0,False
 INV-2024-00744,VEND-036,PO-2024-00244,none,False,None (clean 3-way match),INR,587640.0,False
 INV-2024-00745,VEND-033,PO-2024-00245,quantity_mismatch,True,Line 10 quantity billed 25.0 exceeds GR receipt quantity 20.0,EUR,1817.2,False
-INV-2024-00746,VEND-004,PO-2024-00002,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00002 for PO PO-2024-00002,JPY,203904.0,False
+INV-2024-00746,VEND-035,PO-2024-00030,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00030 for PO PO-2024-00030,INR,190570.0,False
 INV-2024-00747,VEND-009,PO-2024-00247,none,False,None (clean 3-way match),INR,5015.0,False
-INV-2024-00748,VEND-033,PO-PHANTOM-91771,no_matching_po,True,Cited PO PO-PHANTOM-91771 does not exist in purchasing records,EUR,4304.17,True
+INV-2024-00748,VEND-033,PO-PHANTOM-95428,no_matching_po,True,Cited PO PO-PHANTOM-95428 does not exist in purchasing records,EUR,4304.17,True
 INV-2024-00749,VEND-009,PO-2024-00249,price_over_tolerance,True,Line 10 price billed 4104.0 exceeds PO price 3800.0 by +8.0%,INR,219527.2,False
 INV-2024-00750,VEND-011,PO-2024-00250,none,False,None (clean 3-way match),EUR,661.98,False
-INV-2024-00751,VEND-030,PO-PHANTOM-96828,no_matching_po,True,Cited PO PO-PHANTOM-96828 does not exist in purchasing records,JPY,196470.0,True
+INV-2024-00751,VEND-030,PO-PHANTOM-94817,no_matching_po,True,Cited PO PO-PHANTOM-94817 does not exist in purchasing records,JPY,196470.0,True
 INV-2024-00752,VEND-004,PO-2024-00002,none,False,None (clean 3-way match),JPY,203904.0,False
 INV-2024-00753,VEND-035,PO-2024-00003,none,False,None (clean 3-way match),INR,49560.0,False
 INV-2024-00754,VEND-018,PO-2024-00004,none,False,None (clean 3-way match),INR,3068.0,False
@@ -779,7 +779,7 @@ INV-2024-00777,VEND-022,PO-2024-00027,none,False,None (clean 3-way match),EUR,48
 INV-2024-00778,VEND-011,PO-2024-00028,none,False,None (clean 3-way match),EUR,3245.0,False
 INV-2024-00779,VEND-001,PO-2024-00029,none,False,None (clean 3-way match),INR,17110.0,False
 INV-2024-00780,VEND-035,PO-2024-00030,none,False,None (clean 3-way match),INR,190570.0,False
-INV-2024-00781,VEND-009,PO-2024-00031,wrong_currency,True,Invoice billed in USD but PO was contracted in INR,USD,99120.0,False
+INV-2024-00781,VEND-009,PO-2024-00031,wrong_currency,True,Invoice billed in EUR but PO was contracted in INR,EUR,99120.0,False
 INV-2024-00782,VEND-014,PO-2024-00032,none,False,None (clean 3-way match),USD,1309.8,True
 INV-2024-00783,VEND-023,PO-2024-00033,none,False,None (clean 3-way match),EUR,2494.76,False
 INV-2024-00784,VEND-011,PO-2024-00034,none,False,None (clean 3-way match),EUR,2583.02,False
@@ -788,11 +788,11 @@ INV-2024-00786,VEND-045,PO-2024-00036,none,False,None (clean 3-way match),INR,35
 INV-2024-00787,VEND-013,PO-2024-00037,none,False,None (clean 3-way match),INR,16166.0,False
 INV-2024-00788,VEND-002,PO-2024-00038,none,False,None (clean 3-way match),INR,99120.0,False
 INV-2024-00789,VEND-018,PO-2024-00039,quantity_mismatch,True,Line 10 quantity billed 105.0 exceeds GR receipt quantity 100.0,INR,1785340.0,False
-INV-2024-00790,VEND-044,PO-2024-00040,wrong_currency,True,Invoice billed in EUR but PO was contracted in JPY,EUR,44604.0,True
+INV-2024-00790,VEND-044,PO-2024-00040,wrong_currency,True,Invoice billed in USD but PO was contracted in JPY,USD,44604.0,True
 INV-2024-00791,VEND-038,PO-2024-00041,none,False,None (clean 3-way match),INR,141600.0,False
 INV-2024-00792,VEND-028,PO-2024-00042,none,False,None (clean 3-way match),INR,1015980.0,False
 INV-2024-00793,VEND-025,PO-2024-00043,none,False,None (clean 3-way match),JPY,9027.0,False
-INV-2024-00794,VEND-013,PO-2024-00037,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00037 for PO PO-2024-00037,INR,16166.0,False
+INV-2024-00794,VEND-032,PO-2024-00007,duplicate_invoice,True,Duplicate billing matching existing invoice INV-2024-00007 for PO PO-2024-00007,EUR,337.48,False
 INV-2024-00795,VEND-044,PO-2024-00045,none,False,None (clean 3-way match),JPY,2030544.0,False
 INV-2024-00796,VEND-043,PO-2024-00046,none,False,None (clean 3-way match),INR,2343480.0,False
 INV-2024-00797,VEND-043,PO-2024-00047,none,False,None (clean 3-way match),INR,211220.0,False

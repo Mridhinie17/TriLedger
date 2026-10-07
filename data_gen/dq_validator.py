@@ -43,7 +43,7 @@ class DataQualityValidator:
 
         # 4. Header Math Check (gross == net + tax within 0.10 rounding)
         if abs(gross - (net + tax)) > 0.10:
-            reasons.append(f"HEADER_MATH_MISMATCH: gross={gross} vs net+tax={net+tax}")
+            reasons.append(f"HEADER_MATH_MISMATCH: gross={gross} vs net+tax={net + tax}")
 
         # 5. Line items check
         items = raw_invoice.get("items", [])
@@ -52,7 +52,9 @@ class DataQualityValidator:
         else:
             calc_net = sum(it.get("net_amount", 0.0) for it in items)
             if abs(net - calc_net) > 0.10:
-                reasons.append(f"LINE_TOTAL_HEADER_NET_MISMATCH: header_net={net} vs sum_lines={calc_net}")
+                reasons.append(
+                    f"LINE_TOTAL_HEADER_NET_MISMATCH: header_net={net} vs sum_lines={calc_net}"
+                )
 
             for idx, it in enumerate(items, start=1):
                 qty = it.get("quantity", 0.0)
@@ -65,11 +67,13 @@ class DataQualityValidator:
         is_valid = len(reasons) == 0
         if not is_valid:
             # Route to dead-letter rejected_rows table
-            self.db.add(RejectedRow(
-                source_table="invoices",
-                raw_payload=str(raw_invoice),
-                rejection_reason="; ".join(reasons)
-            ))
+            self.db.add(
+                RejectedRow(
+                    source_table="invoices",
+                    raw_payload=str(raw_invoice),
+                    rejection_reason="; ".join(reasons),
+                )
+            )
             self.db.commit()
 
         return is_valid, reasons

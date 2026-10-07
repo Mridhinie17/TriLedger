@@ -2,12 +2,15 @@
 Pydantic Schemas for 3-Way Reconciliation Results, Discrepancies, and Anomaly Scores.
 """
 
-from typing import List, Optional, Dict, Any
+from typing import Any, Dict, List, Optional
+
 from pydantic import BaseModel, Field
 
 
 class DiscrepancyDetail(BaseModel):
-    check_type: str = Field(..., description="Check identifier (e.g. QUANTITY_MISMATCH, PRICE_TOLERANCE)")
+    check_type: str = Field(
+        ..., description="Check identifier (e.g. QUANTITY_MISMATCH, PRICE_TOLERANCE)"
+    )
     severity: str = Field("HIGH", description="HIGH, MEDIUM, LOW")
     message: str = Field(..., description="Human-readable explanation of discrepancy")
     variance: Optional[Dict[str, Any]] = Field(None, description="Detailed numerical variance")
@@ -15,9 +18,13 @@ class DiscrepancyDetail(BaseModel):
 
 class MatchResult(BaseModel):
     invoice_number: str
-    is_matched: bool = Field(..., description="True if passed all deterministic checks within tolerance")
+    is_matched: bool = Field(
+        ..., description="True if passed all deterministic checks within tolerance"
+    )
     overall_status: str = Field(..., description="MATCHED or DISCREPANCY")
-    detected_defect_types: List[str] = Field(default_factory=list, description="Defect types detected")
+    detected_defect_types: List[str] = Field(
+        default_factory=list, description="Defect types detected"
+    )
     discrepancies: List[DiscrepancyDetail] = Field(default_factory=list)
 
     # Specific module outputs
