@@ -396,12 +396,15 @@ class DatasetGenerator:
 
             elif plan_defect == "duplicate_invoice":
                 if created_invoices_for_dupes:
-                    # Duplicate an existing invoice with same PO and vendor
+                    # Duplicate an existing invoice with same PO, vendor, date, and items
                     dupe_source_inv, dupe_lines, dupe_vendor = random.choice(created_invoices_for_dupes)
                     po_ref = dupe_source_inv.po_number
                     vendor = dupe_vendor
+                    bank_account = dupe_vendor.bank_account_number
+                    bank_code = dupe_vendor.bank_code
                     currency = dupe_source_inv.currency
                     inv_date = dupe_source_inv.invoice_date
+                    stated_fx_rate = dupe_source_inv.stated_fx_rate
                     lines = [dict(ln) for ln in dupe_lines]
                     defect_details = f"Duplicate billing matching existing invoice {dupe_source_inv.invoice_number} for PO {po_ref}"
                 else:
@@ -424,11 +427,31 @@ class DatasetGenerator:
                 defect_details = f"Remittance bank account {bank_account} differs from vendor master account {vendor.bank_account_number}"
 
             elif plan_defect == "fx_rate_deviation":
-                # For foreign invoices, mutate stated FX rate by +6.0% (over ±1.5% tolerance)
-                # If currency is INR, force USD so defect applies
-                if currency == "INR":
-                    currency = "USD"
-                    official_rate, _ = fx_resolver.resolve_effective_rate(inv_date, "USD", "INR")
+                # Use a foreign currency PO so that currency matches PO
+                foreign_pos = [p for p in pos if p.currency in ("USD", "EUR", "JPY")]
+                if foreign_pos:
+                    po = random.choice(foreign_pos)
+                    vendor = vendor_dict[po.vendor_id]
+                    bank_account = vendor.bank_account_number
+                    bank_code = vendor.bank_code
+                    po_ref = po.po_number
+                    currency = po.currency
+                    inv_date = po.order_date + timedelta(days=random.randint(5, 14))
+                    items_template = po_items_by_po[po.po_number]
+                    lines = [dict(it.__dict__) for it in items_template if not it.item_description.startswith("_")]
+                    lines = [{
+                        "line_number": it.line_number,
+                        "item_description": it.item_description,
+                        "quantity": it.quantity,
+                        "unit_of_measure": it.unit_of_measure,
+                        "unit_price": it.unit_price,
+                        "tax_rate_pct": it.tax_rate_pct,
+                        "net_amount": it.net_amount,
+                        "tax_amount": it.tax_amount,
+                        "total_amount": it.total_amount
+                    } for it in items_template]
+
+                official_rate, _ = fx_resolver.resolve_effective_rate(inv_date, currency, "INR")
                 stated_fx_rate = round(official_rate * 1.06, 4)
                 defect_details = f"Stated FX rate {stated_fx_rate} deviates by +6.0% from official ECB reference rate {official_rate:.4f}"
 
@@ -437,6 +460,12 @@ class DatasetGenerator:
                 alternate_currs = [c for c in ["USD", "EUR", "JPY"] if c != currency]
                 wrong_curr = random.choice(alternate_currs)
                 currency = wrong_curr
+                # Set stated FX rate to official rate of wrong_curr so ONLY wrong_currency is defective
+                try:
+                    official_rate, _ = fx_resolver.resolve_effective_rate(inv_date, currency, "INR")
+                    stated_fx_rate = round(official_rate, 4)
+                except Exception:
+                    stated_fx_rate = 1.0
                 defect_details = f"Invoice billed in {currency} but PO was contracted in {po.currency}"
 
             # Calculate invoice header totals
