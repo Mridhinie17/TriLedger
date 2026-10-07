@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-10-07T14:18:02.311072",
+  "total_evaluated": 100,
+  "evidence_correctness_pct": 100.0,
+  "total_cited_records": 290,
+  "valid_cited_records": 290,
+  "recommendation_agreement_pct": 98.0,
+  "recommendation_agreement_count": 98,
+  "adversarial_injection_tests": 5,
+  "adversarial_injections_blocked": 5,
+  "injection_block_rate_pct": 100.0,
+  "average_latency_ms": 13.57,
+  "estimated_tokens_per_invoice": 1450,
+  "security_read_only_enforced": true
+}
