@@ -1,0 +1,161 @@
+invoice_number,vendor_id,po_number,invoice_date,discrepancy_count,defect_types,discrepancies,max_severity,is_anomaly,anomaly_score,match_status
+INV-2024-00005,VEND-029,PO-2024-00005,2024-06-10,1,wrong_currency,Invoice billed in JPY but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00006,VEND-044,PO-2024-00161,2024-08-01,1,fx_rate_deviation,"FX rate deviation: Stated rate 0.5888 deviates by 6.01% from official ECB rate 0.5554 (effective date 2024-08-01), exceeding tolerance 1.5%. Valuation variance: ₹+8,721.44 INR",HIGH,False,0.269,PENDING
+INV-2024-00014,VEND-004,PO-2024-00008,2024-03-05,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00008 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00022,VEND-046,PO-PHANTOM-98336,2024-04-07,1,no_matching_po,Referenced PO 'PO-PHANTOM-98336' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00024,VEND-007,PO-2024-00024,2024-07-28,1,quantity_mismatch,Line 10 quantity billed (105.0) exceeds goods receipt quantity (100.0),HIGH,False,0.1881,PENDING
+INV-2024-00027,VEND-022,PO-2024-00027,2024-08-04,1,bank_details_changed,Invoiced remittance bank account '99998914896' differs from vendor master record '40664478749',HIGH,False,0.269,PENDING
+INV-2024-00031,VEND-033,PO-2024-00245,2024-04-21,1,fx_rate_deviation,"FX rate deviation: Stated rate 94.2582 deviates by 6.00% from official ECB rate 88.9228 (effective date 2024-04-19), exceeding tolerance 1.5%. Valuation variance: ₹+7,756.39 INR",HIGH,False,0.269,PENDING
+INV-2024-00041,VEND-038,PO-2024-00041,2024-04-01,1,wrong_currency,Invoice billed in EUR but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00043,VEND-025,PO-PHANTOM-99364,2024-06-15,1,no_matching_po,Referenced PO 'PO-PHANTOM-99364' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00046,VEND-043,PO-PHANTOM-90862,2024-04-17,1,no_matching_po,Referenced PO 'PO-PHANTOM-90862' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00047,VEND-019,PO-2024-00010,2024-03-17,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00010 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00052,VEND-048,PO-2024-00052,2024-03-06,1,price_over_tolerance,Line 10 unit price billed (1296.00) exceeds PO unit price (1200.00) by +8.0%,HIGH,False,0.0375,PENDING
+INV-2024-00058,VEND-009,PO-2024-00058,2024-05-20,1,quantity_mismatch,Line 10 quantity billed (25.0) exceeds goods receipt quantity (20.0),HIGH,False,0.0954,PENDING
+INV-2024-00061,VEND-050,PO-2024-00061,2024-08-07,1,bank_details_changed,Invoiced remittance bank account '99995892153' differs from vendor master record '59095990995',HIGH,False,0.269,PENDING
+INV-2024-00064,VEND-015,PO-PHANTOM-93974,2024-05-02,1,no_matching_po,Referenced PO 'PO-PHANTOM-93974' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00069,VEND-035,PO-2024-00030,2024-01-30,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00030 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00071,VEND-011,PO-2024-00034,2024-03-05,1,fx_rate_deviation,"FX rate deviation: Stated rate 95.3497 deviates by 6.00% from official ECB rate 89.9525 (effective date 2024-03-05), exceeding tolerance 1.5%. Valuation variance: ₹+13,941.07 INR",HIGH,False,0.269,PENDING
+INV-2024-00078,VEND-045,PO-2024-00036,2024-02-19,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00036 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00080,VEND-030,PO-2024-00080,2024-07-19,1,price_over_tolerance,Line 10 unit price billed (5443.20) exceeds PO unit price (5040.00) by +8.0%,HIGH,False,0.0,PENDING
+INV-2024-00082,VEND-047,PO-2024-00099,2024-03-13,1,fx_rate_deviation,"FX rate deviation: Stated rate 96.0296 deviates by 6.00% from official ECB rate 90.5940 (effective date 2024-03-13), exceeding tolerance 1.5%. Valuation variance: ₹+9,136.75 INR",HIGH,False,0.269,PENDING
+INV-2024-00083,VEND-045,PO-2024-00083,2024-06-28,1,bank_details_changed,Invoiced remittance bank account '99994442590' differs from vendor master record '40317631968',HIGH,False,0.269,PENDING
+INV-2024-00084,VEND-044,PO-2024-00084,2024-06-25,1,quantity_mismatch,Line 10 quantity billed (105.0) exceeds goods receipt quantity (100.0),HIGH,False,0.1262,PENDING
+INV-2024-00090,VEND-016,PO-2024-00090,2024-08-04,1,bank_details_changed,Invoiced remittance bank account '99995694689' differs from vendor master record '21373225387',HIGH,False,0.269,PENDING
+INV-2024-00095,VEND-042,PO-2024-00095,2024-07-23,1,bank_details_changed,Invoiced remittance bank account '99997249378' differs from vendor master record '24824020111',HIGH,False,0.269,PENDING
+INV-2024-00097,VEND-024,PO-2024-00097,2024-05-25,1,quantity_mismatch,Line 10 quantity billed (105.0) exceeds goods receipt quantity (100.0),HIGH,False,0.1881,PENDING
+INV-2024-00098,VEND-043,PO-2024-00023,2024-02-15,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00023 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00100,VEND-013,PO-PHANTOM-92187,2024-03-19,1,no_matching_po,Referenced PO 'PO-PHANTOM-92187' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00109,VEND-039,PO-2024-00109,2024-06-21,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 953.70 differs from calculated tax 821.70 (diff: 132.00),MEDIUM,True,-0.1528,PENDING
+INV-2024-00111,VEND-012,PO-2024-00073,2024-02-06,1,fx_rate_deviation,"FX rate deviation: Stated rate 0.5927 deviates by 6.00% from official ECB rate 0.5591 (effective date 2024-02-06), exceeding tolerance 1.5%. Valuation variance: ₹+22,956.39 INR",HIGH,False,0.269,PENDING
+INV-2024-00113,VEND-012,PO-2024-00113,2024-06-14,1,price_over_tolerance,Line 10 unit price billed (7387.20) exceeds PO unit price (6840.00) by +8.0%,HIGH,True,-0.0931,PENDING
+INV-2024-00117,VEND-018,PO-2024-00117,2024-02-28,1,price_over_tolerance,Line 10 unit price billed (486.00) exceeds PO unit price (450.00) by +8.0%,HIGH,True,-0.0931,PENDING
+INV-2024-00126,VEND-019,PO-2024-00126,2024-07-07,1,quantity_mismatch,Line 10 quantity billed (105.0) exceeds goods receipt quantity (100.0),HIGH,False,0.061,PENDING
+INV-2024-00128,VEND-033,PO-2024-00128,2024-01-23,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 146.41 differs from calculated tax 117.81 (diff: 28.60),MEDIUM,True,-0.161,PENDING
+INV-2024-00134,VEND-014,PO-2024-00032,2024-07-16,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00032 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00139,VEND-043,PO-2024-00035,2024-07-31,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00035 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00140,VEND-023,PO-2024-00140,2024-04-14,1,price_over_tolerance,Line 10 unit price billed (33.26) exceeds PO unit price (30.80) by +8.0%,HIGH,False,0.0379,PENDING
+INV-2024-00148,VEND-049,PO-2024-00148,2024-06-30,1,wrong_currency,Invoice billed in USD but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00161,VEND-044,PO-2024-00161,2024-08-01,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00006 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00165,VEND-024,PO-2024-00165,2024-06-07,1,bank_details_changed,Invoiced remittance bank account '99995191831' differs from vendor master record '41619533975',HIGH,False,0.269,PENDING
+INV-2024-00167,VEND-010,PO-2024-00167,2024-08-03,1,quantity_mismatch,Line 10 quantity billed (55.0) exceeds goods receipt quantity (50.0),HIGH,True,-0.0274,PENDING
+INV-2024-00168,VEND-036,PO-2024-00168,2024-04-22,1,wrong_currency,Invoice billed in USD but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00169,VEND-001,PO-2024-00169,2024-03-27,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 89520.00 differs from calculated tax 87120.00 (diff: 2400.00),MEDIUM,True,-0.0799,PENDING
+INV-2024-00175,VEND-038,PO-2024-00175,2024-07-31,1,bank_details_changed,Invoiced remittance bank account '99997245146' differs from vendor master record '86281205445',HIGH,False,0.269,PENDING
+INV-2024-00176,VEND-027,PO-2024-00176,2024-04-05,1,price_over_tolerance,Line 10 unit price billed (1026.00) exceeds PO unit price (950.00) by +8.0%,HIGH,True,-0.0931,PENDING
+INV-2024-00178,VEND-044,PO-2024-00178,2024-04-28,1,quantity_mismatch,Line 10 quantity billed (10.0) exceeds goods receipt quantity (5.0),HIGH,True,-0.0474,PENDING
+INV-2024-00180,VEND-002,PO-2024-00180,2024-02-05,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 74040.00 differs from calculated tax 50040.00 (diff: 24000.00),MEDIUM,True,-0.2313,PENDING
+INV-2024-00181,VEND-005,PO-2024-00181,2024-08-06,1,bank_details_changed,Invoiced remittance bank account '99995342289' differs from vendor master record '86026611852',HIGH,False,0.269,PENDING
+INV-2024-00186,VEND-009,PO-2024-00186,2024-08-01,1,price_over_tolerance,Line 10 unit price billed (3348.00) exceeds PO unit price (3100.00) by +8.0%,HIGH,False,0.0,PENDING
+INV-2024-00187,VEND-032,PO-2024-00213,2024-06-04,1,fx_rate_deviation,"FX rate deviation: Stated rate 96.1341 deviates by 6.00% from official ECB rate 90.6925 (effective date 2024-06-04), exceeding tolerance 1.5%. Valuation variance: ₹+7,027.88 INR",HIGH,False,0.269,PENDING
+INV-2024-00194,VEND-045,PO-PHANTOM-99402,2024-02-19,1,no_matching_po,Referenced PO 'PO-PHANTOM-99402' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00205,VEND-018,PO-2024-00205,2024-07-18,1,price_over_tolerance,Line 10 unit price billed (1566.00) exceeds PO unit price (1450.00) by +8.0%,HIGH,False,0.0,PENDING
+INV-2024-00207,VEND-050,PO-2024-00077,2024-07-11,1,fx_rate_deviation,"FX rate deviation: Stated rate 88.5854 deviates by 6.00% from official ECB rate 83.5712 (effective date 2024-07-11), exceeding tolerance 1.5%. Valuation variance: ₹+994.02 INR",HIGH,False,0.269,PENDING
+INV-2024-00209,VEND-047,PO-2024-00209,2024-04-12,1,wrong_currency,Invoice billed in USD but PO contracted in EUR,HIGH,False,0.269,PENDING
+INV-2024-00211,VEND-043,PO-PHANTOM-98173,2024-05-09,1,no_matching_po,Referenced PO 'PO-PHANTOM-98173' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00218,VEND-014,PO-2024-00032,2024-07-18,1,fx_rate_deviation,"FX rate deviation: Stated rate 88.6526 deviates by 6.00% from official ECB rate 83.6345 (effective date 2024-07-18), exceeding tolerance 1.5%. Valuation variance: ₹+6,572.72 INR",HIGH,False,0.269,PENDING
+INV-2024-00220,VEND-028,PO-2024-00220,2024-06-19,1,wrong_currency,Invoice billed in JPY but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00237,VEND-007,PO-2024-00237,2024-04-17,1,wrong_currency,Invoice billed in USD but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00251,VEND-030,PO-PHANTOM-93951,2024-08-24,1,no_matching_po,Referenced PO 'PO-PHANTOM-93951' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00253,VEND-035,PO-2024-00003,2024-06-16,1,quantity_mismatch,Line 10 quantity billed (15.0) exceeds goods receipt quantity (10.0),HIGH,True,-0.0884,PENDING
+INV-2024-00256,VEND-003,PO-2024-00149,2024-04-18,1,fx_rate_deviation,"FX rate deviation: Stated rate 94.5393 deviates by 6.00% from official ECB rate 89.1880 (effective date 2024-04-18), exceeding tolerance 1.5%. Valuation variance: ₹+1,180.82 INR",HIGH,False,0.269,PENDING
+INV-2024-00259,VEND-019,PO-2024-00009,2024-06-07,1,bank_details_changed,Invoiced remittance bank account '99994968669' differs from vendor master record '17824582571',HIGH,False,0.269,PENDING
+INV-2024-00261,VEND-004,PO-2024-00011,2024-08-30,1,price_over_tolerance,Line 10 unit price billed (874.80) exceeds PO unit price (810.00) by +8.0%,HIGH,False,0.0,PENDING
+INV-2024-00263,VEND-047,PO-2024-00094,2024-05-12,1,fx_rate_deviation,"FX rate deviation: Stated rate 95.4196 deviates by 6.00% from official ECB rate 90.0185 (effective date 2024-05-10), exceeding tolerance 1.5%. Valuation variance: ₹+11,988.18 INR",HIGH,False,0.269,PENDING
+INV-2024-00271,VEND-024,PO-2024-00021,2024-05-05,1,bank_details_changed,Invoiced remittance bank account '99994158036' differs from vendor master record '41619533975',HIGH,False,0.269,PENDING
+INV-2024-00275,VEND-014,PO-2024-00025,2024-08-13,1,bank_details_changed,Invoiced remittance bank account '99999228157' differs from vendor master record '61973405392',HIGH,False,0.269,PENDING
+INV-2024-00276,VEND-006,PO-2024-00026,2024-07-30,1,quantity_mismatch,Line 10 quantity billed (10.0) exceeds goods receipt quantity (5.0),HIGH,True,-0.0884,PENDING
+INV-2024-00277,VEND-004,PO-2024-00002,2024-05-04,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00002 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00287,VEND-013,PO-2024-00037,2024-06-16,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 3316.00 differs from calculated tax 2466.00 (diff: 850.00),MEDIUM,True,-0.182,PENDING
+INV-2024-00290,VEND-044,PO-2024-00040,2024-07-10,1,quantity_mismatch,Line 10 quantity billed (25.0) exceeds goods receipt quantity (20.0),HIGH,False,0.0743,PENDING
+INV-2024-00308,VEND-009,PO-PHANTOM-95514,2024-06-16,1,no_matching_po,Referenced PO 'PO-PHANTOM-95514' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00318,VEND-044,PO-2024-00045,2024-07-30,1,fx_rate_deviation,"FX rate deviation: Stated rate 0.5731 deviates by 6.00% from official ECB rate 0.5407 (effective date 2024-07-30), exceeding tolerance 1.5%. Valuation variance: ₹+65,828.72 INR",HIGH,False,0.269,PENDING
+INV-2024-00321,VEND-040,PO-PHANTOM-93657,2024-07-06,1,no_matching_po,Referenced PO 'PO-PHANTOM-93657' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00326,VEND-004,PO-2024-00076,2024-05-20,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 46620.00 differs from calculated tax 29970.00 (diff: 16650.00),MEDIUM,True,-0.2419,PENDING
+INV-2024-00341,VEND-004,PO-2024-00240,2024-07-08,1,fx_rate_deviation,"FX rate deviation: Stated rate 0.5500 deviates by 6.01% from official ECB rate 0.5188 (effective date 2024-07-08), exceeding tolerance 1.5%. Valuation variance: ₹+14,592.55 INR",HIGH,False,0.269,PENDING
+INV-2024-00349,VEND-035,PO-2024-00003,2024-05-17,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00003 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00355,VEND-019,PO-2024-00105,2024-06-18,1,quantity_mismatch,Line 10 quantity billed (15.0) exceeds goods receipt quantity (10.0),HIGH,True,-0.0114,PENDING
+INV-2024-00360,VEND-020,PO-2024-00110,2024-07-20,1,bank_details_changed,Invoiced remittance bank account '99998493206' differs from vendor master record '36054081665',HIGH,False,0.269,PENDING
+INV-2024-00362,VEND-041,PO-2024-00112,2024-04-15,1,quantity_mismatch,Line 10 quantity billed (15.0) exceeds goods receipt quantity (10.0),HIGH,True,-0.0114,PENDING
+INV-2024-00368,VEND-020,PO-2024-00118,2024-07-22,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 15515.00 differs from calculated tax 12915.00 (diff: 2600.00),MEDIUM,True,-0.1591,PENDING
+INV-2024-00371,VEND-048,PO-2024-00121,2024-05-11,1,bank_details_changed,Invoiced remittance bank account '99991807780' differs from vendor master record '91099217763',HIGH,False,0.269,PENDING
+INV-2024-00376,VEND-019,PO-2024-00126,2024-08-07,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 204.96 differs from calculated tax 142.56 (diff: 62.40),MEDIUM,True,-0.2101,PENDING
+INV-2024-00380,VEND-003,PO-2024-00143,2024-02-27,2,duplicate_invoice; fx_rate_deviation,"Suspected duplicate submission matching INV-2024-00143 (similarity score: 96.07%) | FX rate deviation: Stated rate 95.3740 deviates by 6.00% from official ECB rate 89.9755 (effective date 2024-02-27), exceeding tolerance 1.5%. Valuation variance: ₹+12,648.09 INR",HIGH,False,0.269,PENDING
+INV-2024-00387,VEND-039,PO-2024-00137,2024-06-29,1,quantity_mismatch,Line 10 quantity billed (25.0) exceeds goods receipt quantity (20.0),HIGH,False,0.0678,PENDING
+INV-2024-00388,VEND-035,PO-2024-00003,2024-05-17,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00003 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00391,VEND-045,PO-2024-00141,2024-04-20,1,wrong_currency,Invoice billed in EUR but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00407,VEND-045,PO-2024-00157,2024-05-09,1,wrong_currency,Invoice billed in USD but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00409,VEND-019,PO-PHANTOM-92703,2024-09-09,1,no_matching_po,Referenced PO 'PO-PHANTOM-92703' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00411,VEND-004,PO-2024-00008,2024-03-05,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00008 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00414,VEND-021,PO-2024-00164,2024-08-30,1,wrong_currency,Invoice billed in USD but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00415,VEND-016,PO-2024-00017,2024-03-27,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00017 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00437,VEND-029,PO-2024-00187,2024-09-05,1,bank_details_changed,Invoiced remittance bank account '99995941719' differs from vendor master record '55702582931',HIGH,False,0.269,PENDING
+INV-2024-00438,VEND-044,PO-2024-00161,2024-08-09,1,fx_rate_deviation,"FX rate deviation: Stated rate 0.6060 deviates by 6.01% from official ECB rate 0.5717 (effective date 2024-08-09), exceeding tolerance 1.5%. Valuation variance: ₹+8,977.46 INR",HIGH,False,0.269,PENDING
+INV-2024-00439,VEND-019,PO-2024-00009,2024-05-11,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00009 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00451,VEND-037,PO-2024-00201,2024-06-30,1,price_over_tolerance,Line 10 unit price billed (4104.00) exceeds PO unit price (3800.00) by +8.0%,HIGH,True,-0.0931,PENDING
+INV-2024-00454,VEND-044,PO-2024-00204,2024-08-03,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 65529.00 differs from calculated tax 63909.00 (diff: 1620.00),MEDIUM,True,-0.0786,PENDING
+INV-2024-00458,VEND-019,PO-2024-00050,2024-03-18,1,fx_rate_deviation,"FX rate deviation: Stated rate 87.8646 deviates by 6.00% from official ECB rate 82.8911 (effective date 2024-03-18), exceeding tolerance 1.5%. Valuation variance: ₹+20,634.40 INR",HIGH,False,0.269,PENDING
+INV-2024-00460,VEND-004,PO-2024-00008,2024-03-05,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00008 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00470,VEND-028,PO-2024-00220,2024-07-14,1,quantity_mismatch,Line 10 quantity billed (55.0) exceeds goods receipt quantity (50.0),HIGH,False,0.1262,PENDING
+INV-2024-00484,VEND-040,PO-2024-00234,2024-07-23,1,price_over_tolerance,Line 10 unit price billed (49.90) exceeds PO unit price (46.20) by +8.0%,HIGH,False,0.0372,PENDING
+INV-2024-00491,VEND-022,PO-2024-00125,2024-04-15,1,fx_rate_deviation,"FX rate deviation: Stated rate 94.2287 deviates by 6.00% from official ECB rate 88.8950 (effective date 2024-04-15), exceeding tolerance 1.5%. Valuation variance: ₹+16,615.55 INR",HIGH,False,0.269,PENDING
+INV-2024-00492,VEND-024,PO-2024-00102,2024-03-05,1,fx_rate_deviation,"FX rate deviation: Stated rate 95.3497 deviates by 6.00% from official ECB rate 89.9525 (effective date 2024-03-05), exceeding tolerance 1.5%. Valuation variance: ₹+3,818.03 INR",HIGH,False,0.269,PENDING
+INV-2024-00493,VEND-020,PO-2024-00243,2024-08-08,1,wrong_currency,Invoice billed in JPY but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00495,VEND-033,PO-PHANTOM-92415,2024-05-25,1,no_matching_po,Referenced PO 'PO-PHANTOM-92415' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00503,VEND-035,PO-2024-00003,2024-07-12,1,price_over_tolerance,Line 10 unit price billed (4536.00) exceeds PO unit price (4200.00) by +8.0%,HIGH,True,-0.0931,PENDING
+INV-2024-00509,VEND-019,PO-2024-00009,2024-07-11,1,bank_details_changed,Invoiced remittance bank account '99993480985' differs from vendor master record '17824582571',HIGH,False,0.269,PENDING
+INV-2024-00513,VEND-006,PO-2024-00013,2024-05-11,1,price_over_tolerance,Line 10 unit price billed (702.00) exceeds PO unit price (650.00) by +8.0%,HIGH,True,-0.0931,PENDING
+INV-2024-00516,VEND-021,PO-2024-00016,2024-05-28,1,bank_details_changed,Invoiced remittance bank account '99997666510' differs from vendor master record '63683789489',HIGH,False,0.269,PENDING
+INV-2024-00533,VEND-024,PO-2024-00150,2024-05-10,2,duplicate_invoice; fx_rate_deviation,"Suspected duplicate submission matching INV-2024-00150 (similarity score: 98.0%) | FX rate deviation: Stated rate 95.4196 deviates by 6.00% from official ECB rate 90.0185 (effective date 2024-05-10), exceeding tolerance 1.5%. Valuation variance: ₹+16,825.51 INR",HIGH,False,0.269,PENDING
+INV-2024-00543,VEND-030,PO-2024-00127,2024-02-20,1,fx_rate_deviation,"FX rate deviation: Stated rate 0.5857 deviates by 6.01% from official ECB rate 0.5525 (effective date 2024-02-20), exceeding tolerance 1.5%. Valuation variance: ₹+20,044.22 INR",HIGH,False,0.269,PENDING
+INV-2024-00558,VEND-009,PO-PHANTOM-93892,2024-07-18,1,no_matching_po,Referenced PO 'PO-PHANTOM-93892' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00564,VEND-015,PO-2024-00064,2024-06-26,1,wrong_currency,Invoice billed in EUR but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00570,VEND-043,PO-2024-00070,2024-09-14,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 20140.00 differs from calculated tax 15390.00 (diff: 4750.00),MEDIUM,True,-0.1705,PENDING
+INV-2024-00580,VEND-030,PO-2024-00080,2024-09-18,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 195552.00 differs from calculated tax 190512.00 (diff: 5040.00),MEDIUM,True,-0.0786,PENDING
+INV-2024-00581,VEND-039,PO-2024-00081,2024-10-01,1,price_over_tolerance,Line 10 unit price billed (14.26) exceeds PO unit price (13.20) by +8.0%,HIGH,False,0.0204,PENDING
+INV-2024-00582,VEND-002,PO-2024-00082,2024-06-12,1,bank_details_changed,Invoiced remittance bank account '99992497984' differs from vendor master record '20932266036',HIGH,False,0.269,PENDING
+INV-2024-00590,VEND-016,PO-2024-00090,2024-09-30,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 157.52 differs from calculated tax 121.77 (diff: 35.75),MEDIUM,True,-0.1645,PENDING
+INV-2024-00591,VEND-030,PO-2024-00136,2024-06-11,2,duplicate_invoice; fx_rate_deviation,"Suspected duplicate submission matching INV-2024-00136 (similarity score: 98.0%) | FX rate deviation: Stated rate 0.5643 deviates by 6.01% from official ECB rate 0.5323 (effective date 2024-06-11), exceeding tolerance 1.5%. Valuation variance: ₹+2,852.78 INR",HIGH,False,0.269,PENDING
+INV-2024-00592,VEND-017,PO-2024-00092,2024-06-15,1,bank_details_changed,Invoiced remittance bank account '99996219779' differs from vendor master record '32526291403',HIGH,False,0.269,PENDING
+INV-2024-00597,VEND-024,PO-2024-00097,2024-07-23,1,quantity_mismatch,Line 10 quantity billed (105.0) exceeds goods receipt quantity (100.0),HIGH,False,0.1881,PENDING
+INV-2024-00598,VEND-045,PO-2024-00098,2024-07-18,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 3685.00 differs from calculated tax 2835.00 (diff: 850.00),MEDIUM,True,-0.166,PENDING
+INV-2024-00605,VEND-019,PO-2024-00105,2024-07-18,1,wrong_currency,Invoice billed in JPY but PO contracted in USD,HIGH,False,0.269,PENDING
+INV-2024-00608,VEND-010,PO-PHANTOM-93262,2024-05-02,1,no_matching_po,Referenced PO 'PO-PHANTOM-93262' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00611,VEND-040,PO-2024-00111,2024-09-28,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 86.24 differs from calculated tax 55.44 (diff: 30.80),MEDIUM,True,-0.2419,PENDING
+INV-2024-00612,VEND-041,PO-2024-00112,2024-05-17,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00172 (similarity score: 94.61%),HIGH,False,0.269,PENDING
+INV-2024-00618,VEND-020,PO-2024-00118,2024-08-20,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00610 (similarity score: 90.54%),HIGH,False,0.269,PENDING
+INV-2024-00623,VEND-034,PO-2024-00123,2024-09-03,1,price_over_tolerance,Line 10 unit price billed (17.23) exceeds PO unit price (15.95) by +8.0%,HIGH,True,-0.0512,PENDING
+INV-2024-00629,VEND-034,PO-PHANTOM-94237,2024-06-21,1,no_matching_po,Referenced PO 'PO-PHANTOM-94237' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00632,VEND-046,PO-2024-00132,2024-04-29,1,bank_details_changed,Invoiced remittance bank account '99995782670' differs from vendor master record '20009114172',HIGH,False,0.269,PENDING
+INV-2024-00633,VEND-021,PO-2024-00016,2024-03-28,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00016 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00647,VEND-005,PO-PHANTOM-90145,2024-05-19,1,no_matching_po,Referenced PO 'PO-PHANTOM-90145' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00649,VEND-003,PO-2024-00149,2024-06-12,1,wrong_currency,Invoice billed in USD but PO contracted in EUR,HIGH,False,0.269,PENDING
+INV-2024-00660,VEND-045,PO-2024-00036,2024-02-19,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00036 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00666,VEND-033,PO-2024-00012,2024-06-06,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00012 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00668,VEND-036,PO-2024-00168,2024-06-25,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 39200.00 differs from calculated tax 25200.00 (diff: 14000.00),MEDIUM,True,-0.2419,PENDING
+INV-2024-00674,VEND-009,PO-2024-00174,2024-07-01,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 323300.00 differs from calculated tax 267300.00 (diff: 56000.00),MEDIUM,True,-0.1586,PENDING
+INV-2024-00678,VEND-014,PO-2024-00025,2024-07-13,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00025 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00684,VEND-009,PO-2024-00184,2024-03-26,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 33940.00 differs from calculated tax 31140.00 (diff: 2800.00),MEDIUM,True,-0.1294,PENDING
+INV-2024-00685,VEND-021,PO-2024-00185,2024-03-24,1,price_over_tolerance,Line 10 unit price billed (918.00) exceeds PO unit price (850.00) by +8.0%,HIGH,True,-0.0931,PENDING
+INV-2024-00688,VEND-033,PO-2024-00188,2024-05-20,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 453.42 differs from calculated tax 403.92 (diff: 49.50),MEDIUM,True,-0.1539,PENDING
+INV-2024-00696,VEND-047,PO-2024-00196,2024-04-14,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 480.48 differs from calculated tax 388.08 (diff: 92.40),MEDIUM,True,-0.1625,PENDING
+INV-2024-00705,VEND-018,PO-2024-00205,2024-09-20,1,wrong_currency,Invoice billed in USD but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00707,VEND-048,PO-2024-00207,2024-08-02,1,tax_miscalculation,Tax calculation mismatch: Invoiced tax 58800.00 differs from calculated tax 37800.00 (diff: 21000.00),MEDIUM,True,-0.2419,PENDING
+INV-2024-00708,VEND-030,PO-2024-00208,2024-06-20,1,bank_details_changed,Invoiced remittance bank account '99999344531' differs from vendor master record '70808824522',HIGH,False,0.269,PENDING
+INV-2024-00718,VEND-043,PO-2024-00218,2024-06-22,1,quantity_mismatch,Line 10 quantity billed (10.0) exceeds goods receipt quantity (5.0),HIGH,True,-0.137,PENDING
+INV-2024-00719,VEND-028,PO-2024-00219,2024-03-25,1,quantity_mismatch,Line 10 quantity billed (25.0) exceeds goods receipt quantity (20.0),HIGH,False,0.0743,PENDING
+INV-2024-00732,VEND-033,PO-PHANTOM-99146,2024-04-08,1,no_matching_po,Referenced PO 'PO-PHANTOM-99146' does not exist in purchasing records,HIGH,False,0.0512,PENDING
+INV-2024-00737,VEND-007,PO-2024-00237,2024-06-16,1,quantity_mismatch,Line 10 quantity billed (15.0) exceeds goods receipt quantity (10.0),HIGH,False,0.0443,PENDING
+INV-2024-00738,VEND-046,PO-2024-00238,2024-07-15,1,wrong_currency,Invoice billed in EUR but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00740,VEND-004,PO-PHANTOM-92999,2024-09-01,1,no_matching_po,Referenced PO 'PO-PHANTOM-92999' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00743,VEND-020,PO-2024-00243,2024-09-08,1,wrong_currency,Invoice billed in USD but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00745,VEND-033,PO-2024-00245,2024-06-22,1,quantity_mismatch,Line 10 quantity billed (25.0) exceeds goods receipt quantity (20.0),HIGH,True,-0.0114,PENDING
+INV-2024-00746,VEND-035,PO-2024-00030,2024-01-30,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00030 (similarity score: 98.0%),HIGH,False,0.269,PENDING
+INV-2024-00748,VEND-033,PO-PHANTOM-95428,2024-10-06,1,no_matching_po,Referenced PO 'PO-PHANTOM-95428' does not exist in purchasing records,HIGH,False,0.2507,PENDING
+INV-2024-00749,VEND-009,PO-2024-00249,2024-08-21,1,price_over_tolerance,Line 10 unit price billed (4104.00) exceeds PO unit price (3800.00) by +8.0%,HIGH,False,0.0,PENDING
+INV-2024-00751,VEND-030,PO-PHANTOM-94817,2024-10-26,1,no_matching_po,Referenced PO 'PO-PHANTOM-94817' does not exist in purchasing records,HIGH,False,0.269,PENDING
+INV-2024-00758,VEND-004,PO-2024-00008,2024-06-04,1,wrong_currency,Invoice billed in USD but PO contracted in JPY,HIGH,False,0.269,PENDING
+INV-2024-00781,VEND-009,PO-2024-00031,2024-05-02,1,wrong_currency,Invoice billed in EUR but PO contracted in INR,HIGH,False,0.269,PENDING
+INV-2024-00789,VEND-018,PO-2024-00039,2024-05-08,1,quantity_mismatch,Line 10 quantity billed (105.0) exceeds goods receipt quantity (100.0),HIGH,False,0.1511,PENDING
+INV-2024-00790,VEND-044,PO-2024-00040,2024-09-04,1,wrong_currency,Invoice billed in USD but PO contracted in JPY,HIGH,False,0.269,PENDING
+INV-2024-00794,VEND-032,PO-2024-00007,2024-05-25,1,duplicate_invoice,Suspected duplicate submission matching INV-2024-00007 (similarity score: 98.0%),HIGH,False,0.269,PENDING
