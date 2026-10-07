@@ -91,7 +91,7 @@ def get_kpi_stats(db: Session = Depends(get_db)):
             matched_clean_count=0,
             exception_count=0,
             straight_through_processing_pct=100.0,
-            total_spend_eur=0.0,
+            total_spend_inr=0.0,
             high_risk_anomalies=0,
             pending_review=0,
             approved_count=0,
@@ -105,15 +105,16 @@ def get_kpi_stats(db: Session = Depends(get_db)):
     escalated_count = db.query(Invoice).filter(Invoice.match_status == "ESCALATED").count()
     pending_count = db.query(Invoice).filter(Invoice.match_status.in_(["PENDING", "UNMATCHED"])).count()
 
-    # Calculate spend in EUR
+    # Calculate total spend normalized to INR (base currency)
     invoices = db.query(Invoice).all()
-    total_spend_eur = 0.0
+    total_spend_inr = 0.0
     for inv in invoices:
         rate = inv.stated_fx_rate if inv.stated_fx_rate and inv.stated_fx_rate > 0 else 1.0
-        if inv.currency == "EUR":
-            total_spend_eur += inv.total_gross_amount
+        if inv.currency == "INR":
+            total_spend_inr += inv.total_gross_amount
         else:
-            total_spend_eur += (inv.total_gross_amount / rate)
+            # stated_fx_rate is X→INR (e.g. 1 EUR = 90 INR), so multiply
+            total_spend_inr += (inv.total_gross_amount * rate)
 
     # Engine match counts
     engine = ReconciliationEngine(db)
@@ -137,7 +138,7 @@ def get_kpi_stats(db: Session = Depends(get_db)):
         matched_clean_count=matched_count,
         exception_count=exception_count,
         straight_through_processing_pct=stp_rate,
-        total_spend_eur=round(total_spend_eur, 2),
+        total_spend_inr=round(total_spend_inr, 2),
         high_risk_anomalies=high_risk_anomalies,
         pending_review=pending_count,
         approved_count=approved_count,

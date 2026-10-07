@@ -21,6 +21,7 @@ import numpy as np
 from config.settings import settings
 from db.models import Invoice, PurchaseOrder, GoodsReceipt, Vendor, FXRate, AuditLog
 from db.session import get_db_context
+from fx.loader import FXResolver
 from matching.engine import ReconciliationEngine
 
 
@@ -60,27 +61,23 @@ class DataMartExporter:
                 v = vendors.get(inv.vendor_id)
                 rate = inv.stated_fx_rate if inv.stated_fx_rate and inv.stated_fx_rate > 0 else 1.0
                 
-                # Base EUR equivalent calculation
-                if inv.currency == "EUR":
-                    amount_eur = inv.total_gross_amount
-                elif inv.currency == "USD":
-                    amount_eur = inv.total_gross_amount / rate if rate > 0 else inv.total_gross_amount
-                elif inv.currency == "INR":
-                    amount_eur = inv.total_gross_amount / rate if rate > 0 else inv.total_gross_amount
+                # Base INR equivalent calculation (INR is base ERP currency)
+                if inv.currency == "INR":
+                    amount_inr = inv.total_gross_amount
                 else:
-                    amount_eur = inv.total_gross_amount
+                    amount_inr = inv.total_gross_amount * rate if rate > 0 else inv.total_gross_amount
 
                 rows.append({
                     "invoice_number": inv.invoice_number,
                     "vendor_id": inv.vendor_id,
                     "vendor_name": v.name if v else "Unknown",
-                    "vendor_country": "DE" if inv.currency == "EUR" else ("US" if inv.currency == "USD" else "IN"),
+                    "vendor_country": "DE" if inv.currency == "EUR" else ("US" if inv.currency == "USD" else ("JP" if inv.currency == "JPY" else "IN")),
                     "invoice_date": inv.invoice_date.isoformat() if inv.invoice_date else None,
                     "currency": inv.currency,
                     "total_net_amount": round(inv.total_net_amount, 2),
                     "total_tax_amount": round(inv.total_tax_amount, 2),
                     "total_gross_amount": round(inv.total_gross_amount, 2),
-                    "total_amount_eur": round(amount_eur, 2),
+                    "total_amount_inr": round(amount_inr, 2),
                     "payment_terms": v.payment_terms if v else "Net 30",
                     "match_status": inv.match_status,
                     "is_scanned": inv.is_scanned,
@@ -188,25 +185,30 @@ class DataMartExporter:
 
     def export_fx_sensitivity(self) -> Dict[str, Path]:
         with get_db_context() as db:
-            invoices = db.query(Invoice).filter(Invoice.currency != "EUR").all()
+            resolver = FXResolver(db)
+            # FX sensitivity applies to foreign currency invoices
+            invoices = db.query(Invoice).filter(Invoice.currency != "INR").all()
             
             rows = []
             for inv in invoices:
-                fx_rec = db.query(FXRate).filter(
-                    FXRate.target_currency == inv.currency,
-                    FXRate.rate_date <= inv.invoice_date
-                ).order_by(FXRate.rate_date.desc()).first()
+                try:
+                    official_rate, eff_date = resolver.resolve_effective_rate(
+                        query_date=inv.invoice_date,
+                        base_currency=inv.currency,
+                        target_currency="INR"
+                    )
+                except Exception:
+                    official_rate = inv.stated_fx_rate or 1.0
 
-                official_rate = fx_rec.rate if fx_rec else 1.0
                 claimed_rate = inv.stated_fx_rate if inv.stated_fx_rate else official_rate
                 
                 pct_variance = 0.0
                 if official_rate > 0:
                     pct_variance = round(((claimed_rate - official_rate) / official_rate) * 100.0, 3)
 
-                claimed_eur = inv.total_gross_amount / claimed_rate if claimed_rate > 0 else 0
-                official_eur = inv.total_gross_amount / official_rate if official_rate > 0 else 0
-                fx_drift_eur = round(abs(claimed_eur - official_eur), 2)
+                booked_inr = round(inv.total_gross_amount * claimed_rate, 2)
+                official_inr = round(inv.total_gross_amount * official_rate, 2)
+                fx_drift_inr = round(abs(booked_inr - official_inr), 2)
 
                 rows.append({
                     "invoice_number": inv.invoice_number,
@@ -216,7 +218,7 @@ class DataMartExporter:
                     "official_ecb_rate": round(official_rate, 4),
                     "variance_pct": pct_variance,
                     "invoice_amount_local": round(inv.total_gross_amount, 2),
-                    "fx_drift_impact_eur": fx_drift_eur,
+                    "fx_drift_impact_inr": fx_drift_inr,
                     "is_over_tolerance": abs(pct_variance) > settings.load_tolerances().get("matching", {}).get("fx_rate_tolerance_pct", 1.5)
                 })
 
@@ -225,7 +227,7 @@ class DataMartExporter:
                 df = pd.DataFrame(columns=[
                     "invoice_number", "currency", "invoice_date", "claimed_fx_rate",
                     "official_ecb_rate", "variance_pct", "invoice_amount_local",
-                    "fx_drift_impact_eur", "is_over_tolerance"
+                    "fx_drift_impact_inr", "is_over_tolerance"
                 ])
             return self._save_df(df, "fx_sensitivity")
 

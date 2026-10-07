@@ -1,7 +1,7 @@
 invoice_number,vendor_id,vendor_name,currency,total_gross_amount,masked_bank_account,match_status,bank_code,requires_review
-INV-2024-00001,VEND-030,Hernandez PLC Technologies Pvt Ltd,JPY,196470.0,*******4522,PENDING,UTIB0002345,True
+INV-2024-00001,VEND-030,Hernandez PLC Technologies Pvt Ltd,JPY,196470.0,*******4522,ON_HOLD,UTIB0002345,True
 INV-2024-00002,VEND-004,Clark PLC Technologies Pvt Ltd,JPY,203904.0,*******5155,PENDING,CITI0001122,True
-INV-2024-00003,VEND-035,Johnson Ltd Technologies Pvt Ltd,INR,49560.0,*******5541,PENDING,ICIC0007890,True
+INV-2024-00003,VEND-035,Johnson Ltd Technologies Pvt Ltd,INR,49560.0,*******5541,APPROVED,ICIC0007890,False
 INV-2024-00004,VEND-018,Byrd-Orr Technologies Pvt Ltd,INR,3068.0,*******2025,PENDING,ICIC0007890,True
 INV-2024-00005,VEND-029,White-Smith Technologies Pvt Ltd,JPY,53100.0,*******2931,PENDING,DEUT0005566,True
 INV-2024-00006,VEND-044,Taylor Inc Technologies Pvt Ltd,JPY,261464.4,*******6486,PENDING,CITI0001122,True

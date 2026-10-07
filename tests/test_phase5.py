@@ -31,7 +31,7 @@ def test_kpi_stats_endpoint():
     assert response.status_code == 200
     stats = response.json()
     assert stats["total_invoices"] == 800
-    assert stats["total_spend_eur"] > 0
+    assert stats["total_spend_inr"] > 0
     assert 0 <= stats["straight_through_processing_pct"] <= 100
     assert stats["matched_clean_count"] > 0
     assert stats["exception_count"] > 0

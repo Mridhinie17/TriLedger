@@ -12,7 +12,7 @@ class KPIStats(BaseModel):
     matched_clean_count: int
     exception_count: int
     straight_through_processing_pct: float
-    total_spend_eur: float
+    total_spend_inr: float
     high_risk_anomalies: int
     pending_review: int
     approved_count: int
