@@ -1,0 +1,21 @@
+invoice_number,vendor_id,po_number,defect_type,is_defective,defect_details,currency,total_amount,is_scanned
+INV-2024-00001,VEND-030,PO-2024-00001,price_over_tolerance,True,Line 10 price billed 35964.0 exceeds PO price 33300.0 by +8.0%,JPY,212187.6,False
+INV-2024-00002,VEND-004,PO-2024-00002,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 28224.0 instead of 18% standard rate,JPY,213984.0,True
+INV-2024-00003,VEND-035,PO-2024-00003,price_over_tolerance,True,Line 10 price billed 4536.0 exceeds PO price 4200.0 by +8.0%,INR,53524.8,False
+INV-2024-00004,VEND-018,PO-2024-00004,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 728.0 instead of 18% standard rate,INR,3328.0,True
+INV-2024-00005,VEND-029,PO-2024-00005,bank_details_changed,True,Remittance bank account 99997655572 differs from vendor master account 55702582931,INR,53100.0,False
+INV-2024-00006,VEND-001,PO-2024-00006,bank_details_changed,True,Remittance bank account 99991497036 differs from vendor master account 10478163327,INR,224200.0,False
+INV-2024-00007,VEND-032,PO-2024-00007,wrong_currency,True,Invoice billed in JPY but PO was contracted in EUR,JPY,337.48,False
+INV-2024-00008,VEND-004,PO-2024-00008,price_over_tolerance,True,Line 10 price billed 874.8 exceeds PO price 810.0 by +8.0%,JPY,466685.28,False
+INV-2024-00009,VEND-019,PO-2024-00009,price_over_tolerance,True,Line 10 price billed 12.31 exceeds PO price 11.4 by +8.0%,USD,1561.73,False
+INV-2024-00010,VEND-019,PO-2024-00010,duplicate_invoice,True,Duplicate invoice submission,USD,920.4,False
+INV-2024-00011,VEND-004,PO-2024-00011,quantity_mismatch,True,Line 10 quantity billed 105.0 exceeds GR receipt quantity 100.0,JPY,254349.0,False
+INV-2024-00012,VEND-033,PO-2024-00012,duplicate_invoice,True,Duplicate invoice submission,EUR,584.1,False
+INV-2024-00013,VEND-006,PO-2024-00013,fx_rate_deviation,True,Stated FX rate 87.7865 deviates by +6.0% from official ECB reference rate 82.8174,USD,3835.0,False
+INV-2024-00014,VEND-044,PO-2024-00014,fx_rate_deviation,True,Stated FX rate 0.5853 deviates by +6.0% from official ECB reference rate 0.5521,JPY,163548.0,False
+INV-2024-00015,VEND-039,PO-2024-00015,wrong_currency,True,Invoice billed in JPY but PO was contracted in EUR,JPY,31022.2,False
+INV-2024-00016,VEND-021,PO-PHANTOM-94839,no_matching_po,True,Cited PO PO-PHANTOM-94839 does not exist in purchasing records,INR,436600.0,False
+INV-2024-00017,VEND-016,PO-2024-00017,tax_miscalculation,True,Tax calculation mismatch: line 10 tax states 234.08 instead of 18% standard rate,EUR,13076.58,False
+INV-2024-00018,VEND-021,PO-2024-00018,fx_rate_deviation,True,Stated FX rate 88.7168 deviates by +6.0% from official ECB reference rate 83.6950,USD,26550.0,False
+INV-2024-00019,VEND-040,PO-2024-00019,wrong_currency,True,Invoice billed in JPY but PO was contracted in EUR,JPY,1557.6,False
+INV-2024-00020,VEND-014,PO-2024-00020,duplicate_invoice,True,Duplicate invoice submission,USD,1062.0,False
