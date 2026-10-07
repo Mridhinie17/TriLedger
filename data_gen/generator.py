@@ -447,6 +447,11 @@ class DatasetGenerator:
             pdf_filename = f"{inv_number}.pdf"
             pdf_path = self.pdf_dir / pdf_filename
 
+            try:
+                rel_pdf_path = str(pdf_path.relative_to(settings.BASE_DIR))
+            except ValueError:
+                rel_pdf_path = str(pdf_path)
+
             inv_obj = Invoice(
                 invoice_number=inv_number,
                 vendor_id=vendor.vendor_id,
@@ -459,7 +464,7 @@ class DatasetGenerator:
                 stated_fx_rate=stated_fx_rate,
                 bank_account_number=bank_account,
                 bank_code=bank_code,
-                pdf_path=str(pdf_path.relative_to(settings.BASE_DIR)),
+                pdf_path=rel_pdf_path,
                 is_scanned=is_scanned,
                 match_status="PENDING"
             )

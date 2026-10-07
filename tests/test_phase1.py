@@ -18,7 +18,7 @@ from config.settings import settings
 from data_gen.dq_validator import DataQualityValidator
 from data_gen.generator import DatasetGenerator
 from data_gen.pdf_builder import build_invoice_pdf
-from db.models import Invoice, RejectedRow
+from db.models import Base, Invoice, RejectedRow
 from db.session import get_db_context, init_db
 from fx.loader import FXLoader, FXResolver
 
@@ -85,20 +85,33 @@ def test_fx_weekend_and_holiday_rollback_rule():
         assert rate > 0.0
 
 
-def test_generator_determinism():
+def test_generator_determinism(tmp_path):
     """Verify that running DatasetGenerator with the same seed yields identical outputs."""
-    with get_db_context() as db:
-        gen1 = DatasetGenerator(seed=42, total_invoices=20, defect_rate=0.20, scanned_rate=0.10)
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+
+    test_db_url = f"sqlite:///{tmp_path}/test_det.db"
+    test_engine = create_engine(test_db_url)
+    Base.metadata.create_all(bind=test_engine)
+    TestSession = sessionmaker(bind=test_engine)
+
+    with TestSession() as db:
+        gen1 = DatasetGenerator(seed=42, total_invoices=20, defect_rate=0.20, scanned_rate=0.10, data_dir=tmp_path)
         res1 = gen1.generate_all(db, build_pdfs=False)
 
-        # Retrieve first 5 invoices
         invs1 = [
             (inv.invoice_number, inv.total_gross_amount, inv.currency)
             for inv in db.query(Invoice).order_by(Invoice.invoice_number).limit(5).all()
         ]
 
-        # Run generator again with same seed
-        gen2 = DatasetGenerator(seed=42, total_invoices=20, defect_rate=0.20, scanned_rate=0.10)
+    # Re-initialize clean test db for run 2
+    test_db_url2 = f"sqlite:///{tmp_path}/test_det2.db"
+    test_engine2 = create_engine(test_db_url2)
+    Base.metadata.create_all(bind=test_engine2)
+    TestSession2 = sessionmaker(bind=test_engine2)
+
+    with TestSession2() as db:
+        gen2 = DatasetGenerator(seed=42, total_invoices=20, defect_rate=0.20, scanned_rate=0.10, data_dir=tmp_path)
         res2 = gen2.generate_all(db, build_pdfs=False)
 
         invs2 = [
@@ -106,8 +119,8 @@ def test_generator_determinism():
             for inv in db.query(Invoice).order_by(Invoice.invoice_number).limit(5).all()
         ]
 
-        assert invs1 == invs2, "Generator outputs differed across identical seed runs!"
-        assert res1["defective_invoices"] == res2["defective_invoices"]
+    assert invs1 == invs2, "Generator outputs differed across identical seed runs!"
+    assert res1["defective_invoices"] == res2["defective_invoices"]
 
 
 def test_ground_truth_integrity_and_defect_counts():

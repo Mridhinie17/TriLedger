@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-10-07T11:24:57.464931",
+  "total_evaluated": 800,
+  "digital_count": 720,
+  "scanned_count": 80,
+  "ocr_triggered_on_scanned": 80,
+  "ocr_trigger_rate_pct": 100.0,
+  "macro_average_accuracy_pct": 99.42,
+  "per_field_accuracy": {
+    "invoice_number": 100.0,
+    "vendor_id": 100.0,
+    "po_number": 100.0,
+    "invoice_date": 100.0,
+    "currency": 100.0,
+    "total_net_amount": 98.25,
+    "total_tax_amount": 98.25,
+    "total_gross_amount": 98.25,
+    "bank_account_number": 100.0
+  },
+  "digital_per_field_accuracy": {
+    "invoice_number": 100.0,
+    "vendor_id": 100.0,
+    "po_number": 100.0,
+    "invoice_date": 100.0,
+    "currency": 100.0,
+    "total_net_amount": 100.0,
+    "total_tax_amount": 100.0,
+    "total_gross_amount": 100.0,
+    "bank_account_number": 100.0
+  },
+  "scanned_per_field_accuracy": {
+    "invoice_number": 100.0,
+    "vendor_id": 100.0,
+    "po_number": 100.0,
+    "invoice_date": 100.0,
+    "currency": 100.0,
+    "total_net_amount": 82.5,
+    "total_tax_amount": 82.5,
+    "total_gross_amount": 82.5,
+    "bank_account_number": 100.0
+  },
+  "flagged_for_human_review_count": 67,
+  "flagged_for_human_review_rate_pct": 8.38,
+  "average_latency_ms": 119.82,
+  "total_duration_seconds": 95.89
+}
